@@ -1,0 +1,2729 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="OUT-DRIFTED Garage · Solo Riders. Las piezas que ya pasaron por nuestros autos.">
+<title>OUT-DRIFTED GARAGE · Solo Riders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#f2f7f6;--muted:#93a5a6;--dim:#5e7072;--bg:#04090b;--panel:#0a1418;--panel2:#0f1e22;
+  --line:#1e3238;--acid:#d1dd13;--teal:#22e0f5;--flame:#ff4d2d;--violet:#b388ff;--hot:#ff2e88;--paper:#eaf0ee;--max:1240px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.3;overflow-x:hidden}
+button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.arc{font-family:"Archivo Black","DM Sans",sans-serif;letter-spacing:-.02em;text-transform:uppercase}
+
+/* ===== CRT / arcade cabinet feel ===== */
+#grid3d{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.62;filter:saturate(.82)}
+.scan{position:fixed;inset:0;z-index:40;pointer-events:none;
+  background:repeating-linear-gradient(rgba(0,0,0,.16) 0 1px,transparent 1px 4px);opacity:.42;mix-blend-mode:multiply}
+.vig{position:fixed;inset:0;z-index:41;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 45%,transparent 52%,rgba(0,0,0,.75) 100%)}
+
+/* ===== HERO / ATTRACT MODE ===== */
+.hero{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:70px 20px 90px;text-align:center}
+/* full-bleed background video of the León FR */
+.hero-car{position:absolute;inset:0;z-index:-1;overflow:hidden;animation:carIn 1.4s ease-out both}
+@keyframes carIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
+.hero-car img,.hero-car video{width:100%;height:100%;display:block;object-fit:cover;
+  filter:saturate(1.12) contrast(1.06) brightness(.82)}
+/* readability overlay over the footage */
+.hero-car:after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(4,9,11,.86) 0%,rgba(4,9,11,.5) 26%,rgba(4,9,11,.52) 62%,rgba(4,9,11,.94) 100%),
+  radial-gradient(closest-side at 50% 46%,rgba(4,9,11,.72),transparent 78%)}
+.hero-in{position:relative;z-index:3;max-width:min(1000px,100%)}
+.title .row{white-space:nowrap}
+.hero-glow{position:absolute;inset:0;z-index:-2;background:
+  radial-gradient(700px 420px at 50% 30%,rgba(34,224,245,.18),transparent 68%),
+  radial-gradient(760px 460px at 50% 88%,rgba(255,77,45,.22),transparent 66%)}
+
+.coin{display:inline-block;font-size:.66rem;font-weight:900;letter-spacing:.3em;color:var(--flame);margin-bottom:18px;animation:blink 1.15s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+
+.title{position:relative;margin:0;font-size:clamp(2rem,8.2vw,6.4rem);line-height:.84}
+.title .row{display:block;position:relative}
+.title .row:nth-child(1){animation:slam .5s cubic-bezier(.2,1.4,.4,1) both}
+.title .row:nth-child(2){animation:slam .5s .12s cubic-bezier(.2,1.4,.4,1) both;color:var(--acid)}
+@keyframes slam{0%{opacity:0;transform:scale(2.4) translateY(-10px);filter:blur(16px)}70%{opacity:1;filter:blur(0)}100%{opacity:1;transform:scale(1)}}
+.title .row{text-shadow:
+  0 0 0 #000,
+  3px 3px 0 rgba(0,0,0,.9),
+  0 0 26px rgba(34,224,245,.45),
+  0 0 60px rgba(209,221,19,.28);
+  -webkit-text-stroke:2px rgba(0,0,0,.55)}
+
+.sub{max-width:620px;margin:20px auto 0;color:#cfdad8;font-size:clamp(.95rem,2.2vw,1.1rem);opacity:0;animation:up .5s .55s forwards}
+.sub b{color:#fff}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.seals{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px;opacity:0;animation:up .5s .68s forwards}
+.sl{border:2px solid;padding:9px 13px;font-size:.62rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;background:#04090bcc}
+.sl.a{color:var(--acid);border-color:var(--acid)}
+.sl.b{color:var(--teal);border-color:var(--teal)}
+.sl.c{color:var(--flame);border-color:var(--flame)}
+
+.start{margin-top:34px;opacity:0;animation:up .5s .8s forwards}
+.btn-start{position:relative;font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:.04em;
+  min-height:70px;padding:0 46px;border:0;background:var(--acid);color:#0d1100;font-size:clamp(1rem,2.6vw,1.35rem);
+  box-shadow:0 8px 0 #7d8709,0 20px 40px -12px rgba(209,221,19,.6);transition:transform .1s,box-shadow .1s}
+.btn-start:hover{background:#e6f31d}
+.btn-start:active{transform:translateY(6px);box-shadow:0 2px 0 #7d8709,0 10px 24px -12px rgba(209,221,19,.6)}
+.hint{margin-top:14px;font-size:.66rem;font-weight:900;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+
+.socials{position:absolute;top:20px;right:20px;display:flex;gap:8px;z-index:5}
+.sbtn{width:42px;height:42px;border:2px solid var(--line);display:grid;place-items:center;color:#b6c6c4;background:#04090bcc;transition:.16s}
+.sbtn:hover{color:var(--acid);border-color:var(--acid);transform:translateY(-3px)}
+.sbtn svg{width:18px;height:18px}
+.markL{position:absolute;top:20px;left:20px;z-index:5;width:132px;opacity:.9}
+.markL img{width:100%;display:block}
+
+/* ===== FLOW ===== */
+.flow{position:relative;z-index:2;padding:0 20px 120px;border-top:2px solid var(--line)}
+.flow-in{max-width:var(--max);margin:auto}
+
+/* arcade HUD */
+.hud{position:sticky;top:0;z-index:30;margin:0 -20px 34px;padding:10px 20px;background:#04090bf2;border-bottom:2px solid var(--acid);
+  box-shadow:0 8px 30px -10px #000}
+.hud-in{max-width:var(--max);margin:auto;display:flex;gap:6px;align-items:stretch;overflow-x:auto}
+.hs{flex:1;min-width:132px;border:2px solid var(--line);padding:7px 10px;background:#08131599;opacity:.5;transition:.28s}
+.hs.on{opacity:1;border-color:var(--acid);background:#161d03;box-shadow:0 0 20px -4px rgba(209,221,19,.55)}
+.hs.done{opacity:1;border-color:#2f4a44}
+.hs b{display:block;font-size:.55rem;font-weight:900;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.hs.on b{color:var(--acid)}
+.hs span{display:block;font-size:.8rem;font-weight:900;color:#e7efed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.step{display:none;padding-top:16px}
+.step.live{display:block}
+.stage{text-align:center;margin-bottom:26px}
+.stage .lbl{font-size:.62rem;font-weight:900;letter-spacing:.24em;color:var(--flame);text-transform:uppercase;margin-bottom:10px}
+.stage h2{margin:0;font-size:clamp(1.7rem,5.2vw,3.4rem);line-height:.92;
+  text-shadow:2px 2px 0 rgba(0,0,0,.85),0 0 30px rgba(34,224,245,.3)}
+.stage h2 em{font-style:normal;color:var(--acid)}
+.stage p{color:var(--muted);max-width:560px;margin:12px auto 0;font-size:.92rem}
+
+/* option cards — arcade select */
+.opts{display:grid;gap:12px;perspective:1600px}
+.opts.c3{grid-template-columns:repeat(3,1fr)}
+.opts.c4{grid-template-columns:repeat(4,1fr)}
+.opt{position:relative;background:var(--panel);border:2px solid var(--line);color:var(--ink);text-align:left;padding:0;overflow:hidden;
+  display:flex;flex-direction:column;min-height:280px;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .3s,opacity .3s,filter .3s;will-change:transform}
+.opts.pre .opt{opacity:0}
+.opts.go .opt:not(.done){animation:tunnel .78s cubic-bezier(.14,.82,.24,1.02) both;animation-delay:var(--d,0ms)}
+@keyframes tunnel{
+  0%{opacity:0;transform:translateZ(-700px) translateX(var(--fx,0)) rotateY(var(--ry,0deg)) scale(.68);filter:blur(10px)}
+  55%{opacity:1;filter:blur(0)}
+  80%{transform:translateZ(54px) scale(1.04)}
+  100%{opacity:1;transform:none;filter:none}
+}
+.opt-img{position:relative;height:132px;background:#060f11;overflow:hidden;flex:0 0 auto}
+.opt-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.1);transition:transform .4s,filter .3s}
+.opt:hover .opt-img img{transform:scale(1.07)}
+.opt.sel .opt-img img{filter:saturate(1.25) contrast(1.12)}
+.opt-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,var(--panel) 98%)}
+.opt-lock{position:absolute;inset:0;display:grid;place-items:center;background:#04090bd6;backdrop-filter:blur(2px);z-index:2}
+.opt-lock span{font-family:"Archivo Black",sans-serif;font-size:.72rem;letter-spacing:.16em;color:var(--flame);border:2px solid var(--flame);padding:6px 11px}
+.opt-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.opt-tag{font-size:.58rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.opt h3{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.02rem;margin:0 0 5px;line-height:1.08}
+.opt small{display:block;color:var(--muted);font-size:.74rem;margin-bottom:12px}
+/* stat bars — videogame */
+.stats{margin-top:auto;display:grid;gap:5px}
+.stat{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:center}
+.stat b{font-size:.5rem;font-weight:900;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.bars{display:flex;gap:2px}
+.bars i{flex:1;height:7px;background:#16262a;transition:background .3s}
+.bars i.f{background:var(--acid)}
+.opt[data-accent=teal] .bars i.f{background:var(--teal)}
+.opt[data-accent=flame] .bars i.f{background:var(--flame)}
+.opt[data-accent=violet] .bars i.f{background:var(--violet)}
+.opt[data-accent=acid] .opt-tag{color:var(--acid)}
+.opt[data-accent=teal] .opt-tag{color:var(--teal)}
+.opt[data-accent=flame] .opt-tag{color:var(--flame)}
+.opt[data-accent=violet] .opt-tag{color:var(--violet)}
+.opt:hover{border-color:#3d5c5f}
+.opts.picked .opt:not(.sel){opacity:.3;filter:saturate(.15) brightness(.7);transform:scale(.95)}
+.opt.sel{transform:scale(1.06);z-index:6;animation:pick 1.6s ease-in-out infinite}
+.opt[data-accent=acid].sel{border-color:var(--acid)}
+.opt[data-accent=teal].sel{border-color:var(--teal)}
+.opt[data-accent=flame].sel{border-color:var(--flame)}
+.opt[data-accent=violet].sel{border-color:var(--violet)}
+@keyframes pick{0%,100%{box-shadow:0 0 0 2px currentColor,0 0 34px -6px rgba(255,255,255,.28)}50%{box-shadow:0 0 0 2px currentColor,0 0 60px -4px rgba(255,255,255,.5)}}
+.opt.sel:before{content:"► SELECCIONADO";position:absolute;top:8px;left:8px;z-index:3;font-family:"Archivo Black",sans-serif;font-size:.56rem;letter-spacing:.12em;background:#04090b;padding:5px 8px;border:2px solid currentColor}
+.opt[data-accent=acid].sel:before{color:var(--acid)}
+.opt[data-accent=teal].sel:before{color:var(--teal)}
+.opt[data-accent=flame].sel:before{color:var(--flame)}
+.opt[data-accent=violet].sel:before{color:var(--violet)}
+
+/* confirm bar */
+.bar{max-width:680px;margin:26px auto 0;border:2px solid var(--line);background:#08131599;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  opacity:0;transform:translateY(18px);pointer-events:none;transition:.35s}
+.bar.on{opacity:1;transform:none;pointer-events:auto;border-color:var(--acid)}
+.bar b{display:block;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);font-weight:900;margin-bottom:3px}
+.bar span{font-family:"Archivo Black",sans-serif;font-size:.95rem;text-transform:uppercase}
+.bar button{font-family:"Archivo Black",sans-serif;min-height:50px;padding:0 24px;border:0;background:var(--acid);color:#0d1100;text-transform:uppercase;letter-spacing:.03em;font-size:.82rem;white-space:nowrap;box-shadow:0 6px 0 #7d8709;transition:.1s}
+.bar button:active{transform:translateY(4px);box-shadow:0 2px 0 #7d8709}
+.back{background:none;border:0;color:var(--dim);font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;margin-top:22px;padding:8px 0}
+.back:hover{color:var(--acid)}
+
+/* results */
+.res{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.res-card{background:var(--panel);border:2px solid var(--line);display:flex;flex-direction:column;overflow:hidden;opacity:0}
+.res.go .res-card{animation:up .5s both;animation-delay:var(--d,0ms)}
+.res-img{height:150px;overflow:hidden;position:relative;background:#060f11}
+.res-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.08);transition:transform .4s}
+.res-card:hover .res-img img{transform:scale(1.05)}
+.pill{position:absolute;left:0;bottom:0;font-family:"Archivo Black",sans-serif;font-size:.56rem;letter-spacing:.1em;padding:6px 10px;text-transform:uppercase}
+.pill.ok{background:var(--acid);color:#0d1100}
+.pill.cur{background:var(--teal);color:#012027}
+.pill.pen{background:var(--flame);color:#2a0800}
+.res-bd{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.res-sku{font-size:.56rem;color:var(--dim);font-weight:900;letter-spacing:.12em;margin-bottom:7px}
+.res-card h3{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.02rem;margin:0 0 8px;line-height:1.1}
+.res-card p{color:var(--muted);font-size:.84rem;margin:0 0 14px}
+.res-meta{margin-top:auto;border-top:2px solid var(--line);padding-top:11px;font-size:.75rem;color:#b9c8c6}
+.res-meta b{color:var(--acid);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+.res-link{display:inline-block;margin-top:12px;font-family:"Archivo Black",sans-serif;font-size:.66rem;letter-spacing:.08em;color:#0d1100;background:var(--acid);padding:8px 12px;text-transform:uppercase}
+.res-link:hover{background:#e6f31d}
+.empty{grid-column:1/-1;background:var(--panel);border:2px dashed var(--flame);padding:44px 26px;text-align:center}
+.empty h3{font-family:"Archivo Black",sans-serif;text-transform:uppercase;margin:0 0 10px;font-size:1.5rem;color:var(--flame)}
+.empty p{color:var(--muted);margin:0 auto 18px;max-width:470px;font-size:.9rem}
+
+/* ===== DOCK — discreet side tab, opens on demand ===== */
+.dock{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:60;display:flex;align-items:stretch;
+  background:#061112f2;border:1px solid #223639;border-right:0;backdrop-filter:blur(14px);
+  box-shadow:0 22px 54px -26px #000;transition:transform .38s cubic-bezier(.16,1,.3,1),border-color .25s}
+.dock-tab{flex:0 0 34px;border:0;border-right:1px solid #223639;background:transparent;color:#8ba09e;
+  writing-mode:vertical-rl;transform:rotate(180deg);padding:18px 0;font-size:.58rem;font-weight:900;
+  letter-spacing:.18em;text-transform:uppercase;transition:color .2s,background .2s}
+.dock-tab:hover{color:var(--acid);background:#0e1a12}
+.dock-tab .dot{color:var(--acid)}
+.dock-bd{width:250px;padding:14px}
+.dock-bd p.i{margin:0 0 11px;font-size:.74rem;color:#a8b9b6;line-height:1.45}
+.dock-ctx{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:11px}
+.chip{font-size:.52rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:3px 6px;background:#101d1c;border:1px solid #26383a;color:#a9bab7}
+.chip.k{border-color:#5d6b1a;color:var(--acid)}
+.dock input{width:100%;height:40px;border:1px solid #26383a;background:#040c0d;color:var(--ink);padding:0 10px;font-size:.82rem;margin-bottom:8px}
+.dock input::placeholder{color:#5f7273}
+.dock input:focus{outline:none;border-color:var(--acid)}
+.dock .send{width:100%;min-height:40px;border:0;background:#1d2907;color:var(--acid);font-family:"Archivo Black",sans-serif;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;border:1px solid #4d5a12;transition:.15s}
+.dock .send:hover{background:var(--acid);color:#0d1100;border-color:var(--acid)}
+.dock .fine{margin:9px 0 0;font-size:.58rem;color:var(--dim);line-height:1.35}
+/* collapsed = only the slim tab shows */
+.dock.min{transform:translateY(-50%) translateX(250px)}
+.dock.min .dock-bd{opacity:0;pointer-events:none}
+.dock-ok{display:none;text-align:center}
+.dock.done .dock-ok{display:block}
+.dock.done form,.dock.done p.i,.dock.done .dock-ctx{display:none}
+.dock-ok .tick{font-family:"Archivo Black",sans-serif;font-size:1.3rem;color:var(--acid)}
+.dock-ok p{margin:5px 0 0;font-size:.74rem;color:#a8b9b6}
+
+/* just enough gutter that the slim tab never sits on top of content */
+@media(min-width:1101px){ body{padding-right:38px} }
+@media(max-width:1100px){
+  .dock{top:auto;bottom:0;right:0;left:auto;transform:none;flex-direction:row-reverse;border-right:1px solid #223639;border-bottom:0}
+  .dock.min{transform:translateY(calc(100% - 34px))}
+  .dock-tab{flex:0 0 auto;writing-mode:horizontal-tb;transform:none;border-right:0;border-bottom:1px solid #223639;padding:0 16px;height:34px;white-space:nowrap}
+  .dock{flex-direction:column;align-items:stretch}
+  .dock-bd{width:min(320px,92vw)}
+}
+@media(max-width:560px){ .dock{left:0} .dock-bd{width:auto} }
+@media(max-width:820px){
+  .opts.c3,.opts.c4{grid-template-columns:1fr 1fr}
+  .res{grid-template-columns:1fr}
+  .markL{width:100px}
+}
+@media(max-width:560px){
+  .opts.c3,.opts.c4{grid-template-columns:1fr}
+  .opt{min-height:0}
+  .opt.sel{transform:scale(1.02)}
+  .hero{padding:64px 16px 80px}
+  .flow{padding:0 14px 150px}
+  .hud{margin:0 -14px 26px;padding:9px 14px}
+  .bar{flex-direction:column;align-items:stretch;text-align:center}
+}
+
+/* ===== MAPA DE LOCALES (estilo Gran Turismo) ===== */
+.mapa{position:relative;z-index:2;padding:66px 20px 84px;border-top:2px solid var(--line)}
+.mapa-in{max-width:var(--max);margin:auto}
+.mapa-head{text-align:center;margin-bottom:34px}
+.mapa-head .lbl{font-size:.62rem;font-weight:900;letter-spacing:.24em;color:var(--flame);text-transform:uppercase;margin-bottom:10px}
+.mapa-head h2{margin:0;font-size:clamp(1.7rem,5vw,3.2rem);line-height:.92;text-shadow:2px 2px 0 rgba(0,0,0,.85)}
+.mapa-head h2 em{font-style:normal;color:var(--acid)}
+.mapa-head p{color:var(--muted);max-width:600px;margin:12px auto 0;font-size:.92rem}
+
+/* el escenario: el mirador dibujado; los destinos son los edificios del paisaje */
+.mapa-stage{position:relative;width:100%;height:min(78vh,720px);min-height:520px;
+  border:2px solid var(--line);overflow:hidden;background:#0a0b18;box-shadow:0 32px 70px -42px #000}
+.mapa-stage:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 62%,transparent 46%,rgba(6,5,14,.55) 100%);
+  box-shadow:inset 0 0 70px rgba(6,5,14,.55)}
+#mapaCanvas{position:absolute;inset:0;display:block}
+.hotspots{position:absolute;inset:0;z-index:3}
+
+/* punto de acceso: nada flota sobre el paisaje hasta que lo tocas */
+.hs-local{position:absolute;transform:translate(-50%,-100%);background:transparent;border:0;padding:0;
+  min-width:44px;min-height:44px;cursor:pointer;color:var(--acc,#e0c66a);
+  display:block;-webkit-tap-highlight-color:transparent}
+.hs-caja{position:absolute;inset:0}
+.hs-caja i{position:absolute;width:11px;height:11px;border:0 solid currentColor;opacity:.34;transition:opacity .2s,width .2s,height .2s}
+.hs-caja i:nth-child(1){top:0;left:0;border-top-width:2px;border-left-width:2px}
+.hs-caja i:nth-child(2){top:0;right:0;border-top-width:2px;border-right-width:2px}
+.hs-caja i:nth-child(3){bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
+.hs-caja i:nth-child(4){bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
+.hs-local:hover .hs-caja i,.hs-local:focus-visible .hs-caja i{opacity:.95;width:15px;height:15px}
+.hs-punto{position:absolute;left:50%;bottom:-7px;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;
+  background:currentColor;opacity:.72;box-shadow:0 0 10px currentColor;transition:opacity .2s,transform .2s}
+.hs-local:hover .hs-punto,.hs-local:focus-visible .hs-punto{opacity:1;transform:scale(1.35)}
+.hs-nom{position:absolute;left:50%;top:calc(100% + 12px);transform:translate(-50%,4px);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;
+  font-size:.58rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:currentColor;
+  text-shadow:0 1px 3px #05040c,0 0 12px rgba(5,4,12,.9)}
+.hs-nom small{display:block;font-size:.5rem;letter-spacing:.14em;color:#c9c2d8;opacity:.8;margin-top:2px}
+.hs-local:hover .hs-nom,.hs-local:focus-visible .hs-nom{opacity:1;transform:translate(-50%,0)}
+.hs-local:focus-visible{outline:none}
+.mapa-pie{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;
+  font-size:.6rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mapa-pie b{color:var(--acid)}
+@media(max-width:700px){
+  .mapa-stage{height:66vh;min-height:440px}
+  .hs-punto{width:9px;height:9px;margin-left:-4.5px;opacity:.85}
+  .hs-nom{font-size:.54rem} .hs-nom small{display:none}
+}
+
+/* ===== OVERLAY DEL LOCAL ===== */
+.local{position:fixed;inset:0;z-index:120;display:none;flex-direction:column;background:#04090bf7;backdrop-filter:blur(9px)}
+.local.open{display:flex;animation:localIn .34s cubic-bezier(.16,1,.3,1) both}
+@keyframes localIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.local-hd{flex:0 0 auto;position:relative;background:var(--acc,#0a6a3c);padding:14px 20px;display:flex;align-items:center;gap:14px;
+  border-bottom:2px solid rgba(0,0,0,.5)}
+.local-hd:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.25)}
+.local-hd h2{flex:1;margin:0;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:clamp(1rem,3vw,1.6rem);
+  color:#04090b;letter-spacing:.02em;text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.local-hd .sub{font-size:.6rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:rgba(4,9,11,.7);display:block;margin-top:3px}
+.cerrar{flex:0 0 auto;width:42px;height:42px;border:2px solid rgba(4,9,11,.6);background:transparent;color:#04090b;font-size:1.2rem;font-weight:900}
+.cerrar:hover{background:#04090b;color:var(--acc,#0a6a3c)}
+.local-tabs{flex:0 0 auto;display:flex;gap:0;overflow-x:auto;background:#081315;border-bottom:2px solid var(--line)}
+.local-tabs button{flex:0 0 auto;padding:12px 18px;border:0;border-right:1px solid var(--line);background:transparent;
+  color:#8ea19e;font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:.15s}
+.local-tabs button:hover{color:var(--ink);background:#0d1c1f}
+.local-tabs button.on{background:var(--acid);color:#0d1100}
+.local-body{flex:1;overflow-y:auto;padding:20px}
+.local-body .wrap{max-width:var(--max);margin:auto}
+
+/* cuadrícula de piezas estilo GT */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.gt-card{position:relative;background:#0b1a1d;border:2px solid var(--line);padding:0;text-align:left;color:var(--ink);
+  display:flex;flex-direction:column;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s;opacity:0}
+.gt-grid.go .gt-card{animation:up .4s both;animation-delay:var(--d,0ms)}
+.gt-card:hover{transform:translateY(-4px);border-color:var(--acid);box-shadow:0 14px 34px -18px rgba(209,221,19,.7)}
+.gt-lg{height:74px;display:grid;place-items:center;background:#101f22;border-bottom:1px solid var(--line);padding:10px}
+.gt-lg img{max-height:52px;max-width:78%;object-fit:contain}
+.gt-lg .ini{font-family:"Archivo Black",sans-serif;font-size:1.1rem;color:#5e7072}
+.gt-bd{padding:12px 13px 13px;display:flex;flex-direction:column;flex:1}
+.gt-bd b{display:block;font-size:.84rem;font-weight:700;line-height:1.2;margin-bottom:6px}
+.gt-bd .sis{font-size:.54rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.gt-precio{margin-top:auto;font-family:"Archivo Black",sans-serif;font-size:.92rem;color:var(--acid)}
+.gt-precio small{display:block;font-family:"DM Sans",sans-serif;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:900;margin-top:2px}
+.gt-sello{position:absolute;top:8px;left:8px;font-size:.5rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 6px;background:#04090bcc;border:1px solid currentColor}
+.gt-sello.ok{color:var(--acid)} .gt-sello.cur{color:var(--teal)} .gt-sello.rev{color:var(--flame)} .gt-sello.pen{color:var(--dim)}
+
+/* marcas dentro del local — a color, con efecto al clic */
+.gt-marcas{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+.mk-card{position:relative;overflow:hidden;background:#0b1a1d;border:2px solid var(--line);padding:18px 12px 14px;text-align:center;
+  color:var(--ink);transition:transform .22s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .22s;opacity:0}
+.gt-marcas.go .mk-card{animation:up .4s both;animation-delay:var(--d,0ms)}
+.mk-card:hover{transform:translateY(-5px) scale(1.02);border-color:var(--acid);box-shadow:0 16px 38px -18px rgba(209,221,19,.6)}
+.mk-card .lg{height:52px;display:grid;place-items:center;margin-bottom:11px}
+.mk-card .lg img{max-height:52px;max-width:100%;object-fit:contain;transition:transform .25s}
+.mk-card:hover .lg img{transform:scale(1.1)}
+.mk-card .ini{font-family:"Archivo Black",sans-serif;font-size:1.2rem;color:#61757a}
+.mk-card b{display:block;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mk-card span{display:block;font-size:.56rem;color:var(--dim);letter-spacing:.08em;margin-top:4px;font-weight:900}
+/* el efecto bonito al hacer clic */
+.mk-card.zap{animation:zap .55s cubic-bezier(.2,1.4,.4,1)}
+@keyframes zap{0%{transform:scale(1)}25%{transform:scale(1.13);box-shadow:0 0 0 3px var(--acid),0 0 46px -4px rgba(209,221,19,.95)}
+  60%{transform:scale(.99)}100%{transform:scale(1)}}
+.onda{position:absolute;left:50%;top:44%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);
+  border:2px solid var(--acid);pointer-events:none;animation:onda .6s ease-out forwards}
+@keyframes onda{from{opacity:.9;width:8px;height:8px}to{opacity:0;width:330px;height:330px}}
+
+/* ficha de la pieza */
+.ficha{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;padding:20px}
+.ficha.open{display:flex}
+.ficha-bg{position:absolute;inset:0;background:#04090be6;animation:fadeIn .22s both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.ficha-panel{position:relative;width:min(560px,100%);max-height:88vh;overflow:auto;background:#0b1a1d;border:2px solid var(--acid);
+  box-shadow:0 30px 80px -30px #000,0 0 60px -22px rgba(209,221,19,.55);animation:fichaIn .36s cubic-bezier(.16,1,.3,1) both}
+@keyframes fichaIn{from{opacity:0;transform:translateY(26px) scale(.95)}to{opacity:1;transform:none}}
+.ficha-top{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:2px solid var(--line);background:#101f22}
+.ficha-top .lg{width:76px;height:50px;display:grid;place-items:center;flex:0 0 auto}
+.ficha-top .lg img{max-height:50px;max-width:76px;object-fit:contain}
+.ficha-top .ini{font-family:"Archivo Black",sans-serif;color:#61757a}
+.ficha-top h3{margin:0;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.02rem;line-height:1.14}
+.ficha-top .marca{font-size:.56rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--acid);display:block;margin-bottom:5px}
+.ficha-bd{padding:18px}
+.ficha-bd p.desc{color:#bccac7;font-size:.88rem;margin:0 0 16px;line-height:1.5}
+.dato{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.82rem}
+.dato b{font-size:.56rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);align-self:center}
+.dato span{color:#dbe5e3}
+.ficha-precio{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:16px;padding-top:14px;border-top:2px solid var(--line)}
+.ficha-precio .pag{font-family:"Archivo Black",sans-serif;font-size:1.5rem;color:var(--acid)}
+.ficha-precio .pag small{display:block;font-family:"DM Sans",sans-serif;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:900}
+.ficha-acc{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.ficha-acc a,.ficha-acc button{flex:1;min-width:132px;min-height:46px;border:2px solid var(--line);background:transparent;color:#dbe5e3;
+  font-family:"Archivo Black",sans-serif;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;text-align:center}
+.ficha-acc .primaria{background:var(--acid);border-color:var(--acid);color:#0d1100}
+.ficha-acc .primaria:hover{background:#e6f31d}
+.ficha-acc a:hover,.ficha-acc button:hover{border-color:var(--acid);color:var(--acid)}
+.ficha-acc .primaria:hover{color:#0d1100}
+.ficha-cerrar{position:absolute;right:10px;top:10px;width:34px;height:34px;border:2px solid var(--line);background:#04090b;color:#9fb0ad;font-size:1rem}
+.ficha-cerrar:hover{border-color:var(--acid);color:var(--acid)}
+
+/* garage: ficha del auto */
+.garaje{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}
+.garaje-foto{border:2px solid var(--line);overflow:hidden;background:#0b1a1d}
+.garaje-foto img{width:100%;display:block}
+.garaje-specs{border:2px solid var(--line);background:#0b1a1d;padding:18px}
+.garaje-specs h3{margin:0 0 4px;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.2rem}
+.garaje-specs .plat{font-size:.6rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--acid);margin-bottom:14px}
+.garaje-cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.garaje-cifras div{border:2px solid var(--line);padding:11px 8px;text-align:center}
+.garaje-cifras b{display:block;font-family:"Archivo Black",sans-serif;font-size:1.05rem;color:var(--acid)}
+.garaje-cifras span{display:block;font-size:.5rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+
+@media(max-width:980px){ .locales{grid-template-columns:repeat(2,1fr)} .garaje{grid-template-columns:1fr} }
+@media(max-width:560px){ .locales{grid-template-columns:1fr} .local-btn{min-height:0} .local-body{padding:14px} }
+
+/* ===== LA PISTA · mapa nacional propio ===== */
+.pista{position:fixed;inset:0;z-index:130;display:none;flex-direction:column;background:#04090bf7;backdrop-filter:blur(9px)}
+.pista.open{display:flex;animation:localIn .34s cubic-bezier(.16,1,.3,1) both}
+.pista-hd{flex:0 0 auto;position:relative;background:var(--violet);padding:14px 20px;display:flex;align-items:flex-start;gap:14px;
+  border-bottom:2px solid rgba(0,0,0,.5)}
+.pista-hd h2{margin:0;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:clamp(1rem,3vw,1.6rem);
+  color:#0a0714;letter-spacing:.02em}
+.pista-hd .sub{display:block;margin-top:4px;font-size:.62rem;font-weight:700;letter-spacing:.02em;color:#241a3d;max-width:60ch}
+.pista-hd .cerrar{border-color:rgba(10,7,20,.6);color:#0a0714}
+.pista-hd .cerrar:hover{background:#0a0714;color:var(--violet)}
+.pista-filtros{flex:0 0 auto;display:flex;gap:0;overflow-x:auto;background:#081315;border-bottom:2px solid var(--line)}
+.pista-filtros button{flex:0 0 auto;padding:11px 14px;border:0;border-right:1px solid var(--line);background:transparent;
+  color:#8ea19e;font-size:.6rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  min-height:44px;display:flex;align-items:center;gap:6px}
+.pista-filtros button:hover{color:var(--ink);background:#0d1c1f}
+.pista-filtros button[aria-pressed="true"]{background:var(--violet);color:#0a0714}
+.pista-filtros button i{width:9px;height:9px;border-radius:50%;background:currentColor;display:inline-block;flex:0 0 auto}
+/* El agua es el fondo real de todo el lienzo: mismo color en body, wrap y SVG,
+   y el SVG pinta un rect sobredimensionado, asi que nunca aparece un rectangulo de mapa. */
+.pista-body{flex:1;min-height:0;display:block;position:relative;overflow:hidden;background:#071626}
+.pista-mapwrap{position:absolute;inset:0;overflow:hidden;background:#071626}
+.pista-mapwrap:before{display:none}
+#pistaSvg{position:absolute;inset:0;width:100%;height:100%;display:block;background:transparent;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+/* --- superficie terrestre --- */
+.pista-country{fill:#242c34}
+.pista-mx-state{stroke:#a8bccb;stroke-opacity:.19;stroke-width:.7px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.pista-intl-border{fill:none;stroke:#93a9ba;stroke-opacity:.26;stroke-width:.7px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.pista-national-border{fill:none;stroke:#eef4f8;stroke-opacity:.86;stroke-width:1.6px;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+
+/* --- interaccion por entidad: superficie invisible + realce, sin tarjeta --- */
+.pista-hit{fill:#000;fill-opacity:0;stroke:none;cursor:pointer;outline:none}
+.pista-focus{fill:#dcefff;fill-opacity:0;stroke:#eef6fb;stroke-opacity:0;stroke-width:1.4px;
+  stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none;
+  transition:fill-opacity .16s ease,stroke-opacity .16s ease}
+.pista-focus.on{fill-opacity:.09;stroke-opacity:.55}
+.pista-chip{pointer-events:none;opacity:0;transition:opacity .16s ease}
+.pista-chip.on{opacity:1}
+.pista-chip rect{fill:#050f1a;fill-opacity:.9;stroke:#eef6fb;stroke-opacity:.3;stroke-width:1px;vector-effect:non-scaling-stroke}
+.pista-chip text{fill:#eaf3f8;font-family:"DM Sans",system-ui,sans-serif;font-weight:900;text-anchor:middle;dominant-baseline:central}
+
+/* --- rotulacion: escasa, legible y por debajo de la geografia --- */
+.pista-state-label{font-family:"DM Sans",system-ui,sans-serif;font-weight:900;fill:#dfeaf1;fill-opacity:.86;
+  text-anchor:middle;dominant-baseline:central;paint-order:stroke;stroke:#101d28;stroke-opacity:.72;
+  stroke-linejoin:round;pointer-events:none}
+.pista-leader{stroke:#cfe0ec;stroke-opacity:.34;fill:none;stroke-width:.7px;vector-effect:non-scaling-stroke;pointer-events:none}
+.pista-country-label{font-family:"DM Sans",system-ui,sans-serif;font-weight:900;fill:#b8c8d4;fill-opacity:.48;
+  text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pista-water-label{font-family:"DM Sans",system-ui,sans-serif;font-weight:700;fill:#6f98bd;fill-opacity:.62;
+  text-anchor:middle;dominant-baseline:central;pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+  .pista-focus,.pista-chip{transition:none}
+}
+.pista-pins{position:absolute;inset:0;display:none}
+.pin{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;min-width:26px;min-height:26px;border-radius:50%;
+  border:2px solid #04090b;background:var(--pin,#5e7072);padding:0;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+.pin:hover,.pin:focus-visible{transform:translate(-50%,-50%) scale(1.35);z-index:2;outline:2px solid var(--ink);outline-offset:2px}
+.pin.temporal{border-style:dashed;background-image:repeating-linear-gradient(45deg,rgba(4,9,11,.35) 0 3px,transparent 3px 6px)}
+.pin.pendiente{opacity:.55}
+.pista-leyenda{display:none}
+.pista-leyenda h4{margin:0 0 8px;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pista-leyenda .li{display:flex;align-items:center;gap:8px;padding:5px 0}
+.pista-leyenda .li i{width:10px;height:10px;border-radius:50%;flex:0 0 auto;background:var(--c,#5e7072)}
+.pista-leyenda .nota{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);line-height:1.5;color:var(--dim)}
+.pista-vacio{margin:0;padding:26px;text-align:center;background:#0b1a1d;border-top:2px dashed var(--flame);color:#bccac7;font-size:.82rem}
+.pista-ficha-warn{margin:0 0 14px;padding:10px 12px;border:2px solid var(--flame);background:#1a0900;color:#ffcdb8;font-size:.72rem;line-height:1.5}
+@media(max-width:780px){
+  .pista-leyenda{right:10px;left:10px;bottom:10px;width:auto;max-height:29vh;border:1px solid rgba(185,233,239,.24)}
+  .pista-mapwrap{min-height:0}
+}
+
+/* ===== WARP ===== */
+#warp{position:fixed;inset:0;z-index:100;display:none;pointer-events:none}
+#warp.on{display:block}
+#warpC{position:absolute;inset:0;width:100%;height:100%}
+#warpW{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Archivo Black",sans-serif;
+  font-size:clamp(1.5rem,7vw,4.2rem);text-transform:uppercase;color:var(--acid);opacity:0;white-space:nowrap;
+  text-shadow:0 0 50px rgba(209,221,19,.9),4px 4px 0 #000}
+#warpW.go{animation:ww .8s cubic-bezier(.2,.9,.2,1) both}
+@keyframes ww{0%{opacity:0;transform:translate(-50%,-50%) scale(.4);filter:blur(14px)}32%{opacity:1;filter:blur(0)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.7);filter:blur(10px)}}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#flash.go{animation:fo .5s ease-out both}
+@keyframes fo{0%{opacity:0}12%{opacity:.9}100%{opacity:0}}
+body.shake{animation:sh .4s cubic-bezier(.36,.07,.19,.97) 2}
+@keyframes sh{0%,100%{transform:translate(0)}20%{transform:translate(-5px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(4px,3px)}}
+
+/* ===== INVENTARIO REAL DEL LEÓN ===== */
+.inv{position:relative;z-index:2;padding:70px 20px 90px;border-top:2px solid var(--line)}
+.inv-in{max-width:var(--max);margin:auto}
+.inv-head{text-align:center;margin-bottom:30px}
+.inv-head .lbl{font-size:.62rem;font-weight:900;letter-spacing:.24em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.inv-head h2{margin:0;font-size:clamp(1.7rem,5vw,3.2rem);line-height:.92;text-shadow:2px 2px 0 rgba(0,0,0,.85)}
+.inv-head h2 em{font-style:normal;color:var(--acid)}
+.inv-head p{color:var(--muted);max-width:620px;margin:12px auto 0;font-size:.92rem}
+
+.vsel{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0 6px}
+.vsel button{height:40px;padding:0 18px;border:2px solid var(--line);background:#08131599;color:#9fb0ad;
+  font-family:"Archivo Black",sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;transition:.15s}
+.vsel button:hover{border-color:#3d5c5f;color:var(--ink)}
+.vsel button.on{background:var(--acid);border-color:var(--acid);color:#0d1100}
+
+.sellos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0 0}
+.sello-b{border:2px solid var(--line);background:#08131599;padding:13px 15px;display:flex;align-items:center;gap:12px}
+.sello-b .ico{width:32px;height:32px;flex:0 0 auto;border:2px solid currentColor;display:grid;place-items:center;
+  font-family:"Archivo Black",sans-serif;font-size:.85rem;color:currentColor}
+.sello-b b{display:block;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
+.sello-b span{display:block;font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.3}
+.sello-b.ok{color:var(--acid)}
+.sello-b.cur{color:var(--teal)}
+.sello-b.pen{color:var(--dim)}
+@media(max-width:700px){.sellos{grid-template-columns:1fr}}
+
+.marcador{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0 30px}
+.mk{border:2px solid var(--line);background:#08131599;padding:14px 16px;text-align:center}
+.mk b{display:block;font-family:"Archivo Black",sans-serif;font-size:clamp(1.1rem,3vw,1.9rem);color:var(--acid);line-height:1}
+.mk span{display:block;font-size:.56rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+.inv-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.inv-tools input{flex:1;min-width:190px;height:42px;border:2px solid var(--line);background:#040c0d;color:var(--ink);padding:0 12px;font-size:.86rem}
+.inv-tools input:focus{outline:none;border-color:var(--acid)}
+.chipf{height:34px;padding:0 12px;border:2px solid var(--line);background:transparent;color:#9fb0ad;font-size:.6rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:.15s}
+.chipf:hover{border-color:#3d5c5f;color:var(--ink)}
+.chipf.on{background:var(--acid);border-color:var(--acid);color:#0d1100}
+.filtros{display:flex;gap:6px;flex-wrap:wrap}
+
+/* marcas */
+.marcas{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:32px}
+.marca{border:2px solid var(--line);background:#08131599;padding:14px 10px;text-align:center;transition:.18s;display:block}
+.marca:hover{border-color:var(--acid);transform:translateY(-3px)}
+.marca .lg{height:38px;display:grid;place-items:center;margin-bottom:9px}
+/* los logos SIEMPRE a color — nada de grises */
+.marca .lg img{max-height:38px;max-width:96px;object-fit:contain;transition:transform .2s}
+.marca:hover .lg img{transform:scale(1.08)}
+.marca .txt{font-family:"Archivo Black",sans-serif;font-size:.8rem;color:#7d908e;letter-spacing:.02em}
+.marca:hover .txt{color:var(--acid)}
+.marca b{display:block;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#dfe7e5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.marca span{display:block;font-size:.54rem;color:var(--dim);letter-spacing:.08em;margin-top:3px;font-weight:900}
+
+/* tabla de piezas */
+.lista{border:2px solid var(--line);background:#060f1199}
+.pz{display:grid;grid-template-columns:56px minmax(0,1fr) 128px 132px;gap:12px;align-items:center;
+    padding:11px 14px;border-bottom:1px solid var(--line)}
+.pz:last-child{border-bottom:0}
+.pz:hover{background:#0d1c1f}
+.pz-lg{height:34px;display:grid;place-items:center}
+.pz-lg img{max-height:30px;max-width:52px;object-fit:contain;transition:transform .2s}
+.pz:hover .pz-lg img{transform:scale(1.1)}
+.pz-lg .ini{font-family:"Archivo Black",sans-serif;font-size:.62rem;color:#5e7072;letter-spacing:.02em}
+.pz-nom{min-width:0}
+.pz-nom b{display:block;font-size:.9rem;font-weight:700;color:#eaf1ef;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pz-meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.tg{font-size:.52rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:1px solid #2b3e3a;color:#8ea19e}
+.tg.ok{border-color:var(--acid);color:var(--acid)}
+.tg.rev{border-color:var(--flame);color:var(--flame)}
+.tg.pn{border-color:var(--teal);color:var(--teal);font-family:ui-monospace,Menlo,monospace}
+.tg a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.pz-pag{text-align:right;font-size:.82rem;color:#9fb0ad;white-space:nowrap}
+.pz-pag b{display:block;color:#dfe7e5;font-weight:700}
+.pz-pag span{font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:900}
+.pz-act{text-align:right;white-space:nowrap}
+.pz-act .precio{font-family:"Archivo Black",sans-serif;font-size:.95rem;color:var(--acid)}
+.pz-act .cot{display:inline-block;font-size:.56rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid #3d5c5f;color:#8ea19e;padding:5px 9px}
+.pz-act .cot:hover{border-color:var(--acid);color:var(--acid)}
+.vermas{width:100%;min-height:46px;margin-top:12px;border:2px solid var(--line);background:transparent;color:#9fb0ad;
+  font-family:"Archivo Black",sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.vermas:hover{border-color:var(--acid);color:var(--acid)}
+.inv-nota{margin-top:16px;border-left:3px solid var(--teal);background:#08131599;padding:13px 16px;font-size:.78rem;color:#a8b9b6;line-height:1.5}
+.inv-nota b{color:var(--teal)}
+.vacio{padding:34px;text-align:center;color:var(--dim);font-size:.85rem}
+
+@media(max-width:820px){
+  .marcador{grid-template-columns:repeat(2,1fr)}
+  .pz{grid-template-columns:44px minmax(0,1fr);gap:10px}
+  .pz-pag,.pz-act{grid-column:2;text-align:left}
+  .pz-act{margin-top:2px}
+}
+
+footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px 20px 120px;text-align:center;color:var(--dim);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;font-weight:900}
+
+.evidence-matrix,.clutch-console{margin:28px 0;border:2px solid var(--line);background:rgba(10,20,24,.92);box-shadow:0 18px 44px -30px #000}.ev-title,.clutch-top{padding:16px 18px;border-bottom:2px solid var(--line);display:flex;gap:12px;align-items:center;justify-content:space-between}.ev-title b,.clutch-top b{font-family:"Archivo Black",sans-serif;text-transform:uppercase;color:var(--acid);font-size:.82rem}.ev-title span,.clutch-top span,.ev-row span,.clutch-console p{color:var(--muted);font-size:.76rem}.ev-row{display:grid;grid-template-columns:1.2fr 1.2fr auto;gap:16px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.ev-row:last-child{border:0}.ev-row b,.ev-row span{display:block}.ev-row small{display:block;color:var(--flame);font-weight:900;font-size:.55rem;letter-spacing:.1em}.ev-row a{border:2px solid var(--teal);padding:8px 10px;color:var(--teal);font-weight:900;font-size:.65rem;white-space:nowrap}.ev-empty{padding:18px;color:var(--muted);font-weight:700}.clutch-top img{max-width:110px;max-height:38px;object-fit:contain;filter:brightness(1.2)}.clutch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 18px}.clutch-grid span{border:1px solid var(--line);padding:10px;color:var(--paper);font-size:.72rem;font-weight:900}.clutch-console p{padding:0 18px 16px;margin:0}.miata-evidence{position:relative;z-index:2;padding:72px 20px;background:linear-gradient(180deg,#071014,#04090b)}.miata-evidence-in{max-width:var(--max);margin:auto}.miata-ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.miata-source{color:var(--muted);font-size:.8rem}.fitment[hidden],.miata-evidence[hidden],.clutch-console[hidden]{display:none}.fitment{position:fixed;inset:0;z-index:55;background:rgba(1,5,7,.82);display:grid;place-items:center;padding:18px}.fitment-in{position:relative;max-width:700px;width:100%;max-height:90vh;overflow:auto;border:2px solid var(--acid);background:#091418;padding:26px;box-shadow:0 0 60px rgba(209,221,19,.18)}.fitment-close{position:absolute;right:12px;top:12px;border:0;background:transparent;color:var(--paper);font-size:1.2rem}.fitment-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.fitment-grid label{font-size:.64rem;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.fitment-grid input,.fitment-grid select,.fitment-grid textarea{display:block;width:100%;margin-top:5px;background:#050b0e;border:1px solid var(--line);color:var(--paper);padding:10px}.fitment-grid textarea{min-height:86px;resize:vertical}.fitment-grid .full{grid-column:1/-1}.fitment-result{padding:10px;border:1px solid var(--teal);color:var(--teal);font-size:.8rem}@media(max-width:700px){.ev-row{grid-template-columns:1fr}.clutch-grid,.fitment-grid,.miata-ledger{grid-template-columns:1fr}.ev-title{align-items:flex-start;flex-direction:column}}
+
+/* ===== RUN SETUP · SELECT YOUR CAR / SELECT YOUR SERIES ===== */
+.runsel{position:relative;z-index:2;padding:74px 20px 78px;border-top:2px solid var(--line);
+  background:linear-gradient(180deg,#061014 0%,#04090b 100%)}
+.runsel[hidden]{display:none}
+.runsel-in{max-width:var(--max);margin:auto}
+/* se anima el contenido, no la sección: así scrollIntoView mide la caja sin transformar */
+.runsel.reveal>.runsel-in{animation:runIn .5s cubic-bezier(.2,.8,.25,1) both}
+@keyframes runIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+.run-hd{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.run-chip{font-family:"Archivo Black",sans-serif;font-size:.6rem;letter-spacing:.18em;color:var(--acid);
+  border:2px solid var(--acid);padding:6px 10px;white-space:nowrap}
+.run-rule{flex:1;height:2px;min-width:20px;background:repeating-linear-gradient(90deg,var(--line) 0 10px,transparent 10px 19px)}
+.run-state{font-size:.56rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.run-state.on{color:var(--acid)}
+
+.gcards{display:grid;gap:14px}
+.gcards.c3{grid-template-columns:repeat(3,1fr)}
+.gcards.c4{grid-template-columns:repeat(4,1fr)}
+
+.gcard{position:relative;display:flex;flex-direction:column;text-align:left;padding:0;overflow:hidden;background:var(--panel);
+  border:2px solid var(--line);color:var(--ink);transition:border-color .25s,transform .25s,box-shadow .25s,opacity .25s,filter .25s}
+.gcard:hover{border-color:#3d5c5f;transform:translateY(-3px)}
+.gcard:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-color:var(--teal)}
+.gcard:active{transform:translateY(2px)}
+.gcard[aria-pressed=true]{border-color:var(--acid);box-shadow:0 0 0 2px rgba(209,221,19,.3),0 22px 52px -32px #000}
+.gcards.locked .gcard[aria-pressed=false]{opacity:.34;filter:saturate(.14) brightness(.72)}
+.gcards.locked .gcard[aria-pressed=false]:hover,.gcards.locked .gcard[aria-pressed=false]:focus-visible{opacity:.8;filter:none}
+
+/* art plate — light print plate so the white artwork background integrates */
+.gcard-art{display:block;position:relative;aspect-ratio:2/1;overflow:hidden;flex:0 0 auto;
+  background:linear-gradient(180deg,#eceeec 0%,#c9d3d1 100%)}
+.gcard-art img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 49%;
+  mix-blend-mode:multiply;--flip:1;transform:scaleX(var(--flip));transition:transform .45s}
+.gcard:hover .gcard-art img{transform:scaleX(var(--flip)) scale(1.035)}
+.gcard-art:after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,9,11,0) 56%,rgba(4,9,11,.3) 100%),
+  repeating-linear-gradient(90deg,rgba(4,9,11,.055) 0 1px,transparent 1px 26px)}
+/* León: tono tomado de la foto propia del auto — rojo intenso neutro, no naranja ni magenta. */
+.gcard-art.leon{background:linear-gradient(180deg,#f1f2f0 0%,#c9d3d1 100%)}
+.gcard-art.leon img{object-fit:cover;object-position:center 52%;--flip:1;
+  filter:none}
+
+.gcard-sel{position:absolute;top:10px;right:10px;z-index:3;display:none;font-family:"Archivo Black",sans-serif;
+  font-size:.55rem;letter-spacing:.14em;padding:5px 8px;border:2px solid var(--acid);color:var(--acid);background:#04090b}
+.gcard[aria-pressed=true] .gcard-sel{display:block}
+
+.gcard-bd{padding:15px 16px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
+.gcard-tag{font-size:.55rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.gcard[data-accent=flame] .gcard-tag{color:var(--flame)}
+.gcard[data-accent=teal] .gcard-tag{color:var(--teal)}
+.gcard[data-accent=violet] .gcard-tag{color:var(--violet)}
+.gcard[data-accent=acid] .gcard-tag{color:var(--acid)}
+.gcard-h{display:block;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1rem;margin:0;line-height:1.06}
+.gcard-spec{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;letter-spacing:.03em;color:var(--paper)}
+.gcard-note{font-size:.73rem;color:var(--muted);margin:0}
+.run-foot{margin-top:16px;max-width:820px;color:var(--dim);font-size:.72rem;line-height:1.45}
+
+.run-cta{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  border:2px solid var(--acid);background:#08131599;padding:16px 20px}
+.run-cta[hidden]{display:none}
+.run-cta b{display:block;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);font-weight:900;margin-bottom:3px}
+.run-cta span{font-family:"Archivo Black",sans-serif;font-size:.95rem;text-transform:uppercase}
+.run-cta button{margin-left:auto;font-family:"Archivo Black",sans-serif;min-height:50px;padding:0 24px;border:0;
+  background:var(--acid);color:#0d1100;text-transform:uppercase;letter-spacing:.03em;font-size:.82rem;box-shadow:0 6px 0 #7d8709;transition:.1s}
+.run-cta button:active{transform:translateY(4px);box-shadow:0 2px 0 #7d8709}
+.run-cta button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+@media(max-width:1000px){ .gcards.c4{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:760px){
+  .runsel{padding:56px 14px 62px}
+  .gcards.c3{grid-template-columns:1fr}
+  .gcard-art{aspect-ratio:16/7}
+  .run-hd{flex-wrap:wrap;gap:10px}
+  .run-rule{display:none}
+}
+@media(max-width:560px){
+  .gcards.c4{grid-template-columns:1fr}
+  .run-cta{flex-direction:column;align-items:stretch}
+  .run-cta button{margin-left:0;width:100%}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .opt,.res-card,.sub,.seals,.start,.hero-car{opacity:1!important}
+  #grid3d,.scan{display:none}
+}
+</style>
+</head>
+<body>
+<canvas id="grid3d" aria-hidden="true"></canvas>
+<div class="scan" aria-hidden="true"></div>
+<div class="vig" aria-hidden="true"></div>
+
+<!-- ============ ATTRACT MODE ============ -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-car" aria-hidden="true">
+    <video id="heroVid" src="assets/hero-leon-fr.mp4" poster="assets/hero-leon-fr-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+
+  <a class="markL" href="https://www.youtube.com/@Solo.ridersmx" target="_blank" rel="noopener"><img src="assets/solo-riders-header-primary.png" alt="Solo Riders"></a>
+  <div class="socials">
+    <a class="sbtn" href="https://www.youtube.com/@Solo.ridersmx" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg></a>
+    <a class="sbtn" href="https://www.instagram.com/christiancars_/" target="_blank" rel="noopener" aria-label="Instagram de Christian Cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></a>
+  </div>
+
+  <div class="hero-in">
+    <div class="coin">◆ Solo Riders Presenta ◆</div>
+    <h1 class="title arc">
+      <span class="row">OUT-DRIFTED</span>
+      <span class="row">GARAGE</span>
+    </h1>
+    <p class="sub">Las piezas que <b>ya pasaron por nuestros autos</b> — instaladas, filmadas y con sus errores incluidos. Si no la hemos probado, te lo decimos.</p>
+    <div class="seals">
+      <span class="sl a">◆ Probado en el garage</span>
+      <span class="sl b">◆ Curado</span>
+      <span class="sl c">◆ Pendiente de prueba</span>
+    </div>
+    <div class="start">
+      <button class="btn-start" id="start">▶ Press Start</button>
+      <div class="hint">Selecciona tu máquina · RUN 01/03 · 60 segundos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN 01 · SELECT YOUR CAR ============ -->
+<section class="runsel" id="selectCar" aria-labelledby="selectCarTit">
+  <div class="runsel-in">
+    <div class="run-hd">
+      <span class="run-chip">RUN 01/03</span>
+      <span class="run-rule" aria-hidden="true"></span>
+      <span class="run-state" id="carState">Máquina: sin asignar</span>
+    </div>
+    <div class="stage">
+      <div class="lbl">Select your car</div>
+      <h2 class="arc" id="selectCarTit">Elige tu <em>máquina</em></h2>
+      <p>Tres autos reales del garage. El que elijas define qué piezas y qué evidencia te mostramos después.</p>
+    </div>
+
+    <div class="gcards c3" id="carCards" role="group" aria-labelledby="selectCarTit">
+      <button type="button" class="gcard" data-car="leon" data-accent="flame" data-label="SEAT León FR" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-art leon">
+          <img src="assets/select-car/leon-profile-selector-rojo-emocion.png?v=right-locked-20260810" loading="lazy" decoding="async"
+               alt="Ilustración del SEAT León de perfil en Rojo Emoción, orientada hacia la derecha.">
+        </span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Máquina principal</span>
+          <span class="gcard-h">SEAT León FR</span>
+          <span class="gcard-spec">2013 · 1P / PQ35 · FWD</span>
+          <span class="gcard-note">El auto con más kilómetros filmados del canal.</span>
+        </span>
+      </button>
+
+      <button type="button" class="gcard" data-car="miata" data-accent="teal" data-label="Mazda Miata NA" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-art">
+          <img src="assets/select-car/miata-profile.jpg" loading="lazy" decoding="async"
+               alt="Ilustración de referencia de un Mazda MX-5 Miata NA de perfil. Render ilustrativo de terceros: no es prueba de compatibilidad verificada.">
+        </span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Exploratorio · en curaduría</span>
+          <span class="gcard-h">Mazda Miata NA</span>
+          <span class="gcard-spec">NA · Roadster · RWD</span>
+          <span class="gcard-note">Ruta en curaduría: sin fitment verificado por nosotros.</span>
+        </span>
+      </button>
+
+      <button type="button" class="gcard" data-car="s13" data-accent="violet" data-label="Nissan 240SX S13" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-art">
+          <img src="assets/select-car/s13-profile.jpg" loading="lazy" decoding="async"
+               alt="Ilustración de referencia de un Nissan 240SX S13 coupé de perfil. Render ilustrativo de terceros: no es prueba de compatibilidad verificada.">
+        </span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Exploratorio · en curaduría</span>
+          <span class="gcard-h">Nissan 240SX S13</span>
+          <span class="gcard-spec">240SX · S13 · RWD</span>
+          <span class="gcard-note">Ruta en curaduría: sin fitment verificado por nosotros.</span>
+        </span>
+      </button>
+    </div>
+
+    <p class="run-foot">El León FR es foto propia del auto del garage, sólo recortada de su fondo. Miata NA y 240SX S13 usan ilustraciones de referencia de sus respectivos autores, encuadradas dentro de la tarjeta; no se alteran ni se borran firmas, y siguen en curaduría exploratoria: ninguna imagen es prueba de compatibilidad verificada.</p>
+  </div>
+</section>
+
+<!-- ============ RUN 02 · SELECT YOUR SERIES ============ -->
+<section class="runsel" id="selectSeries" aria-labelledby="selectSeriesTit" hidden>
+  <div class="runsel-in">
+    <div class="run-hd">
+      <span class="run-chip">RUN 02/03</span>
+      <span class="run-rule" aria-hidden="true"></span>
+      <span class="run-state" id="seriesState">Serie: sin asignar</span>
+    </div>
+    <div class="stage">
+      <div class="lbl">Select your series</div>
+      <h2 class="arc" id="selectSeriesTit">Elige tu <em>serie</em></h2>
+      <p>Cuatro disciplinas mexicanas como referencia de armado. Marcan el carácter del auto, no un calendario ni una inscripción.</p>
+    </div>
+
+    <div class="gcards c4" id="seriesCards" role="group" aria-labelledby="selectSeriesTit">
+      <button type="button" class="gcard" data-series="cuarto" data-accent="flame" data-label="1/4 DE MILLA" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Serie 01</span>
+          <span class="gcard-h">1/4 DE MILLA</span>
+          <span class="gcard-spec">SALIDA · TRACCIÓN · NERVIO</span>
+          <span class="gcard-note">Todo se juega en unos segundos: agarre al arrancar y entrega limpia.</span>
+        </span>
+      </button>
+
+      <button type="button" class="gcard" data-series="drift" data-accent="violet" data-label="DRIFT" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Serie 02</span>
+          <span class="gcard-h">DRIFT</span>
+          <span class="gcard-spec">ÁNGULO · CONTROL · COMPOSTURA</span>
+          <span class="gcard-note">Mandar el auto de lado y sostenerlo sin perder la línea.</span>
+        </span>
+      </button>
+
+      <button type="button" class="gcard" data-series="circuitos" data-accent="teal" data-label="CIRCUITOS" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Serie 03</span>
+          <span class="gcard-h">CIRCUITOS</span>
+          <span class="gcard-spec">FRENO · TEMPERATURA · RITMO</span>
+          <span class="gcard-note">Vuelta tras vuelta: lo que aguanta caliente es lo que cuenta.</span>
+        </span>
+      </button>
+
+      <button type="button" class="gcard" data-series="panamericana" data-accent="acid" data-label="CARRERA PANAMERICANA" aria-pressed="false">
+        <span class="gcard-sel" aria-hidden="true">► En el run</span>
+        <span class="gcard-bd">
+          <span class="gcard-tag">Serie 04</span>
+          <span class="gcard-h">CARRERA PANAMERICANA</span>
+          <span class="gcard-spec">RUTA LARGA · FIABILIDAD</span>
+          <span class="gcard-note">El espíritu de ruta mexicana: llegar completo antes que llegar rápido.</span>
+        </span>
+      </button>
+    </div>
+
+    <p class="run-foot">Las disciplinas se usan solo como inspiración de armado. No implican afiliación, patrocinio, inscripción, disponibilidad de evento ni homologación con ninguna organización o carrera.</p>
+
+    <div class="run-cta" id="runCta" hidden>
+      <div>
+        <b>RUN 03/03 · Siguiente</b>
+        <span id="runLock">—</span>
+      </div>
+      <button type="button" id="runContinue">Continuar al Player Select ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- overlay de local -->
+<div class="local" id="localOv" role="dialog" aria-modal="true" aria-labelledby="localTit">
+  <div class="local-hd" id="localHd">
+    <div><h2 id="localTit">—</h2><span class="sub" id="localSub"></span></div>
+    <button class="cerrar" id="localCerrar" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="local-tabs" id="localTabs"></div>
+  <div class="local-body"><div class="wrap" id="localCont"></div></div>
+</div>
+
+<!-- ficha de pieza -->
+<div class="ficha" id="fichaOv" role="dialog" aria-modal="true" aria-labelledby="fichaTit">
+  <div class="ficha-bg" data-cerrar-ficha></div>
+  <div class="ficha-panel">
+    <button class="ficha-cerrar" data-cerrar-ficha aria-label="Cerrar">✕</button>
+    <div class="ficha-top" id="fichaTop"></div>
+    <div class="ficha-bd" id="fichaBd"></div>
+  </div>
+</div>
+
+<!-- overlay de La Pista: mapa nacional propio -->
+<div class="pista" id="pistaOv" role="dialog" aria-modal="true" aria-labelledby="pistaTit">
+  <div class="pista-hd">
+    <div><h2 id="pistaTit">La Pista</h2>
+      <span class="sub">Mapa nacional OUT-DRIFTED · a qué recinto ir, no una ruta de navegación</span></div>
+    <button class="cerrar" id="pistaCerrar" aria-label="Cerrar y volver al Hub">✕</button>
+  </div>
+  <div class="pista-filtros" id="pistaFiltros" role="tablist" aria-label="Filtrar por categoría"></div>
+  <div class="pista-body">
+    <div class="pista-mapwrap">
+      <svg id="pistaSvg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <div class="pista-pins" id="pistaPins"></div>
+    </div>
+    <aside class="pista-leyenda" id="pistaLeyenda" aria-label="Leyenda del mapa"></aside>
+  </div>
+  <p class="pista-vacio" id="pistaVacio" hidden>Sin recintos verificados en esta categoría todavía.</p>
+</div>
+
+<!-- ficha de recinto de La Pista -->
+<div class="ficha" id="pistaFichaOv" role="dialog" aria-modal="true" aria-labelledby="pistaFichaTit">
+  <div class="ficha-bg" data-cerrar-pista-ficha></div>
+  <div class="ficha-panel">
+    <button class="ficha-cerrar" data-cerrar-pista-ficha aria-label="Cerrar ficha">✕</button>
+    <div class="ficha-top" id="pistaFichaTop"></div>
+    <div class="ficha-bd" id="pistaFichaBd"></div>
+  </div>
+</div>
+
+<!-- ============ FLOW ============ -->
+<section class="flow" id="flow">
+  <div class="hud">
+    <div class="hud-in">
+      <div class="hs on" data-h="1"><b>01 · Nivel</b><span id="h1">— — —</span></div>
+      <div class="hs" data-h="2"><b>02 · Auto</b><span id="h2">— — —</span></div>
+      <div class="hs" data-h="3"><b>03 · Objetivo</b><span id="h3">— — —</span></div>
+      <div class="hs" data-h="4"><b>04 · Soluciones</b><span id="h4">— — —</span></div>
+    </div>
+  </div>
+  <div class="flow-in">
+
+    <!-- STEP 1 -->
+    <div class="step live" data-step="1">
+      <div class="stage"><div class="lbl">Player Select</div><h2 class="arc">¿Qué tanto <em>sabes de tu auto?</em></h2><p>No hay respuesta mala. Esto solo cambia cómo te explicamos todo.</p></div>
+      <div class="opts c4 pre" data-grid="1">
+        <button class="opt" data-accent="teal" data-v="facil" data-label="Apenas empiezo" style="--fx:-190px;--ry:26deg;--d:0ms">
+          <div class="opt-img"><img src="assets/shot-waterpump.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">Recomendado si dudas</div><h3>Apenas empiezo</h3>
+          <small>No conozco los términos y no quiero gastar dos veces.</small>
+          <div class="stats"><div class="stat"><b>Detalle</b><div class="bars"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></div><div class="stat"><b>Claridad</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div></div></div>
+        </button>
+        <button class="opt" data-accent="acid" data-v="medio" data-label="Ya le muevo" style="--fx:0;--ry:0;--d:110ms">
+          <div class="opt-img"><img src="assets/shot-coilovers.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">Punto medio</div><h3>Ya le muevo</h3>
+          <small>Hago mantenimiento y entiendo lo básico del motor.</small>
+          <div class="stats"><div class="stat"><b>Detalle</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div><div class="stat"><b>Claridad</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div></div></div>
+        </button>
+        <button class="opt" data-accent="flame" data-v="pro" data-label="Sé lo que busco" style="--fx:190px;--ry:-26deg;--d:220ms">
+          <div class="opt-img"><img src="assets/shot-swap.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">Directo al grano</div><h3>Sé lo que busco</h3>
+          <small>Dame número de parte, compatibilidad y dónde comprarlo.</small>
+          <div class="stats"><div class="stat"><b>Detalle</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div><div class="stat"><b>Claridad</b><div class="bars"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></div></div></div>
+        </button>
+        <button class="opt" data-accent="violet" data-v="coleccionista" data-label="Quiero trazabilidad total" style="--fx:300px;--ry:-32deg;--d:330ms">
+          <div class="opt-img"><img src="assets/shot-clutch.jpg" alt="Ruta documentada de transmisión"></div>
+          <div class="opt-body"><div class="opt-tag">Archivo premium</div><h3>Quiero trazabilidad total</h3>
+          <small>Historial, configuración, números de parte y criterio de conservación antes de mover una pieza.</small>
+          <div class="stats"><div class="stat"><b>Detalle</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div><div class="stat"><b>Archivo</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div></div></div>
+        </button>
+      </div>
+      <div class="bar" data-bar="1"><div><b>Nivel</b><span data-pick="1">—</span></div><button data-next="1">Continuar ▶</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" data-step="2">
+      <div class="stage"><div class="lbl">Car Select</div><h2 class="arc">Elige <em>tu máquina</em></h2><p>Lo que sirve en uno puede arruinarte el otro. Aquí cambia todo.</p></div>
+      <div class="opts c3 pre" data-grid="2">
+        <button class="opt" data-accent="acid" data-v="leon" data-label="SEAT León FR" style="--fx:-200px;--ry:26deg;--d:0ms">
+          <div class="opt-img"><img src="assets/car-leon-fr.jpg" alt="SEAT León FR"></div>
+          <div class="opt-body"><div class="opt-tag">◆ Colección completa</div><h3>SEAT León FR</h3>
+          <small>EA888 1.8 TSI · 02Q manual · Stage 1</small>
+          <div class="stats">
+            <div class="stat"><b>Potencia</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div>
+            <div class="stat"><b>Chasis</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div>
+            <div class="stat"><b>Evidencia</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
+          </div></div>
+        </button>
+        <button class="opt" data-accent="teal" data-v="miata" data-label="Mazda Miata NA" style="--fx:0;--ry:0;--d:110ms">
+          <div class="opt-img"><div class="opt-lock"><span>◆ En curaduría</span></div><img src="assets/shot-coilovers.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">◆ Lista de espera</div><h3>Mazda Miata NA</h3>
+          <small>1990–1997 · manual · BC Racing BR</small>
+          <div class="stats">
+            <div class="stat"><b>Potencia</b><div class="bars"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></div>
+            <div class="stat"><b>Chasis</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
+            <div class="stat"><b>Evidencia</b><div class="bars"><i class="f"></i><i></i><i></i><i></i><i></i></div></div>
+          </div></div>
+        </button>
+        <button class="opt" data-accent="violet" data-v="s13" data-label="Nissan 240SX S13" style="--fx:200px;--ry:-26deg;--d:220ms">
+          <div class="opt-img"><div class="opt-lock"><span>◆ En curaduría</span></div><img src="assets/shot-clutch.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">◆ Lista de espera</div><h3>Nissan 240SX S13</h3>
+          <small>1989–1994 · KA24E forjado</small>
+          <div class="stats">
+            <div class="stat"><b>Potencia</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></div>
+            <div class="stat"><b>Chasis</b><div class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div>
+            <div class="stat"><b>Evidencia</b><div class="bars"><i class="f"></i><i></i><i></i><i></i><i></i></div></div>
+          </div></div>
+        </button>
+      </div>
+      <div class="bar" data-bar="2"><div><b>Máquina</b><span data-pick="2">—</span></div><button data-next="2">Continuar ▶</button></div>
+      <button class="back" data-back="1">◀ Cambiar nivel</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" data-step="3">
+      <div class="stage"><div class="lbl">Mission Select</div><h2 class="arc">¿Qué quieres <em>resolver?</em></h2><p>La pieza correcta sale del problema correcto. Elige por dónde te aprieta.</p></div>
+      <div class="opts c4 pre" data-grid="3">
+        <button class="opt" data-accent="teal" data-v="conf" data-label="Confiabilidad" style="--fx:-220px;--ry:24deg;--d:0ms">
+          <div class="opt-img"><img src="assets/shot-waterpump.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">01 · Empieza aquí</div><h3>Que no me deje varado</h3>
+          <small>Fugas, temperatura, servicios pendientes.</small></div>
+        </button>
+        <button class="opt" data-accent="flame" data-v="freno" data-label="Frenado" style="--fx:-80px;--ry:10deg;--d:100ms">
+          <div class="opt-img"><img src="assets/shot-brakes.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">02 · Seguridad</div><h3>Que frene mejor</h3>
+          <small>Discos, balatas y líneas según tu uso.</small></div>
+        </button>
+        <button class="opt" data-accent="violet" data-v="manejo" data-label="Manejo" style="--fx:80px;--ry:-10deg;--d:200ms">
+          <div class="opt-img"><img src="assets/shot-coilovers.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">03 · Chasis</div><h3>Que se sienta mejor</h3>
+          <small>Suspensión, bujes, geometría.</small></div>
+        </button>
+        <button class="opt" data-accent="acid" data-v="power" data-label="Potencia" style="--fx:220px;--ry:-24deg;--d:300ms">
+          <div class="opt-img"><img src="assets/shot-intercooler.jpg" alt=""></div>
+          <div class="opt-body"><div class="opt-tag">04 · Con cabeza</div><h3>Que corra más</h3>
+          <small>Primero la base, después la potencia.</small></div>
+        </button>
+      </div>
+      <div class="bar" data-bar="3"><div><b>Misión</b><span data-pick="3">—</span></div><button data-next="3">Ver soluciones ▶</button></div>
+      <button class="back" data-back="2">◀ Cambiar auto</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" data-step="4">
+      <div class="stage"><div class="lbl">Results</div><h2 class="arc">Esto es lo que <em>tenemos para ti</em></h2><p id="resIntro">Cada tarjeta dice qué resuelve, qué confirmar de tu auto y con qué evidencia contamos.</p></div>
+      <div class="res" id="resGrid"></div>
+      <section class="evidence-matrix" id="evidenceMatrix" aria-live="polite"></section>
+      <section class="clutch-console" id="clutchDecisionConsole" hidden aria-live="polite"></section>
+      <a href="#inventario" id="verBaseCompleta" class="res-link" style="display:none">Ver todo en la base de datos completa ▼</a>
+      <button class="back" data-back="3">◀ Cambiar objetivo</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ INVENTARIO REAL ============ -->
+<section class="inv" id="inventario">
+  <div class="inv-in">
+    <div class="inv-head">
+      <div class="lbl">Garage · Inventario real</div>
+      <h2 class="arc">Todo lo que <em id="invAutoNom">lleva el León</em></h2>
+      <p id="invAutoDesc">Cada pieza que se compró e instaló, con lo que costó y cuándo. Nada de aquí es una recomendación genérica: es el registro del build.</p>
+    </div>
+
+    <div class="sellos">
+      <div class="sello-b ok"><div class="ico">◆</div><div><b>Probado</b><span>Instalado en el auto real, con episodio que lo muestra.</span></div></div>
+      <div class="sello-b cur"><div class="ico">✓</div><div><b>Curado por OUT-DRIFTED</b><span>Investigado y validado con proveedor; no equivale a instalación ni prueba propia.</span></div></div>
+      <div class="sello-b pen"><div class="ico">○</div><div><b>Pendiente</b><span>Candidato en investigación — todavía sin instalar.</span></div></div>
+    </div>
+
+    <div class="vsel" id="vsel" role="tablist" aria-label="Elegir auto">
+      <button data-auto="LEON" class="on" role="tab" aria-selected="true">SEAT León FR</button>
+      <button data-auto="SCHASIS" role="tab" aria-selected="false">Nissan 240SX S13</button>
+      <button data-auto="MIATA" role="tab" aria-selected="false">Mazda Miata NA</button>
+    </div>
+
+    <div class="marcador">
+      <div class="mk"><b id="mkPiezas">—</b><span>Piezas</span></div>
+      <div class="mk"><b id="mkMarcas">—</b><span>Marcas</span></div>
+      <div class="mk"><b id="mkInv">—</b><span>Invertido MXN</span></div>
+      <div class="mk"><b id="mkProb">—</b><span>Con episodio</span></div>
+    </div>
+
+    <div class="marcas" id="gridMarcas"></div>
+
+    <div class="inv-tools">
+      <input type="search" id="buscaPieza" placeholder="Buscar pieza, marca o número de parte…" aria-label="Buscar pieza">
+      <div class="filtros" id="filtroSistemas"></div>
+    </div>
+
+    <div class="lista" id="listaPiezas"></div>
+    <button class="vermas" id="verMas" hidden>Ver más piezas ▼</button>
+
+    <p class="inv-nota"><b>Sobre los precios:</b> lo que ves es lo que se pagó en su momento, con el año. El precio de hoy cambia según proveedor, tipo de cambio e importación — por eso decimos <b>Cotizar</b> en vez de inventar una cifra. Se llena conforme confirmamos proveedor en México.</p>
+  </div>
+</section>
+
+<section class="miata-evidence" id="miataEvidencia" hidden aria-label="Bitácora de evidencia Miata NA">
+  <div class="miata-evidence-in">
+    <div class="lbl">Archivo propio · Mazda Miata NA</div>
+    <h2 class="arc">Bitácora de <em>evidencia</em></h2>
+    <p>Historias propias revisadas de @christiancars_. Cada toma confirma contexto visual; ninguna sustituye la validación de PN, configuración o fitment.</p>
+    <div class="miata-ledger" id="miataLedger"></div>
+    <p class="miata-source">Fuente: highlight “MIATA ‘94” de @christiancars_. Estado comercial: curaduría; no hay checkout, fitment ni recomendación de piezas activos.</p>
+  </div>
+</section>
+
+<!-- ============ MAPA DE LOCALES ============ -->
+<section class="mapa" id="mapa">
+  <div class="mapa-in">
+    <div class="mapa-head">
+      <div class="lbl">Mapa · Elige a dónde entrar</div>
+      <h2 class="arc">El garage <em>por dentro</em></h2>
+      <p>Cada parada abre lo suyo: el auto, las piezas, las marcas o la ruta guiada. Entra al que te sirva.</p>
+    </div>
+  </div>
+  <!-- el desierto ES el mapa: la escena se dibuja aquí y los locales son edificios -->
+  <div class="mapa-stage" id="mapaStage">
+    <canvas id="mapaCanvas" aria-hidden="true"></canvas>
+    <div class="hotspots" id="hotspots"></div>
+  </div>
+</section>
+
+<footer>OUT-DRIFTED Garage · Solo Riders · Concepto en validación · Sin checkout ni inventario activo</footer>
+
+<aside class="dock min" id="dock" aria-label="Recibe la guía de tu auto">
+  <button class="dock-tab" id="dockMin" aria-expanded="false" aria-controls="dockBody"><span class="dot">◆</span> Tu guía por correo</button>
+  <div class="dock-bd" id="dockBody">
+    <p class="i">Te mandamos la ruta de tu auto: qué revisar primero y qué piezas todavía no necesitas.</p>
+    <div class="dock-ctx" id="dockCtx"></div>
+    <form id="dockForm">
+      <input type="email" id="dockMail" placeholder="tu@correo.com" required>
+      <button class="send" type="submit">Mandarme la guía</button>
+      <p class="fine">Sin spam. Te escribimos cuando haya algo real para tu auto.</p>
+    </form>
+    <div class="dock-ok"><div class="tick">✓</div><p><b>Listo.</b> Te llega en cuanto esté la ruta de tu auto.</p></div>
+  </div>
+</aside>
+
+<div id="warp" aria-hidden="true"><canvas id="warpC"></canvas><div id="warpW">Arrancamos</div><div id="flash"></div></div>
+
+<!-- inventario real de los 3 autos, generado por export_3autos_web.py -->
+<script src="assets/leon-piezas.js?v=1785960315"></script>
+<script src="assets/schasis-piezas.js?v=1785960315"></script>
+<script src="assets/miata-piezas.js?v=1785960315"></script>
+<!-- catálogo de La Pista (mapa nacional propio), generado desde data/la-pista-catalog-2026-08-10.json -->
+<script src="assets/la-pista-data.js?v=1"></script>
+<script src="assets/mx-geography.js?v=1"></script>
+<script>
+const $=(q,c=document)=>c.querySelector(q),$$=(q,c=document)=>[...c.querySelectorAll(q)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== keep the hero footage rolling (autoplay can be blocked) ===== */
+(function(){
+  const v=$('#heroVid');if(!v)return;
+  if(reduce){v.pause();return}
+  const kick=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{})};
+  kick();
+  ['click','touchstart','keydown','scroll','pointerdown'].forEach(e=>
+    addEventListener(e,function once(){kick();removeEventListener(e,once)},{passive:true}));
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)kick()});
+})();
+
+/* ===== escena del desierto — se dibuja UNA vez, alineada al pixel (sin vibración).
+   Es el fondo fijo de toda la página; el mapa de abajo tiene su propia escena.   ===== */
+function crearEscena(c,opts){
+  opts=opts||{};
+  const x=c.getContext('2d');
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),
+          w=opts.medirse ? c.parentNode.clientWidth  : innerWidth,
+          h=opts.medirse ? c.parentNode.clientHeight : innerHeight;
+    if(!w||!h) return;
+    c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);
+    c.style.width=w+'px';c.style.height=h+'px';
+    x.setTransform(dpr,0,0,dpr,0,0);
+    x.clearRect(0,0,w,h);
+    const hz=Math.round(h*0.46),cx=Math.round(w/2);
+
+    /* ---------- OCASO DEL DESIERTO ---------- */
+    x.save();
+    x.beginPath();x.rect(0,0,w,hz);x.clip();      // todo el ocaso vive arriba del horizonte
+
+    const solX = Math.round(w*0.26);              // sol a un costado, no en el centro
+    const alto0 = Math.min(hz,560);
+
+    // cielo: índigo arriba -> naranja quemado en el horizonte
+    const cielo=x.createLinearGradient(0,hz-alto0,0,hz);
+    cielo.addColorStop(0,   'rgba(10,16,34,0)');
+    cielo.addColorStop(0.30,'rgba(52,20,78,.46)');
+    cielo.addColorStop(0.58,'rgba(146,38,96,.48)');
+    cielo.addColorStop(0.82,'rgba(234,86,44,.44)');
+    cielo.addColorStop(1,   'rgba(255,170,66,.38)');
+    x.fillStyle=cielo;x.fillRect(0,hz-alto0,w,alto0);
+
+    // estrellas pixeladas en la parte alta
+    x.fillStyle='rgba(255,255,255,.5)';
+    for(let i=0;i<70;i++){
+      const sx=((i*8677)%1000)/1000*w, syy=hz-alto0+((i*4931)%1000)/1000*alto0*0.52;
+      const s=(i%7===0)?2:1;
+      x.globalAlpha=0.18+((i*37)%60)/160;
+      x.fillRect(Math.round(sx),Math.round(syy),s,s);
+    }
+    x.globalAlpha=1;
+
+    // franjas retro del cielo (efecto consola)
+    x.fillStyle='rgba(255,120,60,.05)';
+    for(let yb=hz-alto0*0.55; yb<hz; yb+=7) x.fillRect(0,Math.round(yb),w,2);
+
+    // ---- sol poniente con las franjas clásicas ----
+    const R=Math.max(120,Math.min(w*0.19,200)), sy=hz+R*0.26;
+    const sol=x.createLinearGradient(0,sy-R,0,sy+R);
+    sol.addColorStop(0,  '#fff6a8');
+    sol.addColorStop(0.28,'#ffd24a');
+    sol.addColorStop(0.60,'#ff7a2f');
+    sol.addColorStop(1,  '#ff2e88');
+    x.save();
+    x.beginPath();x.arc(solX,sy,R,0,Math.PI*2);x.clip();
+    x.fillStyle=sol;x.fillRect(solX-R,sy-R,R*2,R*2);
+    x.fillStyle='rgba(6,10,18,.85)';
+    let yy=sy-R*0.14, gap=6, alt=2.4;
+    while(yy<sy+R){ x.fillRect(solX-R,Math.round(yy),R*2,Math.max(1,Math.round(alt)));
+                    yy+=gap+alt; gap*=1.15; alt*=1.22; }
+    x.restore();
+    // contorno neón del sol
+    x.strokeStyle='rgba(255,214,120,.5)';x.lineWidth=2;
+    x.beginPath();x.arc(solX,sy,R,Math.PI,0);x.stroke();
+
+    // resplandor
+    const halo=x.createRadialGradient(solX,hz,0,solX,hz,R*2.6);
+    halo.addColorStop(0,'rgba(255,140,60,.36)');
+    halo.addColorStop(0.5,'rgba(255,46,136,.14)');
+    halo.addColorStop(1,'rgba(255,46,136,0)');
+    x.fillStyle=halo;x.fillRect(0,hz-R*2.6,w,R*2.6);
+
+    // ---- sierra en capas, con filo neón ----
+    const sierra=(amp,relleno,filo,semilla,paso)=>{
+      const pts=[];
+      for(let px=0;px<=w+paso;px+=paso){
+        const t=px/w*Math.PI*2;
+        pts.push([px, hz-Math.abs(Math.sin(t*1.7+semilla))*amp
+                        -Math.abs(Math.sin(t*4.3+semilla*2))*amp*0.42]);
+      }
+      x.fillStyle=relleno;x.beginPath();x.moveTo(0,hz);
+      pts.forEach(([px,py])=>x.lineTo(px,py));
+      x.lineTo(w,hz);x.closePath();x.fill();
+      x.strokeStyle=filo;x.lineWidth=1.5;x.beginPath();
+      pts.forEach(([px,py],i)=>i?x.lineTo(px,py):x.moveTo(px,py));x.stroke();
+    };
+    sierra(Math.min(84,hz*0.22),'rgba(54,45,57,.68)','rgba(255,181,101,.17)',0.6,26);
+    sierra(Math.min(50,hz*0.14),'rgba(25,31,34,.92)','rgba(255,169,91,.20)',2.4,18);
+
+
+    // ---- saguaros (el brazo sale del tronco, va afuera y SUBE) ----
+    const saguaro=(bx,H,esc)=>{
+      const gr=Math.max(4,7*esc);
+      x.lineCap='round';x.lineJoin='round';
+      // brazo: nace en el tronco a la altura `sale`, se va `largo` de lado,
+      // dobla el codo y termina apuntando hacia arriba en `punta`.
+      const brazo=(tx,lado,sale,largo,punta)=>{
+        const yS=hz-H*sale, xF=tx+lado*H*largo, yP=hz-H*punta, codo=H*0.10;
+        x.beginPath();
+        x.moveTo(tx,yS);
+        x.lineTo(xF-lado*codo,yS);
+        x.quadraticCurveTo(xF,yS,xF,yS-codo);
+        x.lineTo(xF,yP);
+        x.stroke();
+      };
+      const trazo=(color,ancho,dx)=>{
+        x.strokeStyle=color;x.lineWidth=ancho;
+        x.beginPath();x.moveTo(bx+dx,hz);x.lineTo(bx+dx,hz-H);x.stroke();  // tronco
+        brazo(bx+dx,-1,0.42,0.30,0.74);                                     // brazo izquierdo
+        brazo(bx+dx,+1,0.30,0.26,0.62);                                     // brazo derecho
+      };
+      trazo('rgba(10,6,14,.95)',gr,0);                              // silueta
+      trazo('rgba(255,110,70,.30)',Math.max(1,gr*0.22),-gr*0.34);   // filo del poniente
+    };
+    [[0.06,1.25],[0.12,0.72],[0.19,0.5],[0.62,0.62],[0.68,1.35],[0.93,0.9],[0.97,0.55]]
+      .forEach(([p,e])=>saguaro(Math.round(w*p),Math.min(74,hz*0.20)*e,e));
+
+    // ---- señalamiento elevado en puente (NOM-034-SCT2: verde, letras blancas,
+    //      un destino por línea, máximo tres, flechas abajo) ----
+    (function puenteSenal(){
+      const esc = Math.max(.72, Math.min(w/1280, 1.35));
+      const semiVano = Math.round(w*0.29);              // el puente cruza sobre la carretera
+      const izqX = cx - semiVano, derX = cx + semiVano;
+      const baseY = Math.round(hz + (h-hz)*0.045);      // las columnas se paran en el suelo
+      const vigaY = Math.round(hz - h*0.155);           // altura de la viga
+
+      // --- columnas de celosía ---
+      const columna=(px)=>{
+        const an = Math.round(13*esc);
+        x.strokeStyle='rgba(150,168,172,.55)'; x.lineWidth=Math.max(1.6,2.2*esc);
+        x.beginPath(); x.moveTo(px-an/2,baseY); x.lineTo(px-an/2,vigaY);
+                       x.moveTo(px+an/2,baseY); x.lineTo(px+an/2,vigaY); x.stroke();
+        x.strokeStyle='rgba(120,140,146,.40)'; x.lineWidth=Math.max(1,1.4*esc);
+        for(let y=vigaY; y<baseY-8; y+=Math.round(20*esc)){
+          const y2=Math.min(y+Math.round(20*esc),baseY);
+          x.beginPath(); x.moveTo(px-an/2,y); x.lineTo(px+an/2,y2);
+                         x.moveTo(px+an/2,y); x.lineTo(px-an/2,y2); x.stroke();
+        }
+        x.fillStyle='rgba(16,24,26,.9)';                 // zapata
+        x.fillRect(px-an,baseY-3,an*2,Math.round(5*esc));
+      };
+      columna(izqX); columna(derX);
+
+      // --- viga de celosía ---
+      const vAlto=Math.round(17*esc);
+      x.strokeStyle='rgba(160,178,182,.6)'; x.lineWidth=Math.max(1.6,2.2*esc);
+      x.beginPath(); x.moveTo(izqX,vigaY); x.lineTo(derX,vigaY);
+                     x.moveTo(izqX,vigaY+vAlto); x.lineTo(derX,vigaY+vAlto); x.stroke();
+      x.strokeStyle='rgba(120,140,146,.42)'; x.lineWidth=Math.max(1,1.4*esc);
+      for(let px2=izqX; px2<derX-6; px2+=Math.round(26*esc)){
+        const p2=Math.min(px2+Math.round(26*esc),derX);
+        x.beginPath(); x.moveTo(px2,vigaY); x.lineTo(p2,vigaY+vAlto);
+                       x.moveTo(p2,vigaY); x.lineTo(px2,vigaY+vAlto); x.stroke();
+      }
+
+      // --- tablero verde colgado de la viga ---
+      const destinos=['1/4 MILLA','CIRCUITO','A LA CIUDAD'];
+      const filaH = Math.round(30*esc);
+      const padY  = Math.round(11*esc);
+      const tabW  = Math.round(semiVano*1.72);
+      const tabH  = destinos.length*filaH + padY*2;
+      const tabX  = Math.round(cx - tabW/2), tabY = vigaY + vAlto;
+
+      // tirantes
+      x.strokeStyle='rgba(140,158,162,.5)'; x.lineWidth=Math.max(1.4,2*esc);
+      [0.18,0.5,0.82].forEach(f=>{const px2=tabX+tabW*f;
+        x.beginPath();x.moveTo(px2,vigaY+vAlto);x.lineTo(px2,tabY+4);x.stroke();});
+
+      // resplandor detrás (videojuego)
+      x.save();
+      x.shadowColor='rgba(46,220,140,.55)'; x.shadowBlur=26*esc;
+      x.fillStyle='#0a6a3c';                                  // verde SCT
+      x.fillRect(tabX,tabY,tabW,tabH);
+      x.restore();
+
+      // degradado sutil + borde blanco reflejante
+      const gv=x.createLinearGradient(0,tabY,0,tabY+tabH);
+      gv.addColorStop(0,'rgba(255,255,255,.10)'); gv.addColorStop(1,'rgba(0,0,0,.22)');
+      x.fillStyle=gv; x.fillRect(tabX,tabY,tabW,tabH);
+      const m=Math.round(5*esc);
+      x.strokeStyle='rgba(255,255,255,.92)'; x.lineWidth=Math.max(1.6,2.4*esc);
+      x.strokeRect(tabX+m,tabY+m,tabW-m*2,tabH-m*2);
+
+      // scanlines sobre el tablero
+      x.fillStyle='rgba(0,0,0,.13)';
+      for(let y=tabY+2; y<tabY+tabH-1; y+=3) x.fillRect(tabX+1,y,tabW-2,1);
+
+      // --- destinos: uno por línea, con flecha abajo ---
+      x.textBaseline='middle';
+      x.font=`700 ${Math.round(15*esc)}px "Archivo Black",system-ui,sans-serif`;
+      x.fillStyle='#ffffff';
+      const flechaX = tabX + tabW - Math.round(30*esc);
+      destinos.forEach((d,i)=>{
+        const fy = tabY + padY + filaH*i + filaH/2;
+        x.textAlign='left';
+        x.fillText(d, tabX + Math.round(20*esc), fy);
+        // flecha hacia abajo (indica carril)
+        const a=Math.round(7.5*esc), tallo=Math.round(9*esc);
+        x.beginPath();
+        x.moveTo(flechaX, fy+a+2);
+        x.lineTo(flechaX-a, fy-1);
+        x.lineTo(flechaX-a*0.42, fy-1);
+        x.lineTo(flechaX-a*0.42, fy-tallo);
+        x.lineTo(flechaX+a*0.42, fy-tallo);
+        x.lineTo(flechaX+a*0.42, fy-1);
+        x.lineTo(flechaX+a, fy-1);
+        x.closePath(); x.fill();
+      });
+      x.textAlign='start';
+
+      // dither pixelado en el filo inferior
+      x.fillStyle='rgba(46,220,140,.45)';
+      for(let px2=tabX; px2<tabX+tabW; px2+=4) if((px2>>2)%2===0) x.fillRect(px2,tabY+tabH,2,2);
+    })();
+
+    // ---- horizonte encendido + dither pixelado ----
+    x.fillStyle='rgba(255,196,96,.55)';x.fillRect(0,hz-2,w,2);
+    x.fillStyle='rgba(255,160,70,.30)';
+    for(let px=0;px<w;px+=4) if((px>>2)%2===0) x.fillRect(px,hz-5,2,2);
+    for(let px=0;px<w;px+=8) if((px>>3)%2===0) x.fillRect(px,hz-9,2,2);
+    x.restore();
+
+    x.lineWidth=1;
+    // La retícula pertenece al fondo abstracto general; el mapa de abajo usa desierto, no un grid neón.
+    x.strokeStyle=`rgba(34,224,245,0.08)`;
+    for(let i=-11;i<=11;i++){
+      const top=Math.round(cx+i*30)+.5, bot=Math.round(cx+i*(w/11))+.5;
+      x.beginPath();x.moveTo(top,hz+.5);x.lineTo(bot,h);x.stroke();
+    }
+    for(let j=1;j<20;j++){
+      const t=j/20, y=Math.round(hz+(h-hz)*t*t*1.25)+.5;
+      if(y>h)continue;
+      x.strokeStyle='rgba(209,221,19,'+(0.035+0.19*t).toFixed(3)+')';
+      x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke();
+    }
+
+    escena.hz=hz; escena.cx=cx; escena.w=w; escena.h=h;
+    cache.width=c.width; cache.height=c.height;                 // guarda el fondo quieto
+    cacheCtx.setTransform(1,0,0,1,0,0);
+    cacheCtx.clearRect(0,0,cache.width,cache.height);
+    cacheCtx.drawImage(c,0,0);
+    escena.dpr=dpr; escena.lista=true;
+  }
+
+  const cache=document.createElement('canvas'), cacheCtx=cache.getContext('2d');
+  const escena={lista:false};
+
+  draw();
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,180)});
+  return {draw, escena};
+}
+
+/* ===== MAPA · EL MIRADOR DEL CERRO DE LA CAMPANA ==============================
+   Escena propia, con UNA sola cámara: atardecer de Hermosillo visto a ras de
+   carretera desde un mirador alto. El León queda estacionado en primer plano, la
+   carretera arranca junto a él y serpentea hasta el Cerro; los cuatro destinos
+   son edificios chicos a la orilla del camino, no tarjetas flotando.
+   Todo — asfalto, edificios, postes, matorral — sale de las mismas tres
+   funciones de perspectiva, para que nada quede en otro ángulo.            ===== */
+function crearMapaCerro(c,alRedibujar){
+  const x=c.getContext('2d');
+  const locales=[];
+  let W=0,H=0,HZ=0,SOLX=0;
+
+  /* Derivado transparente de la misma ilustración aprobada en SELECT YOUR CAR.
+     La tarjeta conserva su JPG y tratamiento CSS; el mapa sólo recibe píxeles
+     del auto, nunca la retícula, papel o leyenda de la lámina fuente. */
+  const LEON={img:new Image(),listo:false};
+  LEON.img.decoding='async';
+  LEON.img.onload=()=>{
+    LEON.listo=LEON.img.naturalWidth>0 && LEON.img.naturalHeight>0;
+    if(!LEON.listo) return;
+    draw();                                              // repintar ya con el auto real
+    if(alRedibujar && locales.length) alRedibujar(locales);
+  };
+  LEON.img.onerror=()=>{ LEON.listo=false; };
+  LEON.img.src='assets/select-car/leon-profile-map.png';
+
+  /* t = 0 en el horizonte, 1 al filo del mirador */
+  const prof =t=>HZ+(H-HZ)*Math.pow(t,1.9);        // a qué altura de pantalla cae
+  const lejos=t=>0.05+0.95*Math.pow(t,1.7);        // qué tan grande se ve
+  const tDeY =y=>Math.pow(Math.max(0,(y-HZ)/(H-HZ||1)),1/1.9);
+  /* eje de la carretera: puntos de control interpolados (Catmull-Rom) = curva de
+     sierra continua, sin quiebres ni rectas de cartel */
+  const CTRL=[[0,.645],[.20,.585],[.38,.445],[.56,.335],[.74,.445],[.88,.605],[1.10,.80]];
+  function ejeX(t){
+    const P=CTRL; let i=0; while(i<P.length-2 && t>P[i+1][0]) i++;
+    const p0=P[Math.max(0,i-1)],p1=P[i],p2=P[i+1],p3=P[Math.min(P.length-1,i+2)];
+    const u=(t-p1[0])/(p2[0]-p1[0]), u2=u*u, u3=u2*u;
+    return W*0.5*(2*p1[1] + (-p0[1]+p2[1])*u + (2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*u2
+                          + (-p0[1]+3*p1[1]-3*p2[1]+p3[1])*u3);
+  }
+  const media=t=>W*0.235*lejos(t)+1.2;             // medio ancho del asfalto
+
+  /* ruido fijo: la escena no debe cambiar entre repintados */
+  const az=(i,s)=>{const v=Math.sin(i*127.1+s*311.7)*43758.5453;return v-Math.floor(v)};
+
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2);
+    W=c.parentNode.clientWidth; H=c.parentNode.clientHeight;
+    if(!W||!H) return;
+    c.width=Math.round(W*dpr); c.height=Math.round(H*dpr);
+    c.style.width=W+'px'; c.style.height=H+'px';
+    x.setTransform(dpr,0,0,dpr,0,0); x.clearRect(0,0,W,H);
+    HZ=Math.round(H*0.42); SOLX=Math.round(W*0.235);
+    const CERX=Math.round(W*0.665);                // el Cerro cierra la carretera
+    const k=Math.min(1.15,Math.max(.62,W/1180));   // escala de detalle
+
+    /* ---------- 1 · CIELO: índigo arriba, horizonte cálido apagado ---------- */
+    const cielo=x.createLinearGradient(0,0,0,HZ+2);
+    cielo.addColorStop(0,   '#080d24');
+    cielo.addColorStop(0.32,'#141a3e');
+    cielo.addColorStop(0.58,'#33244b');
+    cielo.addColorStop(0.78,'#6b3a4a');
+    cielo.addColorStop(0.92,'#a85c40');
+    cielo.addColorStop(1,   '#d98d49');
+    x.fillStyle=cielo; x.fillRect(0,0,W,HZ+2);
+
+    // estrellas: pocas, tenues, sólo en la mitad alta
+    for(let i=0;i<64;i++){
+      const sx=az(i,1)*W, sy=az(i,2)*HZ*0.52, a=0.10+az(i,3)*0.30;
+      x.fillStyle='rgba(226,232,255,'+a.toFixed(2)+')';
+      x.fillRect(Math.round(sx),Math.round(sy),1,1);
+    }
+    // nubes largas de ocaso, tendidas y quietas
+    for(let i=0;i<7;i++){
+      const cy=HZ-8-az(i,7)*HZ*0.46, cw=W*(0.14+az(i,8)*0.30), cx0=az(i,9)*W-cw*0.3,
+            ch=Math.max(2,HZ*0.012*(0.6+az(i,10)));
+      const g=x.createLinearGradient(cx0,0,cx0+cw,0);
+      const cal=1-(HZ-cy)/(HZ*0.6);                 // más cálidas cerca del horizonte
+      g.addColorStop(0,'rgba(255,180,120,0)');
+      g.addColorStop(0.5,'rgba('+Math.round(200+40*cal)+','+Math.round(120+50*cal)+',110,'+(0.10+0.18*cal).toFixed(2)+')');
+      g.addColorStop(1,'rgba(255,180,120,0)');
+      x.fillStyle=g; x.beginPath(); x.ellipse(cx0+cw/2,cy,cw/2,ch,0,0,6.28); x.fill();
+    }
+    // sol bajo, apagado por el polvo (sin aros ni franjas)
+    const halo=x.createRadialGradient(SOLX,HZ,0,SOLX,HZ,Math.min(W*0.55,H*0.9));
+    halo.addColorStop(0,'rgba(255,186,110,.42)');
+    halo.addColorStop(0.35,'rgba(226,120,80,.18)');
+    halo.addColorStop(1,'rgba(226,120,80,0)');
+    x.fillStyle=halo; x.fillRect(0,0,W,HZ+2);
+    const rSol=Math.max(14,Math.min(W*0.032,30));
+    const gSol=x.createRadialGradient(SOLX,HZ-rSol*0.55,0,SOLX,HZ-rSol*0.55,rSol);
+    gSol.addColorStop(0,'rgba(255,236,196,.92)'); gSol.addColorStop(1,'rgba(255,176,96,.30)');
+    x.fillStyle=gSol; x.beginPath(); x.arc(SOLX,HZ-rSol*0.55,rSol,0,6.28); x.fill();
+
+    /* ---------- 2 · SIERRAS EN CAPAS (perspectiva atmosférica) ---------- */
+    const cordillera=(alto,tono,semilla,paso,rim)=>{
+      const pts=[];
+      for(let px=-paso;px<=W+paso;px+=paso){
+        const u=px/Math.max(1,W);
+        const y=HZ-alto*(0.42+0.34*Math.abs(Math.sin(u*4.1+semilla))
+                              +0.24*Math.abs(Math.sin(u*9.7+semilla*2.3)));
+        pts.push([px,y]);
+      }
+      x.fillStyle=tono; x.beginPath(); x.moveTo(-paso,HZ+3);
+      pts.forEach(([px,py])=>x.lineTo(px,py)); x.lineTo(W+paso,HZ+3); x.closePath(); x.fill();
+      if(rim){ // filo cálido del lado del sol
+        x.save(); x.strokeStyle=rim; x.lineWidth=1.1; x.beginPath();
+        pts.forEach(([px,py],i)=>i?x.lineTo(px,py):x.moveTo(px,py)); x.stroke(); x.restore();
+      }
+    };
+    cordillera(Math.min(96,HZ*0.30),'rgba(58,50,86,.55)',0.9,Math.max(14,26*k),'rgba(255,190,140,.13)');
+    cordillera(Math.min(64,HZ*0.20),'rgba(38,34,62,.80)',2.7,Math.max(11,20*k),'rgba(255,170,120,.11)');
+
+    /* ---------- 3 · CERRO DE LA CAMPANA + LUCES DE LA CIUDAD ---------- */
+    const cAlto=Math.min(H*0.26,Math.max(76,148*k)), cAncho=Math.min(W*0.30,Math.max(150,330*k));
+    (function cerro(){
+      const bx=CERX, by=HZ+2;
+      x.save();
+      const g=x.createLinearGradient(bx,by-cAlto,bx,by);
+      g.addColorStop(0,'#2b2440'); g.addColorStop(0.55,'#1d1a30'); g.addColorStop(1,'#141222');
+      x.fillStyle=g; x.beginPath();
+      x.moveTo(bx-cAncho*.60,by);
+      x.bezierCurveTo(bx-cAncho*.40,by-cAlto*.30, bx-cAncho*.26,by-cAlto*.80, bx-cAncho*.06,by-cAlto*.97);
+      x.bezierCurveTo(bx+cAncho*.06,by-cAlto*1.02, bx+cAncho*.20,by-cAlto*.74, bx+cAncho*.33,by-cAlto*.44);
+      x.bezierCurveTo(bx+cAncho*.44,by-cAlto*.22, bx+cAncho*.54,by-cAlto*.08, bx+cAncho*.66,by);
+      x.closePath(); x.fill();
+      // filo del poniente sobre la cara izquierda (el sol está de ese lado)
+      x.strokeStyle='rgba(255,178,120,.34)'; x.lineWidth=1.6;
+      x.beginPath(); x.moveTo(bx-cAncho*.58,by-cAlto*.05);
+      x.bezierCurveTo(bx-cAncho*.40,by-cAlto*.30, bx-cAncho*.26,by-cAlto*.80, bx-cAncho*.06,by-cAlto*.97);
+      x.stroke();
+      // pliegues de roca, apenas insinuados
+      x.strokeStyle='rgba(120,104,148,.20)'; x.lineWidth=1;
+      [[-.30,.16,-.10,.62],[.10,.10,.20,.52],[-.44,.06,-.24,.34]].forEach(([a,b,cc,d])=>{
+        x.beginPath(); x.moveTo(bx+cAncho*a,by-cAlto*b);
+        x.quadraticCurveTo(bx+cAncho*(a+cc)/2,by-cAlto*(b+d)/2*1.1,bx+cAncho*cc,by-cAlto*d); x.stroke();
+      });
+      // antenas: la firma del cerro (torres de radio con luz roja)
+      [[-.09,1.00],[-.02,.80],[.05,.66],[.11,.48]].forEach(([dx,sc],i)=>{
+        const tx=Math.round(bx+cAncho*dx),
+              ty=by-cAlto*(0.97-Math.abs(dx)*1.4),
+              th=cAlto*0.30*sc;
+        x.strokeStyle='rgba(214,208,236,.42)'; x.lineWidth=1;
+        x.beginPath(); x.moveTo(tx+.5,ty); x.lineTo(tx+.5,ty-th); x.stroke();
+        x.strokeStyle='rgba(214,208,236,.16)';
+        x.beginPath(); x.moveTo(tx+.5,ty-th*0.72); x.lineTo(tx-th*0.28,ty);
+                       x.moveTo(tx+.5,ty-th*0.72); x.lineTo(tx+th*0.28,ty); x.stroke();
+        if(i<3){ x.fillStyle='rgba(255,92,74,.9)'; x.fillRect(tx-1,ty-th-2,2,2);
+                 x.save(); x.globalAlpha=.35; x.fillStyle='#ff5c4a';
+                 x.beginPath(); x.arc(tx,ty-th-1,3.2,0,6.28); x.fill(); x.restore(); }
+      });
+      x.restore();
+    })();
+    // Hermosillo al pie del cerro: manchón de luz cálida y ventanas sueltas
+    (function ciudad(){
+      const g=x.createLinearGradient(0,HZ-Math.min(34,H*0.06),0,HZ+2);
+      g.addColorStop(0,'rgba(255,168,92,0)'); g.addColorStop(1,'rgba(255,160,86,.16)');
+      x.fillStyle=g; x.fillRect(W*0.30,HZ-Math.min(34,H*0.06),W*0.70,Math.min(36,H*0.065));
+      for(let i=0;i<130;i++){
+        const u=az(i,21), lx=W*(0.30+u*0.72), ly=HZ-az(i,22)*Math.min(13,H*0.024)-1;
+        if(lx>W) continue;
+        x.fillStyle=['rgba(255,206,140,','rgba(255,172,96,','rgba(214,226,255,'][i%3]+(0.25+az(i,23)*0.55).toFixed(2)+')';
+        x.fillRect(Math.round(lx),Math.round(ly),(i%9===0)?2:1,1);
+      }
+    })();
+
+    /* ---------- 4 · SUELO DEL VALLE ---------- */
+    const suelo=x.createLinearGradient(0,HZ,0,H);
+    suelo.addColorStop(0,   '#4a3243');
+    suelo.addColorStop(0.14,'#31243a');
+    suelo.addColorStop(0.48,'#1d1729');
+    suelo.addColorStop(1,   '#0e0b17');
+    x.fillStyle=suelo; x.fillRect(0,HZ,W,H-HZ);
+    // lomeríos del valle: bandas suaves que cruzan, cada una un poco más oscura
+    for(let b=0;b<4;b++){
+      const t0=0.08+b*0.075, y0=prof(t0);
+      x.fillStyle='rgba(12,10,22,'+(0.16+b*0.07).toFixed(2)+')';
+      x.beginPath(); x.moveTo(0,y0+8);
+      for(let px=0;px<=W;px+=Math.max(10,18*k)){
+        const u=px/Math.max(1,W);
+        x.lineTo(px,y0-Math.abs(Math.sin(u*3.4+b*2.1))*(H-HZ)*0.028-Math.sin(u*8.3+b)*(H-HZ)*0.010);
+      }
+      x.lineTo(W,y0+8); x.closePath(); x.fill();
+    }
+    // polvo del ocaso pegado al horizonte
+    const polvo=x.createLinearGradient(0,HZ-6,0,HZ+Math.min(70,H*0.13));
+    polvo.addColorStop(0,'rgba(255,166,104,.20)'); polvo.addColorStop(1,'rgba(255,166,104,0)');
+    x.fillStyle=polvo; x.fillRect(0,HZ-6,W,Math.min(76,H*0.14));
+
+    /* ---------- 5 · LA CARRETERA ---------- */
+    const PASOS=88, TMAX=1.12;
+    const muestra=[];
+    for(let i=0;i<=PASOS;i++){ const t=i/PASOS*TMAX;
+      muestra.push({t,y:prof(t),cx:ejeX(t),m:media(t)}); }
+    (function carretera(){
+      x.save();
+      // terraplén: la carretera está montada sobre el terreno, no pintada encima
+      x.beginPath(); x.moveTo(muestra[0].cx-muestra[0].m*1.9,muestra[0].y);
+      muestra.forEach(s=>x.lineTo(s.cx-s.m*1.9,s.y+s.m*0.10));
+      for(let i=muestra.length-1;i>=0;i--){const s=muestra[i];x.lineTo(s.cx+s.m*1.9,s.y+s.m*0.10);}
+      x.closePath(); x.fillStyle='rgba(58,42,46,.34)'; x.fill();
+      // asfalto
+      x.beginPath(); x.moveTo(muestra[0].cx-muestra[0].m,muestra[0].y);
+      muestra.forEach(s=>x.lineTo(s.cx-s.m,s.y));
+      for(let i=muestra.length-1;i>=0;i--){const s=muestra[i];x.lineTo(s.cx+s.m,s.y);}
+      x.closePath();
+      const asf=x.createLinearGradient(0,HZ,0,H);
+      asf.addColorStop(0,'#4c3c46'); asf.addColorStop(0.18,'#2c2734');
+      asf.addColorStop(0.6,'#211d29'); asf.addColorStop(1,'#191622');
+      x.fillStyle=asf; x.fill();
+      // reflejo del poniente sobre el asfalto mojado de luz
+      x.save(); x.clip();
+      const refl=x.createLinearGradient(SOLX-W*0.2,0,SOLX+W*0.35,H);
+      refl.addColorStop(0,'rgba(255,170,110,.14)'); refl.addColorStop(0.6,'rgba(255,150,100,0)');
+      x.fillStyle=refl; x.fillRect(0,HZ,W,H-HZ);
+      x.restore();
+      // orillas: raya continua a cada lado
+      [-1,1].forEach(lado=>{
+        x.beginPath();
+        muestra.forEach((s,i)=>{const px=s.cx+lado*(s.m-Math.max(.8,s.m*0.075));
+          i?x.lineTo(px,s.y):x.moveTo(px,s.y);});
+        x.strokeStyle='rgba(240,222,186,.34)'; x.lineWidth=Math.max(.8,1.6*k); x.stroke();
+      });
+      // raya central segmentada: los tramos se acortan con la distancia
+      x.strokeStyle='rgba(238,206,132,.46)';
+      for(let i=0;i<PASOS;i+=2){
+        const a=muestra[i], b=muestra[Math.min(PASOS,i+1)];
+        if(a.t<0.10) continue;
+        x.lineWidth=Math.max(.8,3.4*lejos(a.t)*k+.4);
+        x.beginPath(); x.moveTo(a.cx,a.y); x.lineTo(b.cx,b.y); x.stroke();
+      }
+      x.restore();
+    })();
+    // defensa metálica en la curva de afuera + postes de luz junto al camino
+    (function orilla(){
+      x.save();
+      const desde=0.42;
+      x.beginPath();
+      muestra.forEach((s,i)=>{ if(s.t<desde||s.t>1.02) return;
+        const px=s.cx-s.m-6*lejos(s.t)*k, py=s.y-11*lejos(s.t)*k;
+        (i&&muestra[i-1].t>=desde)?x.lineTo(px,py):x.moveTo(px,py); });
+      x.strokeStyle='rgba(196,190,206,.30)'; x.lineWidth=Math.max(1,2.2*k); x.stroke();
+      muestra.forEach(s=>{ if(s.t<desde||s.t>1.02) return;
+        if(Math.round(s.t*PASOS/TMAX)%3) return;
+        const px=s.cx-s.m-6*lejos(s.t)*k;
+        x.strokeStyle='rgba(150,144,164,.28)'; x.lineWidth=Math.max(1,1.8*k);
+        x.beginPath(); x.moveTo(px,s.y); x.lineTo(px,s.y-13*lejos(s.t)*k); x.stroke(); });
+      x.restore();
+      // postes de luz: refuerzan la profundidad y encienden el camino
+      [[0.30,1],[0.44,1],[0.60,1],[0.80,1],[0.98,1]].forEach(([t,lado])=>{
+        const s=lejos(t), px=ejeX(t)+lado*(media(t)+16*s*k), py=prof(t), alto=132*s*k;
+        x.strokeStyle='rgba(168,160,184,.34)'; x.lineWidth=Math.max(1,2.4*s*k+.5);
+        x.beginPath(); x.moveTo(px,py); x.lineTo(px,py-alto); x.stroke();
+        x.beginPath(); x.moveTo(px,py-alto); x.quadraticCurveTo(px-lado*alto*0.10,py-alto*1.04,px-lado*alto*0.20,py-alto*1.0); x.stroke();
+        const lx=px-lado*alto*0.20, ly=py-alto*1.0;
+        x.fillStyle='rgba(255,222,166,.85)'; x.fillRect(lx-2*s*k-1,ly-1,Math.max(2,4*s*k),Math.max(1.5,2.6*s*k));
+        x.save(); x.globalAlpha=.20;
+        const g=x.createRadialGradient(lx,ly,0,lx,ly,alto*0.55);
+        g.addColorStop(0,'rgba(255,206,140,.9)'); g.addColorStop(1,'rgba(255,206,140,0)');
+        x.fillStyle=g; x.beginPath(); x.arc(lx,ly,alto*0.55,0,6.28); x.fill(); x.restore();
+      });
+    })();
+
+    /* ---------- 6 · MATORRAL Y SAGUAROS (mismo tamaño según distancia) ---------- */
+    const saguaro=(px,py,alto,alpha)=>{
+      const gr=Math.max(1.2,alto*0.13);
+      x.save(); x.lineCap='round'; x.lineJoin='round';
+      x.strokeStyle='rgba(14,10,20,'+alpha+')'; x.lineWidth=gr;
+      x.beginPath(); x.moveTo(px,py); x.lineTo(px,py-alto); x.stroke();
+      const brazo=(lado,sale,largo,punta)=>{
+        const yS=py-alto*sale, xF=px+lado*alto*largo, codo=alto*0.12;
+        x.beginPath(); x.moveTo(px,yS); x.lineTo(xF-lado*codo,yS);
+        x.quadraticCurveTo(xF,yS,xF,yS-codo); x.lineTo(xF,py-alto*punta); x.stroke();
+      };
+      brazo(-1,0.46,0.28,0.74); brazo(1,0.34,0.24,0.60);
+      x.strokeStyle='rgba(255,146,92,'+(parseFloat(alpha)*0.30).toFixed(2)+')';
+      x.lineWidth=Math.max(.6,gr*0.24);
+      x.beginPath(); x.moveTo(px-gr*0.34,py); x.lineTo(px-gr*0.34,py-alto); x.stroke();
+      x.restore();
+    };
+    for(let i=0;i<34;i++){
+      const t=0.10+az(i,31)*0.90, s=lejos(t), py=prof(t);
+      const lado=az(i,32)<0.5?-1:1;
+      const px=ejeX(t)+lado*(media(t)+ (20+az(i,33)*260)*s*k );
+      if(px<-40||px>W+40) continue;
+      if(py>H*0.86) continue;                       // el primer plano es del mirador
+      if(az(i,34)<0.42) saguaro(px,py,(60+az(i,35)*70)*s*k,(0.72+az(i,36)*0.2).toFixed(2));
+      else{                                          // matorral / piedra
+        x.fillStyle='rgba(16,12,22,'+(0.5+az(i,37)*0.3).toFixed(2)+')';
+        x.beginPath(); x.ellipse(px,py,(14+az(i,38)*22)*s*k,(6+az(i,39)*9)*s*k,0,0,6.28); x.fill();
+      }
+    }
+
+    /* ---------- 7 · LOS CUATRO DESTINOS: edificios chicos a la orilla ------- */
+    const ACC={garaje:'#e0c66a',taller:'#7fc9d8',marcas:'#e2795a',pista:'#b39ae0'};
+    const MURO='#2b2636', MURO_SOL='#4a3a3c', TECHO='#1b1826', HUECO='#0d0b14', LUZ='#ffcd8a';
+    const rect=(a,b,an,al,fill,filo,gw)=>{
+      if(fill){x.fillStyle=fill;x.fillRect(a,b,an,al);}
+      if(filo){x.strokeStyle=filo;x.lineWidth=gw||1;x.strokeRect(a+.5,b+.5,Math.max(0,an-1),Math.max(0,al-1));}
+    };
+    const ventana=(a,b,an,al)=>{
+      if(an<1.2||al<1.2) return;
+      const g=x.createLinearGradient(0,b,0,b+al);
+      g.addColorStop(0,'#ffe0a8'); g.addColorStop(1,'#ff9d4c');
+      x.fillStyle=g; x.fillRect(a,b,an,al);
+      x.save(); x.globalAlpha=.22; x.fillStyle=LUZ;
+      x.fillRect(a-an*0.22,b-al*0.22,an*1.44,al*1.44); x.restore();
+    };
+    const letrero=(a,b,an,al,col,txt)=>{
+      rect(a,b,an,al,'#17131f','rgba(228,220,236,.28)',1);
+      if(txt&&al>=8){ x.save(); x.fillStyle=col; x.textAlign='center'; x.textBaseline='middle';
+        x.font=`700 ${Math.max(6,Math.round(al*0.60))}px "Archivo Black",system-ui,sans-serif`;
+        x.fillText(txt,a+an/2,b+al/2+0.5); x.restore(); }
+      else if(txt){ x.fillStyle=col; x.globalAlpha=.75; x.fillRect(a+an*0.12,b+al*0.36,an*0.76,Math.max(1,al*0.26)); x.globalAlpha=1; }
+    };
+    const lampara=(a,b,r)=>{                        // luminaria de pared con su cono
+      x.fillStyle='#191423'; x.fillRect(a-r*0.7,b-r*0.5,r*1.4,r*0.6);
+      x.save(); x.globalAlpha=.30;
+      const g=x.createLinearGradient(0,b,0,b+r*6);
+      g.addColorStop(0,'rgba(255,206,142,.85)'); g.addColorStop(1,'rgba(255,206,142,0)');
+      x.fillStyle=g; x.beginPath(); x.moveTo(a-r*0.6,b); x.lineTo(a+r*0.6,b);
+      x.lineTo(a+r*2.4,b+r*6); x.lineTo(a-r*2.4,b+r*6); x.closePath(); x.fill(); x.restore();
+    };
+    // el sol pega por la izquierda: cara izquierda tibia, derecha en sombra
+    const muro=(a,b,an,al)=>{
+      const g=x.createLinearGradient(a,0,a+an,0);
+      g.addColorStop(0,MURO_SOL); g.addColorStop(0.45,MURO); g.addColorStop(1,'#231f2e');
+      x.fillStyle=g; x.fillRect(a,b,an,al);
+      x.strokeStyle='rgba(228,220,236,.16)'; x.lineWidth=1; x.strokeRect(a+.5,b+.5,an-1,al-1);
+    };
+
+    const garage=(px,py,Wb,Hb,col)=>{
+      const a=px-Wb/2, b=py-Hb;
+      muro(a,b+Hb*0.30,Wb,Hb*0.70);
+      x.fillStyle=TECHO; x.beginPath();                       // techo a dos aguas con alero
+      x.moveTo(a-Wb*0.07,b+Hb*0.33); x.lineTo(px,b+Hb*0.02); x.lineTo(a+Wb*1.07,b+Hb*0.33);
+      x.closePath(); x.fill();
+      x.strokeStyle='rgba(255,182,126,.26)'; x.lineWidth=1;
+      x.beginPath(); x.moveTo(a-Wb*0.07,b+Hb*0.33); x.lineTo(px,b+Hb*0.02); x.stroke();
+      letrero(a+Wb*0.16,b+Hb*0.355,Wb*0.68,Math.max(4,Hb*0.11),col,'GARAGE');
+      const pa=a+Wb*0.14, pb=b+Hb*0.52, pw=Wb*0.52, ph=Hb*0.48;   // cortina enrollable
+      rect(pa,pb,pw,ph,HUECO,'rgba(228,220,236,.20)',1);
+      x.save(); x.globalAlpha=.55; ventana(pa+pw*0.06,pb+ph*0.62,pw*0.88,ph*0.34); x.restore();
+      ventana(a+Wb*0.74,b+Hb*0.56,Wb*0.16,Hb*0.14);
+      rect(a+Wb*0.72,b+Hb*0.76,Wb*0.20,Hb*0.24,'#171320','rgba(228,220,236,.18)',1);
+      lampara(a+Wb*0.66,b+Hb*0.50,Math.max(1.6,Wb*0.030));
+    };
+    const taller=(px,py,Wb,Hb,col)=>{
+      const a=px-Wb/2, b=py-Hb;
+      muro(a,b+Hb*0.34,Wb,Hb*0.66);
+      for(let i=0;i<3;i++){                                    // techo diente de sierra
+        const sx=a+Wb*(i/3), w3=Wb/3;
+        x.fillStyle=TECHO; x.beginPath();
+        x.moveTo(sx,b+Hb*0.36); x.lineTo(sx,b+Hb*0.14); x.lineTo(sx+w3,b+Hb*0.36); x.closePath(); x.fill();
+        const g=x.createLinearGradient(sx,b+Hb*0.14,sx+w3,b+Hb*0.36);
+        g.addColorStop(0,'rgba(255,206,142,.55)'); g.addColorStop(1,'rgba(255,206,142,.05)');
+        x.fillStyle=g; x.beginPath();
+        x.moveTo(sx+w3*0.12,b+Hb*0.17); x.lineTo(sx+w3*0.12,b+Hb*0.335); x.lineTo(sx+w3*0.85,b+Hb*0.345);
+        x.closePath(); x.fill();
+      }
+      rect(a+Wb*0.74,b-Hb*0.22,Wb*0.10,Hb*0.56,'#231f2e','rgba(228,220,236,.16)',1);  // chimenea
+      x.save(); x.globalAlpha=.14; x.fillStyle='#d8d2e4';
+      [[0.79,-0.32,0.05],[0.82,-0.44,0.07],[0.78,-0.58,0.09]].forEach(([fx,fy,r])=>{
+        x.beginPath(); x.arc(a+Wb*fx,b+Hb*fy,Wb*r,0,6.28); x.fill(); }); x.restore();
+      const pa=a+Wb*0.08, pb=b+Hb*0.55, pw=Wb*0.40, ph=Hb*0.45;
+      rect(pa,pb,pw,ph,HUECO,'rgba(228,220,236,.20)',1);
+      x.save(); x.globalAlpha=.6; ventana(pa+pw*0.08,pb+ph*0.55,pw*0.84,ph*0.42); x.restore();
+      ventana(a+Wb*0.54,b+Hb*0.54,Wb*0.32,Hb*0.16);
+      letrero(a+Wb*0.56,b+Hb*0.78,Wb*0.30,Math.max(4,Hb*0.11),col,'24H');
+      x.fillStyle='#161220'; x.strokeStyle='rgba(180,172,200,.22)'; x.lineWidth=1;   // llantas
+      for(let i=0;i<3;i++){ x.beginPath();
+        x.ellipse(a+Wb*0.96,py-Hb*0.05-i*Hb*0.05,Wb*0.05,Hb*0.026,0,0,6.28); x.fill(); x.stroke(); }
+      lampara(a+Wb*0.50,b+Hb*0.50,Math.max(1.6,Wb*0.028));
+    };
+    const refa=(px,py,Wb,Hb,col)=>{
+      const a=px-Wb/2, b=py-Hb;
+      muro(a,b+Hb*0.26,Wb,Hb*0.74);
+      rect(a-Wb*0.04,b+Hb*0.08,Wb*1.08,Hb*0.19,'#231f2e','rgba(228,220,236,.22)',1);   // pretil
+      letrero(a-Wb*0.01,b+Hb*0.105,Wb*1.02,Math.max(5,Hb*0.135),col,'REFACCIONES');
+      for(let i=0;i<6;i++){                                    // toldo a rayas, tela apagada
+        x.fillStyle=i%2?'rgba(226,121,90,.62)':'#241f2c';
+        x.beginPath(); x.moveTo(a+Wb*(i/6),b+Hb*0.28); x.lineTo(a+Wb*((i+1)/6),b+Hb*0.28);
+        x.lineTo(a+Wb*((i+1)/6)-Wb*0.012,b+Hb*0.40); x.lineTo(a+Wb*(i/6)+Wb*0.012,b+Hb*0.40);
+        x.closePath(); x.fill();
+      }
+      const va=a+Wb*0.06, vb=b+Hb*0.46, vw=Wb*0.54, vh=Hb*0.40;   // aparador encendido
+      ventana(va,vb,vw,vh);
+      x.save(); x.globalAlpha=.55; x.fillStyle='#2a1d20';         // anaqueles a contraluz
+      for(let r=0;r<3;r++){ const ry=vb+vh*(0.22+r*0.28);
+        x.fillRect(va+1,ry,vw-2,Math.max(1,vh*0.05));
+        for(let q=0;q<4;q++) x.fillRect(va+vw*(0.08+q*0.23),ry-vh*0.13,vw*0.14,vh*0.12);
+      } x.restore();
+      rect(a+Wb*0.66,b+Hb*0.48,Wb*0.26,Hb*0.52,'#171320','rgba(228,220,236,.20)',1);
+      x.save(); x.globalAlpha=.42; ventana(a+Wb*0.68,b+Hb*0.50,Wb*0.22,Hb*0.46); x.restore();
+      lampara(a+Wb*0.56,b+Hb*0.46,Math.max(1.6,Wb*0.028));
+    };
+    const pista=(px,py,Wb,Hb,col)=>{
+      const a=px-Wb/2, b=py-Hb;
+      x.fillStyle=MURO; x.beginPath();                          // gradería
+      x.moveTo(a+Wb*0.03,py); x.lineTo(a+Wb*0.20,b+Hb*0.38); x.lineTo(a+Wb*0.86,b+Hb*0.38);
+      x.lineTo(a+Wb*0.98,py); x.closePath(); x.fill();
+      x.strokeStyle='rgba(228,220,236,.16)'; x.lineWidth=1; x.stroke();
+      for(let i=1;i<5;i++){                                     // filas de asientos
+        const t2=i/5, ty=b+Hb*0.38+(py-(b+Hb*0.38))*t2, kk=t2*0.14;
+        const x0=a+Wb*(0.20-kk), x1=a+Wb*(0.86+kk*0.8);
+        x.strokeStyle='rgba(228,220,236,.13)'; x.beginPath(); x.moveTo(x0,ty); x.lineTo(x1,ty); x.stroke();
+      }
+      x.fillStyle=TECHO; x.beginPath();                          // techumbre voladiza
+      x.moveTo(a+Wb*0.12,b+Hb*0.38); x.lineTo(a+Wb*0.24,b+Hb*0.18);
+      x.lineTo(a+Wb*0.84,b+Hb*0.18); x.lineTo(a+Wb*0.94,b+Hb*0.38); x.closePath(); x.fill();
+      letrero(a+Wb*0.30,b+Hb*0.20,Wb*0.44,Math.max(4,Hb*0.11),col,'PITS');
+      [a+Wb*0.05,a+Wb*0.95].forEach(tx=>{                        // torres de iluminación
+        x.strokeStyle='rgba(180,172,200,.34)'; x.lineWidth=Math.max(1,Wb*0.012);
+        x.beginPath(); x.moveTo(tx,py); x.lineTo(tx,b-Hb*0.20); x.stroke();
+        x.fillStyle='#fff0c8'; x.fillRect(tx-Wb*0.05,b-Hb*0.26,Wb*0.10,Math.max(1.4,Hb*0.055));
+        x.save(); x.globalAlpha=.18;
+        const g=x.createRadialGradient(tx,b-Hb*0.22,0,tx,b-Hb*0.22,Wb*0.42);
+        g.addColorStop(0,'rgba(255,240,196,.9)'); g.addColorStop(1,'rgba(255,240,196,0)');
+        x.fillStyle=g; x.beginPath(); x.arc(tx,b-Hb*0.22,Wb*0.42,0,6.28); x.fill(); x.restore();
+      });
+      x.fillStyle='#161220'; x.strokeStyle='rgba(180,172,200,.20)'; x.lineWidth=1;  // barrera de llantas
+      for(let i=0;i<6;i++){ x.beginPath();
+        x.ellipse(a+Wb*(0.08+i*0.17),py-Hb*0.02,Wb*0.045,Hb*0.024,0,0,6.28); x.fill(); x.stroke(); }
+    };
+
+    const DESTINOS=[
+      {id:'pista', t:0.34, lado:-1, dib:pista},
+      {id:'marcas',t:0.47, lado: 1, dib:refa},
+      {id:'taller',t:0.61, lado:-1, dib:taller},
+      {id:'garaje',t:0.79, lado: 1, dib:garage},
+    ];
+    locales.length=0;
+    DESTINOS.forEach(D=>{                                   // de lejos a cerca: se tapan bien
+      const s=lejos(D.t), py=Math.round(prof(D.t)), col=ACC[D.id];
+      const Hb=Math.max(26,Math.round(Math.min(H*0.44,300)*s*k*1.05));
+      const Wb=Math.round(Hb*1.55);
+      let px=Math.round(ejeX(D.t)+D.lado*(media(D.t)+Wb*0.56+10*s*k));
+      px=Math.max(Wb*0.52+2,Math.min(W-Wb*0.52-2,px));
+      x.save();
+      x.fillStyle='rgba(8,6,14,.42)';                       // sombra al pie
+      x.beginPath(); x.ellipse(px,py+2,Wb*0.56,Hb*0.075,0,0,6.28); x.fill();
+      D.dib(px,py,Wb,Hb,col);
+      x.restore();
+      locales.push({id:D.id,x:px,y:py,w:Wb,h:Hb,color:col});
+    });
+
+    /* ---------- 8 · EL MIRADOR Y EL LEÓN EN PRIMER PLANO ---------- */
+    const bordeY=H*0.775, qb=(p0,p1,p2,u)=>{const v=1-u;
+      return [v*v*p0[0]+2*v*u*p1[0]+u*u*p2[0], v*v*p0[1]+2*v*u*p1[1]+u*u*p2[1]];};
+    const A=[-12,bordeY], B=[W*0.24,bordeY-H*0.035], C=[W*0.465,H*0.90];
+    (function mirador(){
+      x.save();
+      x.beginPath(); x.moveTo(A[0],A[1]);
+      for(let i=1;i<=24;i++){const p=qb(A,B,C,i/24); x.lineTo(p[0],p[1]);}
+      x.lineTo(W*0.52,H+10); x.lineTo(-12,H+10); x.closePath();
+      const g=x.createLinearGradient(0,bordeY-20,0,H);
+      g.addColorStop(0,'#3a2f38'); g.addColorStop(0.35,'#26202c'); g.addColorStop(1,'#16121e');
+      x.fillStyle=g; x.fill();
+      // grava
+      x.save(); x.clip();
+      for(let i=0;i<260;i++){
+        const gx=az(i,51)*W*0.60, gy=bordeY+az(i,52)*(H-bordeY)*1.1;
+        x.fillStyle='rgba('+(az(i,53)<0.5?'224,206,180,':'10,8,16,')+(0.05+az(i,54)*0.13).toFixed(2)+')';
+        x.fillRect(gx,gy,Math.max(1,2*k),1);
+      }
+      x.restore();
+      // filo iluminado del mirador
+      x.beginPath(); x.moveTo(A[0],A[1]);
+      for(let i=1;i<=24;i++){const p=qb(A,B,C,i/24); x.lineTo(p[0],p[1]);}
+      x.strokeStyle='rgba(255,186,128,.30)'; x.lineWidth=Math.max(1,2*k); x.stroke();
+      // barandal de tubo: postes + dos cables, la seña de un mirador de verdad
+      for(let i=0;i<=13;i++){
+        const p=qb(A,B,C,i/13), alto=(26+10*(i/13))*k;
+        x.strokeStyle='rgba(196,188,208,.34)'; x.lineWidth=Math.max(1,2.2*k);
+        x.beginPath(); x.moveTo(p[0],p[1]); x.lineTo(p[0],p[1]-alto); x.stroke();
+      }
+      [0.34,0.72].forEach(f=>{
+        x.beginPath();
+        for(let i=0;i<=26;i++){const p=qb(A,B,C,i/26), alto=(26+10*(i/26))*k;
+          i?x.lineTo(p[0],p[1]-alto*f):x.moveTo(p[0],p[1]-alto*f);}
+        x.strokeStyle='rgba(196,188,208,.24)'; x.lineWidth=Math.max(1,1.6*k); x.stroke();
+      });
+      x.restore();
+    })();
+
+    /* --- SEAT León FR: tres cuartos delantero, estacionado y en reposo --- */
+    (function leon(){
+      const largoMax=W<700?W*0.60:W*0.46;
+      let bw=Math.min(largoMax,520,(H-HZ)*1.30), bh=bw*0.345;
+      const by=Math.min(H*0.945,bordeY+(H-bordeY)*0.80);
+      let cxCar=W*0.27;
+      const tSuelo=tDeY(by), limite=ejeX(tSuelo)-media(tSuelo)-10*k;   // no invade el asfalto
+      if(cxCar+bw*0.5>limite) cxCar=limite-bw*0.5;
+      cxCar=Math.max(bw*0.5+6,cxCar);
+
+      /* ---- 8a · el auto real: fuente maestra compuesta en la escena ---- */
+      if(LEON.listo){
+        const im=LEON.img, ar=im.height/im.width, PISO=.92;
+        /* Tamaño nativo de la lámina aprobada: en escritorio no se infla como
+           un cutout hero; conserva la lectura y proporción de SELECT YOUR CAR. */
+        const pw=Math.min(W*(W<700?0.86:0.38),400,(H-HZ)*1.05,limite/0.90);
+        const ph=pw*ar;
+        let px0=Math.min(W*0.30-pw*0.5,limite-pw);     // el morro no invade el asfalto
+        px0=Math.max(-pw*0.10,px0);
+        const pcx=px0+pw/2, py0=by-ph*PISO;
+
+        // sombra de piso proporcional, tirada por el sol del poniente (queda a la izquierda)
+        x.save(); x.fillStyle='#07050d';
+        x.globalAlpha=.58;
+        x.beginPath(); x.ellipse(pcx+pw*0.06,by+ph*0.016,pw*0.46,ph*0.043,0,0,6.28); x.fill();
+        x.globalAlpha=.24;
+        x.beginPath(); x.ellipse(pcx+pw*0.27,by+ph*0.022,pw*0.50,ph*0.031,0,0,6.28); x.fill();
+        x.restore();
+
+        /* La paleta del PNG fue igualada a la tarjeta aprobada. Se dibuja sin
+           un baño morado/naranja adicional: el León debe verse idéntico a ella. */
+        x.drawImage(im,px0,py0,pw,ph);
+
+        // grava del mirador por delante de las llantas: asienta el auto en el piso
+        x.save();
+        x.beginPath(); x.rect(px0-pw*0.07,by-ph*0.035,pw*1.14,ph*0.095); x.clip();
+        for(let i=0;i<170;i++){
+          const gx=px0-pw*0.07+az(i,71)*pw*1.14, gy=by-ph*0.030+az(i,72)*ph*0.088;
+          x.fillStyle='rgba('+(az(i,73)<0.42?'216,194,166,':'8,6,14,')+(0.06+az(i,74)*0.20).toFixed(2)+')';
+          x.fillRect(gx,gy,Math.max(1,2*k),1);
+        }
+        x.restore();
+        return;
+      }
+
+      /* ---- 8b · respaldo vectorial, sólo si la fuente maestra no cargó ---- */
+      const bx=cxCar-bw/2;
+      const P=(u,v)=>[bx+bw*u,by-bh*v];
+      const rojo=(a,b2)=>{const g=x.createLinearGradient(0,by-bh,0,by);
+        g.addColorStop(0,a); g.addColorStop(0.52,b2); g.addColorStop(1,'#4d0b14'); return g;};
+
+      // sombra larga tirada por el sol del poniente (el sol queda a la izquierda)
+      x.save(); x.globalAlpha=.55; x.fillStyle='#07050d';
+      x.beginPath(); x.ellipse(cxCar+bw*0.10,by+bh*0.045,bw*0.62,bh*0.10,0,0,6.28); x.fill(); x.restore();
+      x.save(); x.globalAlpha=.28; x.fillStyle='#07050d';
+      x.beginPath(); x.ellipse(cxCar+bw*0.34,by+bh*0.05,bw*0.60,bh*0.07,0,0,6.28); x.fill(); x.restore();
+
+      const r=bh*0.215, wr=[bx+bw*0.195,by-r], wf=[bx+bw*0.795,by-r];
+      // huecos de salpicadera (van bajo la carrocería)
+      x.fillStyle='#0b0812';
+      [wr,wf].forEach(([ux,uy])=>{ x.beginPath(); x.arc(ux,uy,r*1.22,Math.PI,0); x.fill();
+        x.fillRect(ux-r*1.22,uy,r*2.44,r*0.9); });
+
+      // ---- costado: silueta de hatchback compacto ----
+      x.beginPath();
+      x.moveTo(...P(0.010,0.30));
+      x.lineTo(...P(0.000,0.50));  x.lineTo(...P(0.014,0.615));
+      x.quadraticCurveTo(...P(0.045,0.665),...P(0.105,0.700));   // cajuela
+      x.quadraticCurveTo(...P(0.230,0.905),...P(0.330,0.950));   // cristal trasero
+      x.quadraticCurveTo(...P(0.470,0.995),...P(0.610,0.975));   // techo
+      x.quadraticCurveTo(...P(0.700,0.930),...P(0.775,0.735));   // pilar A
+      x.quadraticCurveTo(...P(0.830,0.700),...P(0.900,0.665));   // cofre
+      x.quadraticCurveTo(...P(0.970,0.640),...P(0.998,0.545));   // nariz
+      x.lineTo(...P(1.000,0.330)); x.lineTo(...P(0.985,0.200));
+      x.lineTo(...P(0.060,0.190)); x.lineTo(...P(0.012,0.245));
+      x.closePath();
+      x.fillStyle=rojo('#ff6a5a','#c81f2c'); x.fill();
+
+      // faldón inferior y sombra bajo la carrocería
+      x.save(); x.beginPath();
+      x.moveTo(...P(0.045,0.255)); x.lineTo(...P(0.975,0.265));
+      x.lineTo(...P(0.985,0.190)); x.lineTo(...P(0.055,0.190)); x.closePath();
+      x.fillStyle='rgba(18,10,18,.72)'; x.fill(); x.restore();
+
+      // cristales
+      const gl=x.createLinearGradient(0,by-bh*0.99,0,by-bh*0.62);
+      gl.addColorStop(0,'#6f8fb4'); gl.addColorStop(0.45,'#2a3350'); gl.addColorStop(1,'#141a2c');
+      x.fillStyle=gl; x.beginPath();
+      x.moveTo(...P(0.150,0.705));
+      x.quadraticCurveTo(...P(0.250,0.865),...P(0.345,0.918));
+      x.quadraticCurveTo(...P(0.470,0.960),...P(0.600,0.940));
+      x.quadraticCurveTo(...P(0.680,0.900),...P(0.745,0.720));
+      x.closePath(); x.fill();
+      // reflejo del poniente en el cristal
+      x.save(); x.globalAlpha=.30; x.fillStyle='#ffb877';
+      x.beginPath(); x.moveTo(...P(0.190,0.730)); x.lineTo(...P(0.330,0.905));
+      x.lineTo(...P(0.400,0.900)); x.lineTo(...P(0.250,0.725)); x.closePath(); x.fill(); x.restore();
+      // pilar B y marcos
+      x.strokeStyle='rgba(12,10,18,.85)'; x.lineWidth=Math.max(1.4,bw*0.010);
+      x.beginPath(); x.moveTo(...P(0.435,0.735)); x.lineTo(...P(0.452,0.952)); x.stroke();
+      x.strokeStyle='rgba(226,220,232,.34)'; x.lineWidth=Math.max(1,bw*0.004);
+      x.beginPath(); x.moveTo(...P(0.152,0.706)); x.lineTo(...P(0.742,0.722)); x.stroke();
+
+      // línea de carácter del costado + puertas
+      x.strokeStyle='rgba(255,158,140,.55)'; x.lineWidth=Math.max(1,bw*0.005);
+      x.beginPath(); x.moveTo(...P(0.055,0.470));
+      x.quadraticCurveTo(...P(0.480,0.520),...P(0.905,0.590)); x.stroke();
+      x.strokeStyle='rgba(90,16,26,.60)'; x.lineWidth=Math.max(1,bw*0.004);
+      x.beginPath(); x.moveTo(...P(0.190,0.395)); x.lineTo(...P(0.205,0.688)); x.stroke();
+      x.beginPath(); x.moveTo(...P(0.435,0.330)); x.lineTo(...P(0.445,0.735)); x.stroke();
+      x.beginPath(); x.moveTo(...P(0.690,0.300)); x.lineTo(...P(0.712,0.700)); x.stroke();
+      // manijas
+      x.fillStyle='rgba(30,12,18,.75)';
+      [[0.330,0.560],[0.580,0.575]].forEach(([u,v])=>{const p=P(u,v);
+        x.fillRect(p[0],p[1],bw*0.045,bh*0.028);});
+      // espejo
+      x.fillStyle='#8d1420'; x.beginPath();
+      x.moveTo(...P(0.735,0.720)); x.lineTo(...P(0.792,0.735)); x.lineTo(...P(0.788,0.678));
+      x.lineTo(...P(0.740,0.680)); x.closePath(); x.fill();
+      // alerón de techo y antena
+      x.fillStyle='#a41623'; x.beginPath();
+      x.moveTo(...P(0.105,0.700)); x.lineTo(...P(0.180,0.812)); x.lineTo(...P(0.150,0.822));
+      x.lineTo(...P(0.088,0.712)); x.closePath(); x.fill();
+      // calavera trasera encendida
+      x.fillStyle='#ff3a30'; x.beginPath();
+      x.moveTo(...P(0.005,0.600)); x.lineTo(...P(0.090,0.630)); x.lineTo(...P(0.095,0.545));
+      x.lineTo(...P(0.008,0.505)); x.closePath(); x.fill();
+      x.save(); x.globalAlpha=.35; x.fillStyle='#ff3a30';
+      const pg=P(0.050,0.570); x.beginPath(); x.arc(pg[0],pg[1],bh*0.16,0,6.28); x.fill(); x.restore();
+      // escape doble
+      x.fillStyle='#1b1622';
+      [[0.055,0.205],[0.115,0.205]].forEach(([u,v])=>{const p=P(u,v);
+        x.beginPath(); x.ellipse(p[0],p[1],bw*0.016,bh*0.020,0,0,6.28); x.fill();});
+
+      // ---- tres cuartos: la cara delantera se abre hacia la cámara ----
+      const fdx=bw*0.115, fdy=bh*0.030;
+      const F=(u,v)=>[bx+bw*u+fdx, by-bh*v-fdy];  // plano frontal, corrido
+      x.beginPath();
+      x.moveTo(...P(0.998,0.545)); x.lineTo(...F(0.998,0.520));
+      x.lineTo(...F(1.000,0.320)); x.lineTo(...F(0.985,0.195));
+      x.lineTo(...P(0.985,0.200)); x.lineTo(...P(1.000,0.330)); x.closePath();
+      x.fillStyle=rojo('#e8483f','#a4141f'); x.fill();
+      // parrilla trapezoidal + toma inferior
+      x.fillStyle='#120e1a'; x.beginPath();
+      x.moveTo(...F(0.999,0.470)); x.lineTo(...P(0.999,0.480));
+      x.lineTo(...P(0.995,0.395)); x.lineTo(...F(0.997,0.390)); x.closePath(); x.fill();
+      x.fillStyle='#0e0b16'; x.beginPath();
+      x.moveTo(...F(0.998,0.330)); x.lineTo(...P(0.998,0.340));
+      x.lineTo(...P(0.992,0.225)); x.lineTo(...F(0.994,0.220)); x.closePath(); x.fill();
+      x.strokeStyle='rgba(210,204,222,.35)'; x.lineWidth=Math.max(1,bw*0.004);
+      x.beginPath(); x.moveTo(...P(0.996,0.418)); x.lineTo(...F(0.998,0.410)); x.stroke();
+      // faro triangular con firma de LED encendida
+      x.fillStyle='#e6eef4'; x.beginPath();
+      x.moveTo(...P(0.905,0.640)); x.lineTo(...P(0.995,0.560));
+      x.lineTo(...P(0.998,0.480)); x.lineTo(...P(0.912,0.520)); x.closePath(); x.fill();
+      x.fillStyle='rgba(255,236,190,.95)'; x.beginPath();
+      x.moveTo(...P(0.912,0.628)); x.lineTo(...P(0.988,0.560));
+      x.lineTo(...P(0.990,0.532)); x.lineTo(...P(0.916,0.590)); x.closePath(); x.fill();
+      x.save(); x.globalAlpha=.30;
+      const fg=x.createRadialGradient(bx+bw*0.98,by-bh*0.55,0,bx+bw*0.98,by-bh*0.55,bh*0.9);
+      fg.addColorStop(0,'rgba(255,232,180,.8)'); fg.addColorStop(1,'rgba(255,232,180,0)');
+      x.fillStyle=fg; x.beginPath(); x.arc(bx+bw*0.98,by-bh*0.55,bh*0.9,0,6.28); x.fill(); x.restore();
+      // filo cálido del poniente sobre techo y cofre
+      x.strokeStyle='rgba(255,196,150,.55)'; x.lineWidth=Math.max(1,bw*0.005);
+      x.beginPath(); x.moveTo(...P(0.330,0.950));
+      x.quadraticCurveTo(...P(0.470,0.995),...P(0.610,0.975)); x.stroke();
+      x.strokeStyle='rgba(255,180,140,.35)';
+      x.beginPath(); x.moveTo(...P(0.790,0.725));
+      x.quadraticCurveTo(...P(0.880,0.680),...P(0.968,0.640)); x.stroke();
+
+      // ---- ruedas: cinco brazos y cáliper rojo ----
+      const rueda=(wx,wy,rr)=>{
+        x.save();
+        x.fillStyle='#0d0b12'; x.beginPath(); x.arc(wx,wy,rr,0,6.28); x.fill();
+        x.strokeStyle='rgba(150,146,164,.22)'; x.lineWidth=Math.max(1,rr*0.06);
+        x.beginPath(); x.arc(wx,wy,rr*0.90,0,6.28); x.stroke();
+        // pozo del rin
+        const g=x.createRadialGradient(wx-rr*0.3,wy-rr*0.3,rr*0.1,wx,wy,rr*0.72);
+        g.addColorStop(0,'#8f96a2'); g.addColorStop(1,'#3c414d');
+        x.fillStyle=g; x.beginPath(); x.arc(wx,wy,rr*0.70,0,6.28); x.fill();
+        // cáliper rojo, detrás de los brazos
+        x.strokeStyle='#c2202c'; x.lineWidth=Math.max(1.6,rr*0.20); x.lineCap='butt';
+        x.beginPath(); x.arc(wx,wy,rr*0.50,-0.55,0.55); x.stroke();
+        x.fillStyle='#2a2b34'; x.beginPath(); x.arc(wx,wy,rr*0.44,0,6.28); x.fill();
+        // cinco brazos
+        x.fillStyle='#d5dae2';
+        for(let i=0;i<5;i++){ x.save(); x.translate(wx,wy); x.rotate(i*Math.PI*2/5-0.3);
+          x.beginPath(); x.moveTo(-rr*0.11,0); x.lineTo(-rr*0.055,-rr*0.64);
+          x.lineTo(rr*0.055,-rr*0.64); x.lineTo(rr*0.11,0); x.closePath(); x.fill(); x.restore(); }
+        x.fillStyle='#9aa2ae'; x.beginPath(); x.arc(wx,wy,rr*0.17,0,6.28); x.fill();
+        x.fillStyle='#4a4f5b'; x.beginPath(); x.arc(wx,wy,rr*0.09,0,6.28); x.fill();
+        // brillo cálido en el filo del rin
+        x.strokeStyle='rgba(255,200,150,.45)'; x.lineWidth=Math.max(1,rr*0.05);
+        x.beginPath(); x.arc(wx,wy,rr*0.70,Math.PI*0.75,Math.PI*1.35); x.stroke();
+        x.restore();
+      };
+      rueda(wr[0],wr[1],r); rueda(wf[0],wf[1],r);
+      // contacto de las llantas con la grava
+      x.fillStyle='rgba(6,4,10,.7)';
+      [wr,wf].forEach(([ux])=>{ x.beginPath();
+        x.ellipse(ux,by+1,r*0.72,r*0.16,0,0,6.28); x.fill(); });
+    })();
+
+    /* ---------- 9 · aire del atardecer sobre toda la escena ---------- */
+    const aire=x.createLinearGradient(0,HZ-H*0.06,0,H);
+    aire.addColorStop(0,'rgba(255,152,96,.10)'); aire.addColorStop(0.45,'rgba(90,60,110,.05)');
+    aire.addColorStop(1,'rgba(10,8,18,.22)');
+    x.fillStyle=aire; x.fillRect(0,HZ-H*0.06,W,H-HZ+H*0.06);
+  }
+
+  draw();
+  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{
+    draw(); if(alRedibujar) alRedibujar(locales);},180)});
+  return {draw,locales};
+}
+
+/* fondo fijo de toda la página */
+crearEscena($('#grid3d'));
+
+/* ===== warp ===== */
+const warp=$('#warp'),wc=$('#warpC'),ww=$('#warpW'),fl=$('#flash');
+function runWarp(word,done){
+  if(reduce){done();return}
+  const x=wc.getContext('2d'),d=Math.min(devicePixelRatio||1,2),w=innerWidth,h=innerHeight;
+  wc.width=w*d;wc.height=h*d;x.setTransform(d,0,0,d,0,0);
+  const cx=w/2,cy=h/2,S=[];for(let i=0;i<210;i++)S.push({a:Math.random()*6.28,r:Math.random()*90+14,v:Math.random()*5+3.4,w:Math.random()*2.2+.5,acid:Math.random()<.34});
+  ww.textContent=word;warp.classList.add('on');ww.classList.remove('go');void ww.offsetWidth;ww.classList.add('go');document.body.classList.add('shake');
+  const DUR=800,t0=performance.now();
+  (function f(now){const t=Math.min((now-t0)/DUR,1),a=t*t;
+    x.clearRect(0,0,w,h);x.fillStyle='rgba(4,9,11,'+(0.32+0.55*t)+')';x.fillRect(0,0,w,h);
+    S.forEach(s=>{s.r+=s.v*(1+a*17);const x1=cx+Math.cos(s.a)*s.r,y1=cy+Math.sin(s.a)*s.r,l=18+a*250,
+      x2=cx+Math.cos(s.a)*Math.max(s.r-l,0),y2=cy+Math.sin(s.a)*Math.max(s.r-l,0);
+      x.strokeStyle=s.acid?'rgba(209,221,19,'+(0.24+0.6*t)+')':'rgba(34,224,245,'+(0.14+0.5*t)+')';
+      x.lineWidth=s.w*(1+a*2.3);x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke()});
+    if(t<1)requestAnimationFrame(f);
+    else{fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');document.body.classList.remove('shake');
+      setTimeout(done,110);setTimeout(()=>{warp.classList.remove('on');fl.classList.remove('go');x.clearRect(0,0,w,h)},500)}
+  })(performance.now());
+}
+
+/* ===== data ===== */
+const SOL={
+  leon:{
+    conf:[{sku:'OD-LFR-005',seal:'ok',img:'assets/shot-waterpump.jpg',t:'Bomba de agua de aluminio',
+      facil:'La bomba original es de plástico y por eso estos motores se calientan. Cambiarla antes de que truene te ahorra un problema caro.',
+      medio:'Mantenimiento preventivo del EA888: bomba de aluminio + termostato, con el proceso documentado.',
+      pro:'Bomba de aluminio + housing de termostato. Confirmar código de motor y versión de bomba antes de PN.',
+      chk:'Código de motor, versión de bomba y kit de aplicación.',ev:'Proceso de sustitución documentado.',v:'https://www.youtube.com/watch?v=XCYCHk3aVJE'}],
+    freno:[{sku:'OD-LFR-002',seal:'ok',img:'assets/shot-brakes.jpg',t:'Brembo × EBC',
+      facil:'Discos y balatas que ya probamos en el León. Frenan mejor sin volverse ruidosos ni comerse los discos en la calle.',
+      medio:'Discos Brembo + compuesto EBC organizados por eje y uso. Incluye líneas.',
+      pro:'Confirmar eje, diámetro, cáliper y compuesto según uso calle/track antes de PN.',
+      chk:'Eje, diámetro, cáliper, PN y uso calle/track.',ev:'Episodio directo de frenos Brembo y EBC.',v:'https://www.youtube.com/watch?v=zeFVWH5peAo'}],
+    manejo:[{sku:'OD-LFR-004',seal:'ok',img:'assets/shot-coilovers.jpg',t:'BC Racing · Whiteline',
+      facil:'Suspensión completa como sistema, no piezas sueltas. Bajar el auto sin arreglar la geometría te acaba las llantas.',
+      medio:'Coilovers BC Racing + bujes Whiteline/Powerflex. Requiere alineación posterior.',
+      pro:'Versión 1P, eje, objetivo de altura, PN por posición, alineación e instalación en taller.',
+      chk:'Versión 1P, eje, altura, PN, alineación e instalación.',ev:'Serie completa de instalación de coilovers y Whiteline.',v:'https://www.youtube.com/watch?v=pMCIjRxUOfQ'}],
+    power:[
+      {sku:'OD-LFR-001',seal:'ok',img:'assets/shot-intercooler.jpg',t:'CTS Intercooler y tuberías',
+      facil:'Enfría el aire que entra al motor. Sin esto, en el calor de Hermosillo el motor se protege solo y pierdes potencia.',
+      medio:'Intercooler CTS + tuberías para EA888. Mejora temperaturas de admisión sostenidas.',
+      pro:'Confirmar código de motor, turbo actual, contenido del kit y referencias exactas antes de cotizar.',
+      chk:'Código de motor, turbo actual, kit y referencias exactas.',ev:'Instalación, tuberías, coding y primer arranque.',v:'https://www.youtube.com/watch?v=_V8hk09gt08'},
+      {sku:'OD-LFR-003',seal:'ok',img:'assets/shot-clutch.jpg',t:'Uniclutch para swap 02Q',
+      facil:'El clutch que aguanta cuando ya subiste potencia. La decisión importante es masa sólida o bi-masa.',
+      medio:'Clutch Uniclutch + volante para caja 02Q. Decisión según potencia y uso.',
+      pro:'Caja 02Q, volante, capacidad de torque, uso e instalación profesional.',
+      chk:'Caja 02Q, volante, potencia, uso y contenido del kit.',ev:'Instalación y decisión masa sólida vs bi-masa.',v:'https://www.youtube.com/watch?v=Ok-taad3EDY'},
+      {sku:'OD-LFR-006',seal:'cur',img:'assets/shot-swap.jpg',t:'Ruta completa para swap 02Q',
+      facil:'La guía completa de cómo convertimos el León a manual. Paso a paso, con lo que salió mal incluido.',
+      medio:'Guía técnica del swap 02Q: arnés, palanca, pedales, piezas y orden de trabajo.',
+      pro:'Guía + checklist de piezas. Kit físico sólo tras confirmar cada componente con partner responsable.',
+      chk:'Auto, motor, caja actual, piezas existentes y objetivo.',ev:'Varios episodios: arnés, palanca, pedales, transmisión.',v:'https://www.youtube.com/watch?v=0XDqlwG9tzQ'}]
+  },
+  miata:{},s13:{}
+};
+const CARNAME={leon:'SEAT León FR',miata:'Mazda Miata NA',s13:'Nissan 240SX S13'};
+const CATNAME={conf:'Confiabilidad',freno:'Frenado',manejo:'Manejo',power:'Potencia'};
+const SEALTXT={ok:'◆ Probado en el garage',cur:'◆ Curado',pen:'◆ Pendiente de prueba'};
+const EVIDENCIA_LEON=[
+  {cat:'conf',title:'Bomba de agua de aluminio',estado:'Registro + proceso documentado',url:'https://www.youtube.com/watch?v=XCYCHk3aVJE',confirmar:'Código de motor, versión de bomba y PN.'},
+  {cat:'freno',title:'Brembo × EBC',estado:'Episodio directo disponible',url:'https://www.youtube.com/watch?v=zeFVWH5peAo',confirmar:'Eje, diámetro, cáliper y compuesto.'},
+  {cat:'manejo',title:'BC Racing · Whiteline',estado:'Serie de instalación disponible',url:'https://www.youtube.com/watch?v=pMCIjRxUOfQ',confirmar:'Versión 1P, altura, alineación y PN.'},
+  {cat:'power',title:'CTS intercooler y tuberías',estado:'Instalación y primer arranque',url:'https://www.youtube.com/watch?v=_V8hk09gt08',confirmar:'Motor, turbo actual y contenido de kit.'},
+  {cat:'power',title:'Uniclutch para swap 02Q',estado:'Instalación documentada',url:'https://www.youtube.com/watch?v=Ok-taad3EDY',confirmar:'02Q, volante, torque y uso.'},
+  {cat:'power',title:'Ruta completa swap 02Q',estado:'Varios episodios · cronología por cerrar',url:'https://www.youtube.com/watch?v=0XDqlwG9tzQ',confirmar:'Auto, caja actual y componentes existentes.'}
+];
+
+/* ===== flow ===== */
+const pick={};let step=1;
+$$('.opts').forEach(grid=>{
+  $$('.opt',grid).forEach(o=>{
+    o.addEventListener('animationend',e=>{if(e.animationName==='tunnel')o.classList.add('done')});
+    o.addEventListener('click',()=>{
+      $$('.opt',grid).forEach(x=>x.classList.remove('sel'));
+      o.classList.add('sel');grid.classList.add('picked');
+      const n=grid.dataset.grid;
+      pick[n]={v:o.dataset.v,label:o.dataset.label};
+      $('[data-pick="'+n+'"]').textContent=o.dataset.label;
+      $('[data-bar="'+n+'"]').classList.add('on');
+      $('#h'+n).textContent=o.dataset.label;
+      syncDock();
+    });
+  });
+});
+function revealGrid(n){
+  const g=$('.opts[data-grid="'+n+'"]');if(!g)return;
+  if(reduce){g.classList.remove('pre');$$('.opt',g).forEach(o=>o.classList.add('done'));return}
+  $$('.opt',g).forEach(o=>{o.classList.remove('done');o.style.animation='none';void o.offsetWidth;o.style.animation=''});
+  g.classList.remove('pre');g.classList.add('go');
+}
+function goStep(n,word){
+  const show=()=>{
+    $$('.step').forEach(s=>s.classList.toggle('live',+s.dataset.step===n));
+    $$('.hs').forEach(h=>{const i=+h.dataset.h;h.classList.toggle('on',i===n);h.classList.toggle('done',i<n)});
+    step=n;
+    if(n===4)renderResults();else revealGrid(n);
+    $('#flow').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  };
+  if(word)runWarp(word,show);else show();
+}
+$$('[data-next]').forEach(b=>b.addEventListener('click',()=>{
+  const n=+b.dataset.next;if(!pick[n])return;
+  const word=n===1?'Nivel fijado':n===2?pick[2].label:'Buscando';
+  goStep(n+1,word);
+}));
+$$('[data-back]').forEach(b=>b.addEventListener('click',()=>goStep(+b.dataset.back)));
+/* ===== RUN SETUP · PRESS START → SELECT YOUR CAR → SELECT YOUR SERIES → Player Select =====
+   Estado solo en memoria: al recargar, los dos pasos nuevos vuelven a cero. */
+(function(){
+  const carSec=$('#selectCar'),serSec=$('#selectSeries'),cta=$('#runCta');
+  const carGrid=$('#carCards'),serGrid=$('#seriesCards');
+  if(!carSec||!serSec||!cta||!carGrid||!serGrid)return;
+  const run={car:null,series:null};
+
+  function goTo(el,block,focusEl){
+    el.scrollIntoView({behavior:reduce?'auto':'smooth',block:block||'start'});
+    if(focusEl)setTimeout(()=>focusEl.focus({preventScroll:true}),reduce?0:420);
+  }
+  function reveal(sec){
+    if(!sec.hidden)return;
+    sec.hidden=false;
+    if(!reduce){sec.classList.remove('reveal');void sec.offsetWidth;sec.classList.add('reveal')}
+  }
+  // espeja el auto en el Player Select existente (02 · Auto) sin romper su flujo
+  function mirrorCar(v){
+    const o=$('.opts[data-grid="2"] .opt[data-v="'+v+'"]');
+    if(o&&!o.classList.contains('sel'))o.click();
+  }
+  function press(grid,btn){
+    $$('.gcard',grid).forEach(x=>x.setAttribute('aria-pressed',x===btn?'true':'false'));
+    grid.classList.add('locked');
+  }
+
+  // la serie depende del auto: cambiar de máquina invalida la serie elegida
+  function resetSeries(){
+    run.series=null;delete pick.series;
+    serGrid.classList.remove('locked');
+    $$('.gcard',serGrid).forEach(x=>x.setAttribute('aria-pressed','false'));
+    const s=$('#seriesState');s.textContent='Serie: sin asignar';s.classList.remove('on');
+    $('#runLock').textContent='—';cta.hidden=true;
+    syncDock();
+  }
+
+  $('#start').addEventListener('click',()=>goTo(carSec,'start',$$('.gcard',carGrid)[0]));
+
+  $$('.gcard',carGrid).forEach(b=>b.addEventListener('click',()=>{
+    if(run.car&&run.car!==b.dataset.car)resetSeries();
+    press(carGrid,b);
+    run.car=b.dataset.car;
+    const st=$('#carState');st.textContent='Máquina: '+b.dataset.label;st.classList.add('on');
+    mirrorCar(run.car);
+    reveal(serSec);
+    goTo(serSec,'start',$$('.gcard',serGrid)[0]);
+  }));
+
+  $$('.gcard',serGrid).forEach(b=>b.addEventListener('click',()=>{
+    press(serGrid,b);
+    run.series=b.dataset.series;
+    pick.series={v:run.series,label:b.dataset.label};
+    const st=$('#seriesState');st.textContent='Serie: '+b.dataset.label;st.classList.add('on');
+    $('#runLock').textContent=(run.car?CARNAME[run.car]:'Máquina')+' · '+b.dataset.label;
+    cta.hidden=false;
+    syncDock(); // la serie viaja al contexto del dock junto al auto y el objetivo
+    goTo(cta,'nearest',$('#runContinue'));
+  }));
+
+  $('#runContinue').addEventListener('click',()=>goTo($('#flow'),'start',$('.opts[data-grid="1"] .opt')));
+
+  // volver con el botón atrás (bfcache) no debe simular una decisión guardada
+  addEventListener('pageshow',e=>{
+    if(!e.persisted)return;
+    run.car=run.series=null;delete pick.series;
+    [carGrid,serGrid].forEach(g=>{g.classList.remove('locked');$$('.gcard',g).forEach(x=>x.setAttribute('aria-pressed','false'))});
+    serSec.hidden=true;serSec.classList.remove('reveal');cta.hidden=true;
+    const c=$('#carState'),s=$('#seriesState');
+    c.textContent='Máquina: sin asignar';c.classList.remove('on');
+    s.textContent='Serie: sin asignar';s.classList.remove('on');
+    $('#runLock').textContent='—';
+    if(step===1&&!pick[3]){ // solo si el wizard de abajo aún no avanzó
+      const g=$('.opts[data-grid="2"]');
+      if(g){g.classList.remove('picked');$$('.opt',g).forEach(x=>x.classList.remove('sel'))}
+      delete pick[2];
+      $('#h2').textContent='— — —';$('[data-pick="2"]').textContent='—';$('[data-bar="2"]').classList.remove('on');
+      syncDock();
+    }
+  });
+})();
+new IntersectionObserver((es,ob)=>{es.forEach(e=>{if(e.isIntersecting&&step===1){revealGrid(1);ob.disconnect()}})},{threshold:.2}).observe($('#flow'));
+
+const AUTOKEY={leon:'LEON',miata:'MIATA',s13:'SCHASIS'};
+const CATBUSCA={freno:'freno',manejo:'suspensi',power:'turbo',conf:''};
+function renderEvidenceMatrix(car,cat){
+  const box=$('#evidenceMatrix'); if(!box)return;
+  if(car!=='leon'){box.innerHTML='<div class="ev-empty">◆ Evidencia audiovisual de '+CARNAME[car]+' en curaduría. El inventario no sustituye una prueba propia.</div>';return;}
+  const rows=EVIDENCIA_LEON.filter(x=>x.cat===cat);
+  box.innerHTML='<div class="ev-title"><b>Archivo de evidencia</b><span>Fuente, estado y confirmaciones pendientes</span></div>'+
+    rows.map(x=>'<article class="ev-row"><div><b>'+x.title+'</b><span>'+x.estado+'</span></div><div><small>CONFIRMAR</small><span>'+x.confirmar+'</span></div><a href="'+x.url+'" target="_blank" rel="noopener">▶ Episodio</a></article>').join('');
+}
+function renderClutchConsole(car,cat){
+ const box=$('#clutchDecisionConsole');if(!box)return; const on=car==='leon'&&cat==='power';box.hidden=!on;if(!on)return;
+ box.innerHTML='<div class="clutch-top"><img src="assets/brands/uniclutch.png" alt="Uniclutch"><div><b>Consola 02Q · decisión de clutch</b><span>Ruta de compatibilidad basada en una pieza registrada en el garage.</span></div></div><div class="clutch-grid"><span>01 · Caja 02Q</span><span>02 · Volante: sólido / bi-masa</span><span>03 · Torque y uso</span><span>04 · Instalación profesional</span></div><p>Antes de elegir: confirmar transmisión, volante, capacidad de torque, uso y contenido del kit. Marca mostrada como referencia de pieza registrada; no declara afiliación, patrocinio, distribución ni alianza comercial.</p>';
+}
+function renderResults(){
+  const car=pick[2].v,cat=pick[3].v,lvl=pick[1].v;
+  const list=(SOL[car]&&SOL[car][cat])||[];
+  const grid=$('#resGrid');
+  const irBtn=$('#verBaseCompleta');
+  if(irBtn){
+    irBtn.style.display='';
+    irBtn.onclick=e=>{e.preventDefault(); window.irInventario&&window.irInventario(AUTOKEY[car],CATBUSCA[cat]);};
+  }
+  $('#h4').textContent=list.length?list.length+' encontradas':'En curaduría';
+  $('#resIntro').textContent=list.length
+    ? CARNAME[car]+' · '+CATNAME[cat]+'. Cada tarjeta dice qué resuelve y qué hay que confirmar de tu auto.'
+    : 'Todavía no tenemos evidencia propia de '+CARNAME[car]+' en '+CATNAME[cat]+'. No vamos a inventarte una recomendación.';
+  if(!list.length){
+    grid.innerHTML='<div class="empty"><h3>◆ Aún no lo hemos probado</h3><p>Preferimos decírtelo a venderte algo que no hemos instalado. Deja tu correo en el recuadro y eres de los primeros en saber cuando tengamos la ruta de '+CARNAME[car]+'.</p></div>';
+  }else{
+    grid.innerHTML=list.map((s,i)=>`
+      <article class="res-card" style="--d:${i*90}ms">
+        <div class="res-img"><img src="${s.img}" alt=""><span class="pill ${s.seal}">${SEALTXT[s.seal]}</span></div>
+        <div class="res-bd">
+          <div class="res-sku">${s.sku}</div>
+          <h3>${s.t}</h3>
+          <p>${s[lvl]||s.pro}</p>
+          <div class="res-meta"><b>Antes de elegir</b>${s.chk}<br><br><b>Evidencia</b>${s.ev}
+          ${s.v?`<br><a class="res-link" href="${s.v}" target="_blank" rel="noopener">▶ Ver el episodio</a>`:''}</div>
+        </div>
+      </article>`).join('');
+  }
+  renderEvidenceMatrix(car,cat);
+  renderClutchConsole(car,cat);
+  grid.classList.remove('go');void grid.offsetWidth;grid.classList.add('go');
+}
+
+/* ===== dock ===== */
+const dock=$('#dock'),ctxEl=$('#dockCtx'),dockTab=$('#dockMin');
+dockTab.addEventListener('click',()=>{
+  const open=dock.classList.toggle('min')===false;
+  dockTab.setAttribute('aria-expanded',String(open));
+  if(open)setTimeout(()=>$('#dockMail').focus(),260);
+});
+function syncDock(){
+  const b=[];
+  if(pick[2])b.push({t:pick[2].label,k:1});
+  if(pick.series)b.push({t:pick.series.label,k:0}); // serie del run; no sustituye al objetivo
+  if(pick[3])b.push({t:pick[3].label,k:0});
+  if(pick[1])b.push({t:pick[1].label,k:0});
+  ctxEl.innerHTML=b.map(x=>`<span class="chip${x.k?' k':''}">${x.t}</span>`).join('');
+}
+$('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.add('done')});
+
+/* ===== inventario real · LEON FR / S-CHASIS / MIATA ===== */
+(function(){
+  const NOMBRE = { LEON:'lleva el León', SCHASIS:'lleva el S13', MIATA:'lleva la Miata' };
+  const DESC = {
+    LEON: 'Cada pieza que se compró e instaló, con lo que costó y cuándo. Nada de aquí es una recomendación genérica: es el registro del build.',
+    SCHASIS: 'Cada pieza comprada, instalada o en investigación para el 240SX. Está en etapa de curación: todavía no hay video que respalde cada pieza, por eso no vas a ver el sello Probado aquí — ver leyenda de sellos.',
+    MIATA: 'Cada pieza comprada, instalada o en investigación para la Miata. Está en etapa de curación: todavía no hay video que respalde cada pieza, por eso no vas a ver el sello Probado aquí — ver leyenda de sellos.',
+  };
+
+  const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const mxn = n => '$'+Number(n).toLocaleString('es-MX',{maximumFractionDigits:0});
+  const usd = n => 'US$'+Number(n).toLocaleString('es-MX',{maximumFractionDigits:0});
+  const iniciales = m => (m||'?').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase();
+
+  let D = null, auto = 'LEON', sistema = 'todos', busca = '', tope = 40;
+  const MIATA_EVIDENCIA=[
+    {t:'Transmisión fuera · reparación documentada',tag:'TREN MOTRIZ',edad:'327 semanas',d:'Miata rojo elevado; transmisión retirada y pieza completa en carro de taller. Texto original: “Transmission fixing time!”.',nivel:'Evidencia visual propia · PN y reparación específica por confirmar.'},
+    {t:'Inspección de tren motriz',tag:'DIAGNÓSTICO',edad:'351 semanas',d:'Toma cerrada de hardware expuesto bajo carrocería durante trabajo mecánico.',nivel:'Evidencia visual propia · componente exacto y alcance por confirmar.'},
+    {t:'Sesión de drift · Miata rojo',tag:'USO REAL',edad:'388 semanas',d:'El auto aparece en operación de drift sobre superficie húmeda.',nivel:'Evidencia visual propia · configuración, llantas y seguridad por confirmar.'},
+    {t:'Exterior al atardecer',tag:'ARCHIVO VISUAL',edad:'339 semanas',d:'Perfil lateral propio del Miata rojo; útil para identidad editorial, no para verificar piezas.',nivel:'Toma editorial propia · no es evidencia técnica.'}
+  ];
+  function pintarGaleriaMiata(key){
+    const sec=$('#miataEvidencia'),grid=$('#miataLedger'); if(!sec||!grid)return;
+    const on=key==='MIATA'; sec.hidden=!on; if(!on)return;
+    grid.innerHTML=MIATA_EVIDENCIA.map((x,i)=>`<article class="ev-row"><div><small>${x.tag} · ${x.edad}</small><b>${x.t}</b><span>${x.d}</span></div><div><small>ESTADO</small><span>${x.nivel}</span></div><a href="https://www.instagram.com/stories/highlights/18108018412434999/" target="_blank" rel="noopener">▶ Fuente</a></article>`).join('');
+  }
+
+  function fila(p){
+    const lg = p.logo
+      ? `<img src="${esc(p.logo)}" alt="${esc(p.marca||'')}" loading="lazy">`
+      : `<span class="ini">${esc(iniciales(p.marca))}</span>`;
+
+    const tags = [];
+    if(p.pn) tags.push(`<span class="tg pn">${esc(p.pn)}</span>`);
+    if(String(p.sello).startsWith('PROBADO') && p.video)
+      tags.push(`<span class="tg ok">◆ <a href="${esc(p.video)}" target="_blank" rel="noopener">Visto en video</a></span>`);
+    else if(p.sello==='REVISAR CRONOLOGÍA') tags.push('<span class="tg rev">◆ Por confirmar</span>');
+    else tags.push(`<span class="tg">${esc(p.sello==='CURADO'?'Curado por OUT-DRIFTED':(p.sello==='PENDIENTE DE PRUEBA'?'Pendiente de prueba':p.sello))}</span>`);
+    if(p.marca) tags.push(`<span class="tg">${esc(p.marca)}</span>`);
+
+    const pagado = p.pagado
+      ? `<b>${mxn(p.pagado)}</b><span>Pagado${p.anio?' · '+p.anio:''}</span>`
+      : (p.ext ? `<b>${usd(p.ext)}</b><span>Precio origen</span>` : `<span>Sin registro</span>`);
+
+    const actual = p.actual
+      ? `<div class="precio">${mxn(p.actual)}</div>`
+      : (p.sitio
+          ? `<a class="cot" href="${esc(p.sitio)}" target="_blank" rel="noopener nofollow">Cotizar ↗</a>`
+          : `<span class="cot">Cotizar</span>`);
+
+    return `<div class="pz">
+      <div class="pz-lg">${lg}</div>
+      <div class="pz-nom"><b title="${esc(p.nombre)}">${esc(p.nombre)}</b><div class="pz-meta">${tags.join('')}</div></div>
+      <div class="pz-pag">${pagado}</div>
+      <div class="pz-act">${actual}</div>
+    </div>`;
+  }
+
+  function filtradas(){
+    if(!D) return [];
+    return D.piezas.filter(p=>{
+      if(sistema!=='todos' && p.sistema!==sistema) return false;
+      if(!busca) return true;
+      return `${p.nombre} ${p.marca||''} ${p.pn||''}`.toLowerCase().includes(busca);
+    });
+  }
+
+  function pintar(){
+    const f = filtradas();
+    $('#listaPiezas').innerHTML = f.length
+      ? f.slice(0,tope).map(fila).join('')
+      : '<div class="vacio">Nada con ese filtro.</div>';
+    const btn = $('#verMas');
+    btn.hidden = f.length <= tope;
+    btn.textContent = `Ver más piezas (${f.length - tope} restantes) ▼`;
+  }
+
+  function cargarAuto(key){
+    D = window[key];
+    auto = key; sistema = 'todos'; busca = ''; tope = 40;
+    $$('#vsel button').forEach(b=>{
+      const on = b.dataset.auto===key;
+      b.classList.toggle('on', on); b.setAttribute('aria-selected', on);
+    });
+    $('#invAutoNom').textContent = NOMBRE[key] || '';
+    $('#invAutoDesc').textContent = DESC[key] || '';
+    pintarGaleriaMiata(key);
+    $('#buscaPieza').value = '';
+
+    if(!D){ $('#listaPiezas').innerHTML='<div class="vacio">No se pudo cargar el inventario. Corre <code>export_3autos_web.py</code>.</div>'; return; }
+
+    $('#mkPiezas').textContent = D.resumen.piezas;
+    $('#mkMarcas').textContent = D.resumen.marcas;
+    $('#mkInv').textContent    = mxn(D.resumen.invertido);
+    $('#mkProb').textContent   = D.resumen.probadas;
+
+    $('#gridMarcas').innerHTML = D.marcas.map(m=>{
+      const inner = m.logo
+        ? `<img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy">`
+        : `<span class="txt">${esc(iniciales(m.nombre))}</span>`;
+      const cuerpo = `<div class="lg">${inner}</div><b>${esc(m.nombre)}</b>
+                      <span>${m.piezas} pieza${m.piezas>1?'s':''}</span>`;
+      return m.sitio
+        ? `<a class="marca" href="${esc(m.sitio)}" target="_blank" rel="noopener nofollow">${cuerpo}</a>`
+        : `<div class="marca">${cuerpo}</div>`;
+    }).join('');
+
+    const cont = $('#filtroSistemas');
+    cont.innerHTML = ['todos', ...D.sistemas].map(s=>
+      `<button class="chipf${s==='todos'?' on':''}" data-sis="${esc(s)}">${esc(s==='todos'?'Todos':s)}</button>`).join('');
+
+    pintar();
+  }
+
+  // listeners fijos: se quedan escuchando aunque el contenido de adentro cambie
+  $('#filtroSistemas').addEventListener('click',e=>{
+    const b=e.target.closest('[data-sis]'); if(!b) return;
+    $$('.chipf',$('#filtroSistemas')).forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    sistema=b.dataset.sis; tope=40; pintar();
+  });
+  $('#buscaPieza').addEventListener('input',e=>{ busca=e.target.value.toLowerCase().trim(); tope=40; pintar(); });
+  $('#verMas').addEventListener('click',()=>{ tope+=60; pintar(); });
+  $('#vsel').addEventListener('click',e=>{
+    const b=e.target.closest('[data-auto]'); if(!b || b.dataset.auto===auto) return;
+    cargarAuto(b.dataset.auto);
+    $('#inventario').scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'});
+  });
+
+  cargarAuto('LEON');
+
+  // puente con el wizard: Step 3 (objetivo) llega aquí ya filtrado
+  window.irInventario=(carKey,term)=>{
+    if(carKey && carKey!==auto) cargarAuto(carKey);
+    busca=(term||'').toLowerCase().trim();
+    $('#buscaPieza').value=term||'';
+    tope=40; pintar();
+    $('#inventario').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  };
+})();
+
+/* ===== MAPA DE LOCALES · navegación tipo Gran Turismo ===== */
+(function(){
+  const D=window.LEON; if(!D) return;
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const mxn=n=>'$'+Number(n).toLocaleString('es-MX',{maximumFractionDigits:0});
+  const ini=m=>(m||'?').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase();
+  const ov=$('#localOv'), hd=$('#localHd'), tabs=$('#localTabs'), cont=$('#localCont');
+  const COLOR={garaje:'#d1dd13',taller:'#22e0f5',marcas:'#ff5f45',pista:'#b388ff'};
+  const SELLO={'PROBADO (pendiente timestamp)':['ok','◆ En video'],'CURADO':['cur','Curado por OUT-DRIFTED'],
+               'REVISAR CRONOLOGÍA':['rev','Por confirmar'],'PENDIENTE DE PRUEBA':['pen','Pendiente de prueba']};
+
+  /* ---- el mapa: el mirador del Cerro; cada destino es un edificio del paisaje ---- */
+  const INFO={
+    garaje:{tit:'El Garage',  pie:mxn(D.resumen.invertido)+' invertidos'},
+    taller:{tit:'El Taller',  pie:D.resumen.piezas+' piezas'},
+    marcas:{tit:'Refaccionaria',pie:D.resumen.marcas+' marcas'},
+    pista :{tit:'La Pista',   pie:'4 pasos'},
+  };
+  const zona=$('#hotspots');
+  // el botón cubre el edificio dibujado: sin tarjeta encima, el nombre sale al pasar o al enfocar
+  function colocarHotspots(locs){
+    zona.innerHTML=locs.map(L=>{
+      const i=INFO[L.id]||{tit:L.id,pie:''};
+      const an=Math.max(44,Math.round(L.w*0.9)), al=Math.max(44,Math.round(L.h*0.92));
+      return `<button class="hs-local" data-local="${L.id}" aria-label="${esc(i.tit)}${i.pie?' · '+esc(i.pie):''}"
+        style="left:${L.x}px;top:${L.y}px;width:${an}px;height:${al}px;--acc:${L.color}">
+        <span class="hs-caja" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="hs-punto" aria-hidden="true"></span>
+        <span class="hs-nom" aria-hidden="true">${esc(i.tit)}<small>${esc(i.pie)}</small></span>
+      </button>`;
+    }).join('');
+  }
+  const mapa=crearMapaCerro($('#mapaCanvas'),colocarHotspots);
+  colocarHotspots(mapa.locales);
+  // el canvas se mide contra su contenedor: si aún no tenía tamaño, se repinta
+  requestAnimationFrame(()=>{ mapa.draw(); colocarHotspots(mapa.locales); });
+
+  const logoDe=(p)=> p.logo?`<img src="${esc(p.logo)}" alt="${esc(p.marca||'')}" loading="lazy">`
+                          :`<span class="ini">${esc(ini(p.marca))}</span>`;
+
+  /* ---- tarjeta de pieza ---- */
+  const tarjeta=(p,i)=>{
+    const [cls,txt]=SELLO[p.sello]||['pen',p.sello];
+    const precio = p.actual ? `${mxn(p.actual)}<small>Precio actual</small>`
+                 : p.pagado ? `${mxn(p.pagado)}<small>Pagado${p.anio?' · '+p.anio:''}</small>`
+                            : `—<small>Sin registro</small>`;
+    return `<button class="gt-card" data-pieza="${esc(p.nombre)}" style="--d:${Math.min(i,24)*26}ms">
+      <span class="gt-sello ${cls}">${esc(txt)}</span>
+      <div class="gt-lg">${logoDe(p)}</div>
+      <div class="gt-bd"><div class="sis">${esc(p.sistema)}</div><b>${esc(p.nombre)}</b>
+        <div class="gt-precio">${precio}</div></div></button>`;
+  };
+  const pintarPiezas=(lista)=>{
+    cont.innerHTML = lista.length
+      ? `<div class="gt-grid go">${lista.map(tarjeta).join('')}</div>`
+      : `<div class="vacio">Nada por aquí.</div>`;
+  };
+
+  /* ---- ficha de la pieza ---- */
+  const fov=$('#fichaOv');
+  function abrirFicha(nombre){
+    const p=D.piezas.find(z=>z.nombre===nombre); if(!p) return;
+    const [cls,txt]=SELLO[p.sello]||['pen',p.sello];
+    $('#fichaTop').innerHTML=`<div class="lg">${logoDe(p)}</div>
+      <div><span class="marca">${esc(p.marca||'Sin marca')}</span><h3 id="fichaTit">${esc(p.nombre)}</h3></div>`;
+    const filas=[
+      ['Sistema',esc(p.sistema)],
+      ['Evidencia',`<span class="gt-sello ${cls}" style="position:static;display:inline-block">${esc(txt)}</span>`],
+      p.pn?['N° de parte',`<code>${esc(p.pn)}</code>`]:null,
+      p.anio?['Comprada',esc(p.anio)+(p.fmasiva?' <span style="color:var(--dim)">(fecha de carga masiva)</span>':'')]:null,
+      p.ext?['Precio origen','US$ '+Number(p.ext).toLocaleString('es-MX')]:null,
+      p.proveedor?['Proveedor',esc(p.proveedor)]:null,
+      p.nota?['Nota',esc(p.nota)]:null,
+    ].filter(Boolean);
+    const acc=[];
+    if(p.video) acc.push(`<a class="primaria" href="${esc(p.video)}" target="_blank" rel="noopener">▶ Ver el episodio</a>`);
+    if(p.sitio) acc.push(`<a href="${esc(p.sitio)}" target="_blank" rel="noopener nofollow">Sitio de la marca ↗</a>`);
+    acc.push(`<button data-cerrar-ficha>Cerrar</button>`);
+    $('#fichaBd').innerHTML=
+      (p.dudoso?`<p class="desc" style="color:var(--flame)">⚠ La nota traía dos importes para esta pieza; el precio está por confirmar.</p>`:'')
+      + filas.map(([k,v])=>`<div class="dato"><b>${k}</b><span>${v}</span></div>`).join('')
+      + `<div class="ficha-precio"><div class="pag">${p.actual?mxn(p.actual):p.pagado?mxn(p.pagado):'—'}
+           <small>${p.actual?'Precio actual':p.pagado?'Lo que costó':'Sin registro'}</small></div></div>`
+      + `<div class="ficha-acc">${acc.join('')}</div>`;
+    fov.classList.add('open');
+  }
+  const cerrarFicha=()=>fov.classList.remove('open');
+  document.addEventListener('click',e=>{ if(e.target.closest('[data-cerrar-ficha]')) cerrarFicha(); });
+
+  /* ---- contenido por local ---- */
+  function abrirTaller(){
+    const sis=['Todos',...D.sistemas];
+    tabs.innerHTML=sis.map((s,i)=>`<button data-tab="${esc(s)}"${i?'':' class="on"'}>${esc(s)}</button>`).join('');
+    tabs.hidden=false;
+    pintarPiezas(D.piezas);
+    tabs.onclick=e=>{const b=e.target.closest('[data-tab]'); if(!b)return;
+      $$('button',tabs).forEach(x=>x.classList.remove('on')); b.classList.add('on');
+      const s=b.dataset.tab;
+      pintarPiezas(s==='Todos'?D.piezas:D.piezas.filter(p=>p.sistema===s));
+      $('.local-body').scrollTop=0;};
+  }
+  function abrirMarcas(){
+    tabs.innerHTML=''; tabs.hidden=true;
+    cont.innerHTML=`<div class="gt-marcas go">${D.marcas.map((m,i)=>`
+      <button class="mk-card" data-marca="${esc(m.nombre)}" style="--d:${Math.min(i,24)*24}ms">
+        <div class="lg">${m.logo?`<img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy">`
+                              :`<span class="ini">${esc(ini(m.nombre))}</span>`}</div>
+        <b>${esc(m.nombre)}</b><span>${m.piezas} pieza${m.piezas>1?'s':''} · ${mxn(m.gasto)}</span>
+      </button>`).join('')}</div>`;
+  }
+  function abrirGaraje(){
+    tabs.innerHTML=''; tabs.hidden=true;
+    const conVideo=D.piezas.filter(p=>p.video).length;
+    cont.innerHTML=`<div class="garaje">
+      <div class="garaje-foto"><img src="assets/car-leon-fr.jpg" alt="SEAT León FR"></div>
+      <div class="garaje-specs">
+        <h3>SEAT León FR</h3><div class="plat">2013 · 1P / PQ35</div>
+        ${[['Motor','EA888 Gen 2 · 1.8 TSI'],['Transmisión','Manual 02Q (conversión desde DSG)'],
+           ['Estado','Stage 1'],['Kilometraje','~105,000 km reportados'],['Dueños','Único dueño, nacional']]
+          .map(([k,v])=>`<div class="dato"><b>${k}</b><span>${v}</span></div>`).join('')}
+        <div class="garaje-cifras">
+          <div><b>${D.resumen.piezas}</b><span>Piezas</span></div>
+          <div><b>${D.resumen.marcas}</b><span>Marcas</span></div>
+          <div><b>${conVideo}</b><span>En video</span></div>
+        </div>
+        <div class="ficha-precio"><div class="pag">${mxn(D.resumen.invertido)}<small>Invertido en piezas y trabajos</small></div></div>
+      </div></div>`;
+  }
+
+  const LOCALES={
+    garaje:{tit:'El Garage',sub:'SEAT León FR · 1P / PQ35',pinta:abrirGaraje},
+    taller:{tit:'El Taller',sub:'Piezas instaladas, por sistema',pinta:abrirTaller},
+    marcas:{tit:'Refaccionaria',sub:'Las marcas que trae el auto',pinta:abrirMarcas},
+  };
+
+  function abrirLocal(id){
+    if(id==='pista'){ cerrarLocal(); if(window.abrirPista) window.abrirPista(); return; }
+    const L=LOCALES[id]; if(!L) return;
+    hd.style.setProperty('--acc',COLOR[id]);
+    hd.style.background=COLOR[id];
+    $('#localTit').textContent=L.tit; $('#localSub').textContent=L.sub;
+    L.pinta();
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    $('#localCerrar').focus();
+  }
+  function cerrarLocal(){ ov.classList.remove('open'); document.body.style.overflow=''; }
+  $('#localCerrar').addEventListener('click',cerrarLocal);
+  zona.addEventListener('click',e=>{const b=e.target.closest('[data-local]'); if(b) abrirLocal(b.dataset.local);});
+  document.addEventListener('keydown',e=>{ if(e.key!=='Escape')return;
+    if(fov.classList.contains('open')) cerrarFicha(); else if(ov.classList.contains('open')) cerrarLocal(); });
+
+  /* ---- clics dentro del overlay: pieza y marca ---- */
+  cont.addEventListener('click',e=>{
+    const pz=e.target.closest('[data-pieza]');
+    if(pz){ abrirFicha(pz.dataset.pieza); return; }
+    const mk=e.target.closest('[data-marca]');
+    if(mk){
+      // el efecto: onda que se expande + latigazo de la tarjeta
+      mk.classList.remove('zap'); void mk.offsetWidth; mk.classList.add('zap');
+      const o=document.createElement('span'); o.className='onda'; mk.appendChild(o);
+      setTimeout(()=>o.remove(),620);
+      const nombre=mk.dataset.marca;
+      setTimeout(()=>{
+        const suyas=D.piezas.filter(p=>p.marca===nombre);
+        const m=D.marcas.find(z=>z.nombre===nombre);
+        $('#localTit').textContent=nombre;
+        $('#localSub').textContent=`${suyas.length} pieza${suyas.length>1?'s':''} · ${mxn(m?m.gasto:0)}`;
+        tabs.hidden=false;
+        tabs.innerHTML=`<button data-volver>← Todas las marcas</button>`
+          + (m&&m.sitio?`<button data-sitio="${esc(m.sitio)}">Sitio oficial ↗</button>`:'');
+        pintarPiezas(suyas);
+        $('.local-body').scrollTop=0;
+      },330);
+    }
+  });
+  tabs.addEventListener('click',e=>{
+    if(e.target.closest('[data-volver]')){ abrirLocal('marcas'); return; }
+    const s=e.target.closest('[data-sitio]');
+    if(s) window.open(s.dataset.sitio,'_blank','noopener');
+  });
+})();
+</script>
+<script>
+/* ===== LA PISTA · controlador del mapa nacional propio ===== */
+(function(){
+  const data=window.LA_PISTA;
+  const ov=document.getElementById('pistaOv');
+  const close=document.getElementById('pistaCerrar');
+  const filters=document.getElementById('pistaFiltros');
+  const pins=document.getElementById('pistaPins');
+  const legend=document.getElementById('pistaLeyenda');
+  const svg=document.getElementById('pistaSvg');
+  const ficha=document.getElementById('pistaFichaOv');
+  const fichaTop=document.getElementById('pistaFichaTop');
+  const fichaBody=document.getElementById('pistaFichaBd');
+  if(!data||!ov||!filters||!pins||!legend||!svg) return;
+
+  const colors={
+    circuito_profesional:'#78d5ff', circuito_semiprofesional:'#c29cff',
+    drag_1_4_milla:'#ffd166', drag_1_8_milla:'#ff8f70',
+    tierra_offroad:'#78d6a1', evento_offroad_baja:'#ff77bb', por_validar:'#81969a'
+  };
+  const MEXICO_PATH='M657.0 382.0 L638.7 518.7 L637.3 562.6 L649.7 608.9 L646.1 608.5 L670.2 674.9 L690.9 731.5 L694.8 748.1 L724.6 757.9 L755.0 769.1 L753.2 767.8 L774.1 761.9 L810.1 752.9 L804.7 755.7 L810.8 758.9 L821.2 761.3 L827.3 748.7 L824.4 738.1 L849.9 671.4 L863.0 623.7 L913.8 604.7 L926.5 605.1 L943.1 610.1 L939.1 606.9 L956.2 616.7 L945.8 655.7 L937.5 686.4 L931.9 700.7 L936.9 705.1 L937.3 711.5 L936.1 719.3 L926.5 774.4 L923.6 761.6 L918.8 745.1 L915.6 753.7 L904.3 770.8 L892.7 785.4 L827.5 828.5 L840.3 844.6 L848.3 860.5 L851.8 870.4 L851.3 880.0 L803.9 932.1 L783.4 927.8 L751.1 884.4 L735.7 873.4 L731.2 875.7 L724.6 870.2 L723.8 870.9 L710.4 880.2 L687.7 896.9 L653.3 888.5 L627.2 874.0 L607.5 857.7 L577.8 844.0 L544.8 822.0 L522.7 792.9 L477.0 770.6 L447.8 729.2 L434.8 718.9 L416.6 688.9 L422.2 651.2 L420.3 631.1 L410.7 584.5 L392.5 528.3 L376.7 498.8 L355.7 463.2 L352.4 457.5 L341.6 445.2 L340.9 437.2 L338.3 431.6 L334.7 422.7 L324.1 412.5 L316.0 403.4 L313.1 402.1 L311.8 400.3 L304.7 394.9 L302.6 374.5 L308.2 366.3 L300.9 346.9 L293.8 345.7 L279.7 323.8 L267.8 307.9 L268.9 287.1 L258.8 286.2 L247.7 276.7 L227.6 240.7 L221.3 229.8 L215.0 205.4 L204.0 175.3 L194.4 128.1 L180.0 111.5 L168.5 100.9 L146.0 86.7 L143.4 87.1 L147.6 136.1 L148.8 169.0 L158.0 190.8 L162.7 193.0 L168.7 200.7 L178.7 220.0 L183.3 233.1 L186.7 238.9 L195.9 255.7 L203.0 269.7 L205.1 288.4 L216.3 303.7 L226.2 324.9 L230.3 346.1 L230.5 336.5 L241.0 353.6 L244.6 372.1 L246.1 389.5 L252.0 404.3 L256.3 414.5 L259.4 427.1 L264.0 436.3 L262.5 451.6 L269.9 471.7 L274.8 469.1 L278.4 466.6 L289.1 478.9 L294.4 499.8 L300.3 518.1 L285.9 538.2 L258.8 483.7 L236.3 453.6 L228.5 444.1 L224.7 443.2 L222.1 436.4 L223.5 411.7 L222.8 391.2 L204.9 361.6 L193.5 340.2 L191.3 335.7 L173.3 332.4 L153.9 313.4 L142.0 295.5 L147.4 289.8 L163.6 296.0 L168.1 296.5 L166.8 291.9 L164.0 284.0 L164.7 276.2 L164.9 272.5 L163.4 249.9 L152.2 232.1 L125.1 197.2 L112.9 158.8 L106.9 136.9 L90.6 98.5 L84.9 76.6 L109.6 46.2 L157.2 59.1 L276.3 111.3 L315.9 111.3 L335.8 104.9 L335.8 92.8 L352.3 88.6 L377.8 88.7 L399.9 107.7 L421.8 137.9 L432.4 150.9 L437.7 174.5 L449.5 201.9 L475.0 226.1 L490.1 215.9 L494.8 195.9 L508.0 184.9 L529.7 188.3 L538.7 199.3 L554.8 223.6 L562.5 250.6 L573.7 275.8 L580.6 292.6 L589.3 308.2 L591.4 329.1 L602.9 360.4 L616.9 368.1 L643.2 380.5 Z M256.6 743.9 L257.0 744.2 L257.3 744.9 L257.6 745.8 L257.6 746.7 L257.2 747.6 L256.7 747.6 L256.1 747.6 L255.6 748.1 L255.1 747.4 L254.8 746.8 L254.3 746.4 L253.0 745.5 L253.1 745.1 L253.2 744.2 L253.5 743.1 L253.9 742.1 L255.0 740.5 L255.6 740.8 L256.3 741.7 L256.7 742.8 L256.6 743.9 Z M388.3 608.4 L388.8 608.4 L389.2 608.5 L389.2 609.0 L389.5 609.3 L389.5 609.8 L389.0 610.2 L388.8 611.0 L388.8 611.6 L388.3 611.4 L387.6 610.8 L387.1 610.7 L386.7 610.2 L386.1 610.0 L385.7 609.1 L386.3 608.4 L386.7 607.8 L387.0 607.9 L387.3 607.7 L387.7 608.1 L388.3 608.4 Z M385.1 602.6 L385.0 603.1 L385.1 603.6 L385.2 603.9 L384.9 604.1 L384.9 604.4 L384.7 604.7 L384.6 605.0 L384.6 605.4 L384.4 605.3 L384.3 605.4 L384.3 605.1 L384.4 604.7 L384.2 604.4 L384.0 604.3 L382.9 603.6 L381.7 602.5 L381.7 602.3 L381.8 602.0 L381.8 601.6 L381.6 601.2 L381.4 600.5 L381.1 599.9 L381.0 599.6 L381.2 599.3 L381.2 598.8 L381.1 598.2 L380.8 597.8 L381.4 597.6 L382.0 597.9 L382.6 597.9 L383.0 598.2 L384.1 599.0 L384.5 599.6 L384.4 600.1 L384.4 600.7 L384.7 601.3 L385.0 601.6 L385.1 602.0 L385.2 602.2 L385.4 602.4 L385.1 602.6 Z M288.8 469.9 L289.1 470.7 L289.5 472.1 L289.6 472.6 L289.8 473.5 L289.7 474.4 L289.4 474.2 L288.9 474.0 L288.0 473.9 L287.7 473.6 L287.7 473.2 L287.3 472.4 L286.9 471.2 L286.5 469.4 L286.2 467.8 L286.3 467.4 L286.4 466.9 L285.8 464.9 L285.9 463.1 L285.9 462.4 L286.1 462.5 L286.3 463.0 L286.4 463.7 L286.7 464.4 L286.9 464.8 L287.1 465.3 L287.4 466.4 L287.7 467.5 L288.1 468.2 L288.6 469.7 L288.8 469.9 Z M238.7 462.2 L239.3 462.5 L240.2 462.9 L241.4 464.3 L241.6 464.6 L239.5 463.2 L238.7 463.0 L237.7 462.9 L236.5 463.3 L235.7 463.5 L235.5 463.2 L235.7 462.7 L235.9 462.3 L236.3 462.6 L236.8 462.5 L237.6 462.3 L238.1 462.3 L238.7 462.2 Z M233.1 458.7 L234.0 461.3 L234.5 462.1 L234.8 462.0 L234.9 462.4 L234.7 463.2 L234.9 463.7 L234.7 464.6 L234.4 465.2 L234.5 466.1 L233.6 464.2 L233.0 463.3 L231.6 461.6 L230.5 460.2 L229.7 459.1 L228.7 458.2 L228.5 457.8 L228.1 457.7 L227.7 456.9 L226.7 456.2 L225.9 455.7 L225.8 455.3 L226.3 454.6 L226.8 455.1 L227.1 455.1 L228.8 455.1 L229.4 455.2 L229.9 455.0 L230.3 455.5 L230.7 455.4 L230.7 456.0 L230.9 456.7 L231.2 457.0 L231.3 457.7 L231.8 457.9 L232.5 458.0 L233.1 458.7 Z M274.6 455.2 L274.9 455.8 L275.2 455.9 L275.2 456.6 L275.4 457.2 L275.6 457.6 L275.5 458.2 L275.1 458.2 L274.9 458.7 L275.1 459.4 L274.8 459.8 L274.6 460.2 L274.5 461.1 L273.9 461.0 L273.9 460.5 L273.8 460.2 L273.9 459.6 L273.7 459.3 L273.5 459.3 L273.3 459.6 L273.2 459.1 L273.1 458.7 L273.6 458.5 L273.6 458.2 L273.4 458.1 L273.3 457.9 L273.1 457.7 L272.8 457.4 L272.7 456.9 L272.6 456.2 L272.8 455.8 L272.5 455.5 L272.5 455.1 L272.9 454.8 L273.1 454.5 L272.8 454.6 L272.5 454.3 L272.6 453.7 L272.2 453.8 L272.2 453.5 L272.3 453.1 L272.0 452.9 L271.9 452.5 L272.4 451.9 L272.5 451.5 L272.8 451.7 L273.0 452.3 L273.1 452.7 L273.4 453.2 L273.5 453.7 L273.4 454.4 L274.0 454.5 L274.6 455.2 Z M263.4 426.0 L263.4 425.6 L263.5 425.5 L263.6 425.6 L263.8 426.0 L264.1 427.4 L264.6 428.1 L265.4 428.3 L266.2 428.7 L266.8 429.1 L266.9 429.5 L267.1 429.7 L267.3 430.0 L267.3 430.5 L267.5 430.9 L267.6 431.8 L267.4 433.0 L267.8 434.0 L267.9 434.5 L268.1 435.3 L268.5 436.3 L268.8 436.9 L268.5 437.0 L267.9 437.2 L267.7 437.2 L267.4 437.2 L267.2 437.7 L267.1 437.5 L267.2 437.2 L267.4 436.9 L267.4 436.5 L267.1 436.2 L266.7 435.8 L266.3 435.5 L266.3 435.3 L266.0 435.0 L265.7 435.1 L265.4 435.1 L265.4 434.8 L265.5 434.4 L265.3 433.7 L265.0 433.5 L264.8 432.7 L264.9 432.3 L264.7 431.8 L264.5 431.4 L264.4 430.9 L264.4 430.2 L264.2 429.8 L263.8 429.8 L263.6 429.3 L263.3 429.3 L263.2 428.8 L263.2 428.1 L263.3 427.7 L263.3 427.0 L263.4 426.0 Z M223.0 450.1 L223.2 450.6 L223.7 451.8 L223.9 451.7 L223.9 452.3 L224.1 452.6 L224.3 453.3 L224.3 454.0 L224.0 453.9 L223.3 453.4 L223.0 453.1 L223.1 452.8 L222.9 451.8 L222.7 451.0 L222.3 450.4 L222.0 450.0 L221.7 450.0 L221.4 448.8 L221.0 448.6 L220.9 448.3 L221.1 447.9 L221.2 447.4 L221.4 447.3 L221.6 447.4 L221.8 447.4 L222.0 446.9 L222.0 446.0 L221.9 445.2 L221.8 444.3 L221.5 443.8 L221.1 443.1 L220.9 442.7 L220.5 442.2 L220.0 441.8 L219.8 441.7 L219.5 441.5 L219.1 441.4 L218.9 441.5 L218.7 441.5 L218.5 441.7 L218.4 442.1 L218.4 442.4 L218.5 443.3 L218.5 443.4 L218.2 443.0 L218.1 442.3 L217.2 441.3 L217.2 440.7 L217.2 440.5 L217.3 440.4 L217.6 440.3 L218.0 438.9 L218.5 436.6 L220.0 429.9 L220.5 427.6 L221.3 422.9 L221.8 419.3 L221.9 417.9 L222.0 417.4 L222.4 417.4 L222.5 419.7 L222.3 420.6 L221.8 422.6 L221.5 423.7 L221.1 427.1 L220.8 428.5 L221.0 429.3 L221.1 429.8 L221.1 430.5 L221.2 430.9 L221.3 431.4 L221.3 432.1 L221.1 432.3 L220.8 432.1 L220.6 432.7 L220.5 433.2 L220.6 434.7 L220.3 435.1 L220.5 436.4 L220.7 436.9 L220.9 437.2 L220.7 437.6 L220.3 437.5 L220.1 437.5 L220.0 437.8 L219.9 438.1 L219.8 438.5 L219.9 438.9 L219.9 439.7 L220.0 440.0 L220.3 440.3 L220.5 440.6 L220.7 440.9 L220.8 441.1 L221.0 441.2 L221.0 441.3 L220.8 441.3 L220.9 441.5 L221.2 442.1 L221.3 442.9 L222.0 444.0 L222.2 444.5 L222.2 445.1 L222.2 445.5 L222.3 445.6 L222.4 445.6 L222.6 446.5 L222.3 447.3 L222.2 447.6 L221.9 448.0 L221.8 448.5 L221.9 448.8 L222.0 449.3 L223.0 450.1 Z M317.9 409.3 L318.3 409.5 L318.8 410.9 L319.2 411.3 L318.7 411.9 L317.7 411.2 L316.7 410.1 L315.9 409.6 L315.7 409.6 L315.4 409.4 L315.2 409.3 L315.0 409.2 L313.2 409.2 L312.8 408.9 L312.6 408.2 L315.9 408.2 L316.4 408.4 L317.9 409.3 Z M261.8 400.8 L261.2 400.3 L260.6 398.2 L260.7 396.7 L261.0 395.7 L261.3 394.9 L261.6 394.8 L261.7 395.7 L261.9 395.8 L261.8 396.7 L262.0 398.1 L262.2 400.6 L261.8 400.8 Z M252.6 380.4 L253.0 380.4 L252.9 381.0 L253.1 381.2 L253.1 381.7 L253.0 382.0 L252.9 381.7 L252.7 381.7 L252.5 381.2 L252.3 381.0 L252.1 380.4 L251.7 380.5 L251.5 380.7 L251.5 381.0 L251.5 381.5 L251.2 382.2 L250.9 382.7 L250.5 383.7 L250.0 384.7 L249.8 385.2 L249.8 385.5 L249.7 386.2 L249.7 387.0 L249.5 387.5 L249.3 387.5 L249.1 388.1 L249.1 389.1 L249.2 389.9 L249.0 390.2 L248.8 389.6 L248.6 389.5 L248.3 389.2 L248.3 388.8 L248.2 388.2 L248.3 387.8 L248.7 386.8 L248.6 386.1 L248.9 384.5 L248.9 383.9 L249.2 383.2 L249.3 382.6 L249.5 381.8 L249.9 381.4 L250.1 380.9 L250.0 380.2 L250.1 379.1 L249.9 378.5 L249.9 378.1 L250.3 378.0 L251.1 377.6 L251.0 377.1 L251.3 376.8 L251.5 377.2 L252.0 377.6 L252.7 377.3 L252.8 376.8 L253.4 376.7 L252.9 377.6 L252.6 378.8 L252.6 380.4 Z M133.3 262.0 L133.6 263.4 L133.9 263.7 L133.9 264.2 L134.1 264.9 L134.3 266.1 L134.0 267.4 L134.0 268.5 L134.4 269.5 L134.5 270.7 L134.4 271.7 L134.5 272.2 L134.3 272.7 L133.9 273.0 L133.9 273.4 L133.6 273.9 L133.7 274.5 L133.5 274.9 L133.7 275.7 L133.5 276.4 L133.8 277.3 L133.7 277.5 L133.7 277.9 L133.5 277.8 L133.3 277.6 L133.0 277.4 L132.7 277.7 L132.4 277.9 L132.2 277.5 L131.8 277.6 L131.6 277.3 L131.4 275.7 L130.9 274.9 L130.2 274.5 L129.7 274.9 L129.2 275.0 L128.9 275.7 L128.6 275.1 L128.8 273.4 L129.3 273.0 L131.0 269.7 L132.0 267.5 L131.6 266.0 L131.4 264.2 L131.5 262.8 L131.8 261.1 L132.2 260.6 L132.8 260.2 L133.4 261.1 L133.3 262.0 Z M200.1 245.1 L201.0 245.4 L202.6 247.1 L203.0 247.8 L203.3 248.1 L203.4 248.5 L203.8 248.8 L203.9 249.2 L204.2 249.4 L203.9 249.9 L203.5 250.2 L203.3 249.9 L203.3 249.7 L203.1 249.7 L202.9 248.5 L202.5 248.1 L201.9 247.7 L201.6 247.0 L200.8 246.8 L200.9 246.5 L200.7 246.2 L200.5 245.8 L200.3 245.4 L200.1 245.1 Z M208.2 242.6 L208.6 242.5 L208.8 242.3 L209.5 242.5 L209.8 242.2 L210.1 242.5 L210.1 243.1 L210.3 243.3 L210.2 243.8 L210.2 244.6 L209.9 245.3 L209.4 245.5 L208.7 245.3 L208.5 245.5 L208.6 245.1 L208.2 243.7 L208.2 242.6 Z M218.0 240.5 L217.6 240.8 L217.0 241.6 L216.5 240.8 L216.0 240.6 L215.6 241.0 L215.3 240.3 L214.9 240.2 L214.4 239.3 L214.0 238.9 L213.6 239.0 L213.4 238.8 L212.8 238.9 L212.5 238.6 L212.4 237.9 L211.7 237.7 L211.6 237.2 L210.9 236.6 L210.1 236.0 L209.7 235.4 L209.4 235.4 L209.1 235.1 L209.9 234.3 L210.7 233.4 L211.2 232.4 L211.4 232.2 L211.5 231.8 L211.6 231.3 L211.8 230.8 L211.9 230.2 L211.8 229.7 L211.5 229.3 L211.4 227.2 L211.5 225.0 L211.7 222.8 L212.1 221.0 L212.2 220.3 L212.5 219.6 L212.9 219.0 L213.3 218.6 L213.7 219.2 L214.3 219.2 L215.0 218.4 L215.5 217.8 L216.0 217.6 L216.8 217.7 L217.3 217.5 L217.7 217.0 L217.9 216.5 L218.3 216.3 L218.2 216.8 L217.8 217.4 L218.0 218.2 L218.3 218.8 L218.3 219.0 L218.2 219.5 L218.2 219.9 L218.0 220.4 L218.2 221.1 L218.1 221.8 L219.2 224.0 L220.3 227.7 L219.8 229.5 L219.8 231.1 L219.4 233.6 L218.9 234.4 L219.1 235.0 L218.6 236.0 L218.5 237.0 L218.1 237.7 L218.0 238.6 L218.1 239.7 L218.4 239.9 L218.6 240.4 L218.4 240.7 L218.0 240.5 Z M193.0 225.5 L193.4 225.7 L193.6 225.9 L194.0 226.1 L193.6 227.5 L193.7 228.1 L193.7 229.6 L193.4 229.5 L193.1 228.8 L192.7 228.6 L192.4 227.9 L191.5 227.3 L191.2 226.4 L190.7 226.0 L190.3 225.8 L189.9 225.3 L189.7 224.6 L189.5 224.4 L189.4 223.6 L189.0 222.9 L188.5 222.1 L188.3 221.5 L187.9 221.4 L187.7 220.9 L187.3 220.7 L186.7 220.2 L186.5 219.3 L185.8 218.8 L185.2 218.1 L184.5 216.5 L184.6 216.1 L184.4 215.3 L183.9 214.7 L183.5 214.7 L183.0 214.7 L182.6 214.4 L182.4 213.7 L182.4 212.8 L182.2 212.3 L181.8 211.9 L181.6 211.2 L181.3 210.9 L181.2 210.3 L180.8 209.7 L180.7 209.3 L180.4 208.7 L179.9 208.1 L179.8 206.9 L179.9 205.7 L180.4 204.6 L180.6 203.1 L180.5 202.3 L180.4 201.5 L180.8 201.3 L180.8 201.6 L181.1 201.9 L181.5 201.6 L181.8 201.4 L181.8 201.0 L182.2 201.0 L182.2 201.6 L182.5 201.8 L183.2 201.9 L183.6 202.6 L184.4 203.9 L184.8 205.2 L185.5 205.6 L185.5 206.0 L185.8 206.4 L185.8 206.8 L186.2 207.5 L186.5 208.5 L186.5 208.9 L186.8 209.4 L186.5 209.9 L186.2 210.5 L186.1 211.4 L186.2 211.9 L186.3 213.1 L187.0 213.8 L188.1 214.1 L188.4 214.6 L188.7 214.6 L189.0 214.2 L189.3 214.2 L189.6 214.4 L190.1 214.2 L190.6 214.2 L191.0 214.4 L191.7 214.2 L192.1 214.8 L191.8 215.7 L191.8 216.8 L192.0 217.4 L192.0 218.4 L192.0 219.0 L192.2 219.2 L192.0 219.8 L192.0 220.9 L191.9 222.3 L192.1 222.7 L192.4 223.7 L192.5 224.1 L192.4 224.6 L192.7 225.4 L193.0 225.5 Z M145.2 87.2 L146.1 87.5 L147.4 89.2 L148.6 91.4 L149.1 93.0 L148.7 93.0 L148.3 92.7 L148.1 92.3 L147.9 91.9 L147.2 92.7 L145.9 91.6 L144.8 89.6 L145.2 87.2 Z M817.6 745.3 L818.9 744.3 L819.4 744.2 L819.6 744.6 L819.7 745.1 L819.8 745.6 L819.8 746.3 L819.7 746.2 L819.6 746.0 L819.0 746.7 L818.6 746.9 L818.2 747.0 L818.4 746.6 L818.5 746.3 L818.8 746.1 L819.0 746.0 L818.5 746.1 L817.5 746.7 L817.0 746.7 L815.9 749.3 L815.1 750.5 L814.1 750.8 L814.7 749.1 L813.1 750.6 L812.2 751.3 L811.4 751.5 L810.8 751.5 L810.6 751.4 L810.7 751.1 L811.2 750.3 L811.5 750.0 L812.8 749.1 L813.6 748.8 L815.1 747.4 L816.3 746.1 L817.6 745.3 Z M958.3 653.4 L958.4 653.2 L958.5 653.2 L958.7 653.4 L958.7 653.7 L958.7 653.9 L958.3 654.6 L957.3 657.5 L956.9 659.2 L956.4 660.0 L955.6 661.2 L955.2 662.0 L954.5 664.3 L954.4 665.2 L954.2 665.4 L954.0 665.7 L953.7 666.0 L953.6 666.6 L953.5 666.9 L953.2 667.5 L951.6 669.8 L951.2 670.1 L951.0 669.7 L950.9 668.6 L950.5 666.5 L950.4 665.3 L950.5 663.2 L950.8 661.3 L952.0 657.7 L952.9 655.7 L953.1 655.5 L953.5 654.8 L953.8 654.6 L954.0 654.6 L954.2 654.7 L954.4 654.9 L954.5 655.0 L954.8 655.1 L955.5 655.6 L955.8 655.7 L956.2 655.5 L956.8 654.9 L957.2 655.0 L957.7 654.7 L958.1 654.1 L958.3 653.4 Z M642.1 593.0 L643.2 594.2 L643.6 594.8 L643.3 595.4 L642.5 595.2 L641.8 593.5 L641.3 591.2 L641.2 589.2 L641.6 589.9 L641.7 590.9 L641.9 592.0 L642.1 593.0 Z M44.7 224.3 L45.3 225.7 L45.6 228.0 L45.3 229.0 L45.6 230.8 L45.4 233.1 L44.7 234.6 L44.1 234.5 L43.8 234.9 L43.6 234.9 L43.6 235.4 L43.3 235.0 L43.4 234.4 L43.8 234.2 L43.5 233.0 L43.4 232.3 L43.5 231.4 L43.3 230.4 L42.8 229.7 L43.2 228.9 L42.9 227.5 L42.6 226.8 L42.3 226.2 L41.7 225.4 L41.6 224.6 L41.4 223.8 L41.3 223.0 L41.4 222.1 L41.6 221.2 L42.2 220.5 L43.0 220.1 L43.4 219.4 L44.0 219.2 L44.6 219.6 L44.1 220.4 L43.8 221.1 L43.7 221.9 L43.9 222.9 L44.2 223.8 L44.7 224.3 Z M189.9 343.7 L190.3 343.3 L190.6 343.4 L190.9 343.5 L191.1 343.8 L191.1 344.1 L191.3 344.2 L191.4 344.1 L191.6 343.9 L191.8 343.8 L191.9 343.9 L192.3 344.7 L192.7 345.7 L193.0 346.3 L193.0 346.7 L192.7 346.7 L192.5 346.4 L192.2 346.1 L191.4 345.6 L190.6 345.2 L189.8 344.9 L189.5 344.7 L189.3 344.5 L189.5 344.0 L189.9 343.7 Z M873.8 563.6 L873.2 563.1 L873.0 562.7 L873.0 562.1 L872.8 561.2 L872.9 560.8 L873.4 560.6 L874.0 559.7 L874.0 558.5 L873.5 557.4 L873.1 556.7 L873.0 555.6 L872.3 555.0 L871.6 554.5 L871.1 554.8 L870.9 555.6 L870.7 555.4 L870.8 554.7 L871.1 554.0 L871.4 553.1 L871.9 552.9 L872.9 553.7 L873.9 555.0 L874.9 557.1 L875.3 559.0 L875.0 561.6 L874.6 563.2 L874.2 563.7 L873.8 563.6 Z M222.9 406.3 L223.0 406.1 L223.1 406.3 L223.1 407.0 L223.2 407.8 L223.1 409.0 L223.1 410.0 L222.9 411.0 L222.8 412.5 L223.0 413.5 L222.9 414.3 L222.7 414.9 L222.5 415.6 L222.6 416.5 L222.4 416.5 L222.2 416.2 L222.0 415.8 L222.1 415.0 L222.4 414.2 L222.6 412.6 L222.7 410.4 L222.9 408.4 L223.0 407.5 L222.9 406.3 Z M223.2 318.5 L222.8 317.8 L223.4 316.7 L224.1 317.6 L224.7 318.8 L224.5 320.0 L224.1 320.8 L223.5 320.6 L223.3 319.5 L223.2 318.5 Z';
+  let active='todos';
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const visible=()=>active==='todos'?data.points:data.points.filter(p=>p.category===active);
+  const pos=p=>({x:Math.max(2,Math.min(98,((p.lon+126)/46)*100)),y:Math.max(2,Math.min(98,((39-p.lat)/28)*100))});
+  function drawBase(){
+    const g=window.MX_GEOGRAPHY; if(!g) return;
+    const [W,H]=g.frame; svg.setAttribute('viewBox',window.innerWidth<=780?'135 150 930 650':`0 0 ${W} ${H}`);
+    const countries=g.countries.map(c=>`<path class="pista-country" d="${c.path}"/>`).join('');
+    const stateColor=st=>{if(st.biome==='desert') return ['BAJA CALIFORNIA','BAJA CALIFORNIA SUR','SONORA'].includes(st.name)?'#304652':'#3b404d'; if(st.biome==='tropical') return '#23504c'; return '#294a4b';};
+    const states=g.states.map(st=>`<path class="pista-mx-state ${st.biome}" fill="${stateColor(st)}" d="${st.path}"/>`).join('');
+    const labels=g.states.map(st=>`<text class="pista-state-label" x="${st.x}" y="${st.y}">${esc(st.name.toUpperCase())}</text>`).join('');
+    const terrain=`<g aria-label="Relieve mexicano ilustrativo" filter="url(#terrainBlur)" opacity=".6"><path fill="#17323a" d="M396 322 C438 341 465 391 490 442 C508 480 543 499 565 532 L522 539 C491 504 463 479 444 440 C427 402 403 370 374 350 Z"/><path fill="#3c655e" opacity=".6" d="M423 340 C448 374 464 410 479 449 L450 435 C433 402 416 375 396 354 Z"/><path fill="#17323a" d="M594 352 C625 372 653 410 681 454 C704 486 724 510 748 530 L704 535 C676 503 649 478 631 441 C617 409 597 383 574 367 Z"/><path fill="#426a61" opacity=".48" d="M614 378 C640 404 661 439 682 474 L654 460 C638 431 620 404 598 389 Z"/><path fill="#18343b" d="M539 519 C580 498 641 500 700 523 L719 548 C656 535 602 536 554 552 Z"/><path fill="#426a61" opacity=".45" d="M560 522 C606 512 650 516 690 532 L674 543 C632 532 591 535 566 544 Z"/><path fill="#17323a" d="M558 587 C604 598 654 612 710 632 L688 659 C638 641 590 626 548 611 Z"/><path fill="#426a61" opacity=".42" d="M578 600 C616 609 651 623 685 638 L671 648 C637 632 605 621 571 613 Z"/></g>`;
+    const cities=`<g fill="#e6f0d4" stroke="#15333a" stroke-width="2"><circle cx="648" cy="522" r="4"/><circle cx="534" cy="569" r="3"/><circle cx="620" cy="395" r="3"/><circle cx="477" cy="345" r="3"/><circle cx="781" cy="654" r="3"/></g><g class="pista-state-label" text-anchor="start"><text x="656" y="518">CDMX</text><text x="542" y="565">GUADALAJARA</text><text x="628" y="391">MONTERREY</text><text x="485" y="341">HERMOSILLO</text><text x="789" y="650">CANCÚN</text></g>`;
+    svg.innerHTML=`<defs><linearGradient id="oceanFade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#126481"/><stop offset=".48" stop-color="#073d58"/><stop offset="1" stop-color="#062640"/></linearGradient><linearGradient id="desertBase" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b36b"/><stop offset="1" stop-color="#9c733f"/></linearGradient><linearGradient id="forestBase" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2d765f"/><stop offset="1" stop-color="#164638"/></linearGradient><linearGradient id="tropicalBase" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5e9b5c"/><stop offset="1" stop-color="#347250"/></linearGradient><pattern id="desertFill" width="15" height="15" patternUnits="userSpaceOnUse"><rect width="15" height="15" fill="url(#desertBase)"/><path d="M0 14 L14 0" stroke="#f3d998" stroke-width=".55" opacity=".24"/></pattern><pattern id="forestFill" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="url(#forestBase)"/><circle cx="3" cy="4" r="1" fill="#86a96f" opacity=".32"/><circle cx="10" cy="10" r="1" fill="#86a96f" opacity=".26"/></pattern><pattern id="tropicalFill" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="url(#tropicalBase)"/><path d="M2 11 C6 7 8 4 10 1" stroke="#9bc971" stroke-width=".9" opacity=".28"/></pattern><filter id="terrainBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter></defs><rect width="${W}" height="${H}" fill="#031631"/>${countries}<path class="pista-country" fill="#34404b" opacity=".72" d="M286 202 C350 186 440 198 520 240 L594 312 L547 342 C470 308 389 304 326 323 Z"/>${states}${terrain}<path class="pista-national-border" d="${g.mexico_outline}"/>${cities}<text class="pista-country-label" x="510" y="116">ESTADOS UNIDOS</text><text class="pista-country-label" x="820" y="765">GUATEMALA</text><text class="pista-country-label" x="900" y="636">BELICE</text><text class="pista-water-label" x="128" y="520" transform="rotate(-64 128 520)">OCÉANO PACÍFICO</text><text class="pista-water-label" x="1010" y="348" transform="rotate(72 1010 348)">GOLFO DE MÉXICO</text><text class="pista-water-label" x="1010" y="690">CARIBE</text>${labels}`;
+  }
+  function renderFilters(){
+    const options=[{key:'todos',label:'Todos'}].concat(data.taxonomy);
+    filters.innerHTML=options.map(o=>`<button type="button" data-pista-filter="${o.key}" aria-pressed="${o.key===active}"><i style="color:${o.key==='todos'?'#d8e4df':colors[o.key]}"></i>${esc(o.label)}</button>`).join('');
+  }
+  function renderLegend(){
+    const v=visible();
+    const rows=data.taxonomy.map(t=>{const n=v.filter(p=>p.category===t.key).length;return `<div class="li"><i style="--c:${colors[t.key]}"></i><span>${esc(t.label)}</span><b style="margin-left:auto;color:#d8e4df">${n}</b></div>`;}).join('');
+    legend.innerHTML=`<h4>${active==='todos'?'Catálogo y filtro':'Filtro activo'}</h4>${rows}<p class="nota"><b>${v.length} punto${v.length===1?'':'s'} mostrado${v.length===1?'':'s'}.</b><br>Un punto del mapa no garantiza apertura, calendario ni acceso. Consulta la ficha y la fuente antes de salir.</p>`;
+  }
+  function renderPins(){
+    const v=visible();
+    pins.innerHTML=v.length?v.map(p=>{const q=pos(p);const temporal=p.verification==='temporal'?' temporal':'';const pending=p.verification==='del_mapa_ceo_por_validar'?' pendiente':'';return `<button class="pin${temporal}${pending}" style="left:${q.x}%;top:${q.y}%;--pin:${colors[p.category]}" data-pista-id="${esc(p.id)}" aria-label="Abrir ficha: ${esc(p.name)}"><span></span></button>`;}).join(''):`<p class="pista-vacio">No hay puntos publicados para este filtro todavía.</p>`;
+  }
+  function render(){drawBase();renderFilters();renderLegend();renderPins();}
+  function openFicha(id){
+    const p=data.points.find(x=>x.id===id); if(!p) return;
+    const cat=(data.taxonomy.find(x=>x.key===p.category)||{}).label||p.category;
+    const badge=data.verification_labels[p.verification]||p.verification;
+    fichaTop.innerHTML=`<div class="lg" style="background:${colors[p.category]};color:#081315">${esc(cat.slice(0,2).toUpperCase())}</div><div><span class="marca">${esc(badge)}</span><h3 id="pistaFichaTit">${esc(p.name)}</h3></div>`;
+    const warning=p.verification==='temporal'?`<p class="pista-ficha-warn"><b>Evento/base temporal.</b> No es una pista fija ni una ruta pública. Verifica permisos, cierres y avisos vigentes del organizador; no implica acceso general.</p>`:'';
+    const access=p.access_type?`<div class="dato"><b>Acceso</b><span>${esc(p.access_type)}</span></div>`:'';
+    fichaBody.innerHTML=`${warning}<div class="dato"><b>Ubicación</b><span>${esc(p.municipio||'—')}, ${esc(p.estado||'—')}</span></div><div class="dato"><b>Categoría</b><span>${esc(cat)}</span></div>${access}<div class="dato"><b>Estado editorial</b><span>${esc(badge)}</span></div><div class="dato"><b>Nota</b><span>${esc(p.note||'Sin nota editorial todavía.')}</span></div><div class="dato"><b>Fuente / corte</b><span>${esc(p.source||'Pendiente')}<br><small>${esc(p.source_date||'Sin fecha')}</small></span></div>`;
+    ficha.classList.add('open');
+  }
+  window.abrirPista=function(){ render(); ov.classList.add('open'); document.body.style.overflow='hidden'; close.focus(); };
+  function cerrarPista(){ov.classList.remove('open');ficha.classList.remove('open');document.body.style.overflow='';}
+  close.addEventListener('click',cerrarPista);
+  filters.addEventListener('click',e=>{const b=e.target.closest('[data-pista-filter]');if(!b)return;active=b.dataset.pistaFilter;render();});
+  pins.addEventListener('click',e=>{const b=e.target.closest('[data-pista-id]');if(b)openFicha(b.dataset.pistaId);});
+  document.addEventListener('click',e=>{if(e.target.closest('[data-cerrar-pista-ficha]'))ficha.classList.remove('open');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ficha.classList.contains('open'))ficha.classList.remove('open');else if(e.key==='Escape'&&ov.classList.contains('open'))cerrarPista();});
+  drawBase();
+  if(new URLSearchParams(location.search).has('la-pista')) { const qs=new URLSearchParams(location.search); const q=qs.get('pista-filter'); const point=qs.get('pista-point'); if(q&&q!=='todos'&&data.taxonomy.some(t=>t.key===q)) active=q; setTimeout(()=>{window.abrirPista();if(point)openFicha(point);},0); }
+})();
+</script>
+</body>
+</html>
