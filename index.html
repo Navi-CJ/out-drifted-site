@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#f2f7f6;--muted:#93a5a6;--dim:#5e7072;--bg:#04090b;--panel:#0a1418;--panel2:#0f1e22;
+  --ink:#f2f7f6;--muted:#a4b5b6;--dim:#7e9294;--bg:#04090b;--panel:#0a1418;--panel2:#0f1e22;
   --line:#1e3238;--acid:#d1dd13;--teal:#22e0f5;--flame:#ff4d2d;--violet:#b388ff;--hot:#ff2e88;--paper:#eaf0ee;--max:1240px;
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -42,7 +42,7 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
   radial-gradient(700px 420px at 50% 30%,rgba(34,224,245,.18),transparent 68%),
   radial-gradient(760px 460px at 50% 88%,rgba(255,77,45,.22),transparent 66%)}
 
-.coin{display:inline-block;font-size:.66rem;font-weight:900;letter-spacing:.3em;color:var(--flame);margin-bottom:18px;animation:blink 1.15s steps(1) infinite}
+.coin{display:inline-block;font-size:.74rem;font-weight:900;letter-spacing:.22em;color:var(--flame);margin-bottom:18px;animation:blink 1.15s steps(1) infinite}
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
 
 .title{position:relative;margin:0;font-size:clamp(2rem,8.2vw,6.4rem);line-height:.84}
@@ -62,10 +62,38 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 .seals{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px;opacity:0;animation:up .5s .68s forwards}
-.sl{border:2px solid;padding:9px 13px;font-size:.62rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;background:#04090bcc}
+.sl{border:2px solid;padding:11px 17px;font-size:.78rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;background:#04090bcc;
+  font-family:inherit;cursor:pointer;transition:.16s;min-height:44px}
 .sl.a{color:var(--acid);border-color:var(--acid)}
 .sl.b{color:var(--teal);border-color:var(--teal)}
 .sl.c{color:var(--flame);border-color:var(--flame)}
+.sl.a:hover,.sl.a[aria-expanded="true"]{color:#0d1100;background:var(--acid)}
+.sl.b:hover,.sl.b[aria-expanded="true"]{color:#0d1100;background:var(--teal)}
+.sl.c:hover,.sl.c[aria-expanded="true"]{color:#0d1100;background:var(--flame)}
+.sealInfo{max-width:640px;margin:0 auto;text-align:left;border:1px solid var(--line);background:#04090bcc;
+  padding:0 14px;text-align:left;max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .28s ease,opacity .22s ease,margin .28s ease,padding .28s ease,border-color .16s}
+.sealInfo.open{max-height:260px;opacity:1;margin:14px auto 0;padding:14px 16px}
+.sealInfo b{display:block;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;color:var(--ink)}
+.sealInfo span{display:block;font-size:.86rem;line-height:1.55;color:#c3d1d0}
+.sealInfo.tone-a{border-color:var(--acid)}
+.sealInfo.tone-b{border-color:var(--teal)}
+.sealInfo.tone-c{border-color:var(--flame)}
+.pillars4{position:relative;z-index:5;max-width:820px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.pillars4 .pl{border:1px solid var(--line);border-left:3px solid var(--teal);background:#08131599;padding:16px 18px;text-align:left}
+.modelPanel .pillars4{position:relative;z-index:4}
+.modelPanel .pillars4 .pl{background:#040909fa}
+.pillars4 .pl b{display:block;font-size:.82rem;letter-spacing:.03em;text-transform:uppercase;margin-bottom:7px;color:var(--teal);line-height:1.25}
+.pillars4 .pl span{display:block;font-size:.88rem;line-height:1.55;color:#c3d1d0}
+@media(max-width:720px){
+  .pillars4{grid-template-columns:1fr;max-width:560px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sealInfo{transition:none}
+}
+@media(max-width:480px){
+  .pillars4{grid-template-columns:1fr}
+}
 
 .start{margin-top:34px;opacity:0;animation:up .5s .8s forwards}
 .btn-start{position:relative;font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:.04em;
@@ -73,7 +101,7 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
   box-shadow:0 8px 0 #7d8709,0 20px 40px -12px rgba(209,221,19,.6);transition:transform .1s,box-shadow .1s}
 .btn-start:hover{background:#e6f31d}
 .btn-start:active{transform:translateY(6px);box-shadow:0 2px 0 #7d8709,0 10px 24px -12px rgba(209,221,19,.6)}
-.hint{margin-top:14px;font-size:.66rem;font-weight:900;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.hint{margin-top:14px;font-size:.74rem;font-weight:900;letter-spacing:.13em;color:var(--dim);text-transform:uppercase}
 
 .socials{position:absolute;top:20px;right:20px;display:flex;gap:8px;z-index:5}
 .sbtn{width:42px;height:42px;border:2px solid var(--line);display:grid;place-items:center;color:#b6c6c4;background:#04090bcc;transition:.16s}
@@ -81,6 +109,45 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .sbtn svg{width:18px;height:18px}
 .markL{position:absolute;top:20px;left:20px;z-index:5;width:132px;opacity:.9}
 .markL img{width:100%;display:block}
+
+.modelBtn{position:absolute;top:20px;left:168px;z-index:5;width:auto;min-height:42px;
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:.02em;
+  font-size:.76rem;line-height:1;color:var(--teal);background:#04090bcc;border:2px solid var(--teal);
+  padding:0 15px;cursor:pointer;transition:.16s}
+.modelBtn:before{content:"◆";font-size:.62em;opacity:.85}
+.modelBtn:hover{color:#0d1100;background:var(--teal)}
+.modelBtn:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+@media(max-width:640px){
+  .markL{width:100px}
+  .modelBtn{left:auto;right:20px;top:74px;font-size:.7rem;min-height:38px;padding:0 13px}
+}
+@media(max-width:380px){
+  .markL{width:84px}
+  .modelBtn{right:14px;top:66px;font-size:.66rem;padding:0 11px}
+}
+
+.modelOv{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px;background:#02060799}
+.modelOv.open{display:flex}
+.modelPanel{position:relative;max-width:900px;width:100%;max-height:86vh;overflow:auto;background:#04090bf5;border:2px solid var(--teal);padding:32px 24px 26px;
+  box-shadow:0 30px 70px -20px #000}
+.modelPanel h2{position:relative;z-index:5;margin:0 0 16px;text-align:center;font-family:"Archivo Black",sans-serif;text-transform:uppercase;
+  font-size:clamp(1.1rem,3vw,1.6rem);color:var(--ink)}
+.modelClose{position:absolute;top:10px;right:10px;bottom:auto;left:auto;transform:none;z-index:6;width:32px;height:32px;border:2px solid var(--line);background:#04090bcc;color:#b6c6c4;
+  font-size:1rem;line-height:1;cursor:pointer;transition:.16s}
+.modelClose:hover{color:var(--acid);border-color:var(--acid)}
+.modelClose:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+.modelBrand{position:absolute;top:12px;left:12px;right:auto;z-index:4;width:100px;height:41px;overflow:hidden;pointer-events:none}
+.modelBrand img{position:absolute;top:-9.6px;left:-9.04px;width:282px;max-width:none;display:block}
+@media(max-width:640px){
+  .modelBrand{width:78px;height:32px}
+  .modelBrand img{width:220px;left:-7.05px;top:-7.49px}
+  .modelClose{top:8px;right:8px;bottom:auto;left:auto;transform:none;width:28px;height:28px;font-size:.86rem}
+}
+@media(max-width:380px){
+  .modelBrand{width:62px;height:25px}
+  .modelBrand img{width:175px;left:-5.6px;top:-5.95px}
+}
 
 /* ===== FLOW ===== */
 .flow{position:relative;z-index:2;padding:0 20px 120px;border-top:2px solid var(--line)}
@@ -90,12 +157,12 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .hud{position:sticky;top:0;z-index:30;margin:0 -20px 34px;padding:10px 20px;background:#04090bf2;border-bottom:2px solid var(--acid);
   box-shadow:0 8px 30px -10px #000}
 .hud-in{max-width:var(--max);margin:auto;display:flex;gap:6px;align-items:stretch;overflow-x:auto}
-.hs{flex:1;min-width:132px;border:2px solid var(--line);padding:7px 10px;background:#08131599;opacity:.5;transition:.28s}
+.hs{flex:1;min-width:150px;border:2px solid var(--line);padding:8px 11px;background:#08131599;opacity:.5;transition:.28s}
 .hs.on{opacity:1;border-color:var(--acid);background:#161d03;box-shadow:0 0 20px -4px rgba(209,221,19,.55)}
 .hs.done{opacity:1;border-color:#2f4a44}
-.hs b{display:block;font-size:.55rem;font-weight:900;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.hs b{display:block;font-size:.62rem;font-weight:900;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
 .hs.on b{color:var(--acid)}
-.hs span{display:block;font-size:.8rem;font-weight:900;color:#e7efed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs span{display:block;font-size:.88rem;font-weight:900;color:#e7efed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .step{display:none;padding-top:16px}
 .step.live{display:block}
@@ -129,13 +196,13 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .opt-lock{position:absolute;inset:0;display:grid;place-items:center;background:#04090bd6;backdrop-filter:blur(2px);z-index:2}
 .opt-lock span{font-family:"Archivo Black",sans-serif;font-size:.72rem;letter-spacing:.16em;color:var(--flame);border:2px solid var(--flame);padding:6px 11px}
 .opt-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
-.opt-tag{font-size:.58rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.opt-tag{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
 .opt h3{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.02rem;margin:0 0 5px;line-height:1.08}
-.opt small{display:block;color:var(--muted);font-size:.74rem;margin-bottom:12px}
+.opt small{display:block;color:var(--muted);font-size:.81rem;margin-bottom:12px}
 /* stat bars — videogame */
 .stats{margin-top:auto;display:grid;gap:5px}
-.stat{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:center}
-.stat b{font-size:.5rem;font-weight:900;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.stat{display:grid;grid-template-columns:60px 1fr;gap:8px;align-items:center}
+.stat b{font-size:.58rem;font-weight:900;letter-spacing:.05em;color:var(--dim);text-transform:uppercase}
 .bars{display:flex;gap:2px}
 .bars i{flex:1;height:7px;background:#16262a;transition:background .3s}
 .bars i.f{background:var(--acid)}
@@ -238,6 +305,7 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
   .res{grid-template-columns:1fr}
   .markL{width:100px}
 }
+@media(max-width:380px){.markL{width:84px}.modelBtn{left:112px;width:82px}}
 @media(max-width:560px){
   .opts.c3,.opts.c4{grid-template-columns:1fr}
   .opt{min-height:0}
@@ -594,10 +662,10 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 @keyframes runIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 
 .run-hd{display:flex;align-items:center;gap:14px;margin-bottom:24px}
-.run-chip{font-family:"Archivo Black",sans-serif;font-size:.6rem;letter-spacing:.18em;color:var(--acid);
+.run-chip{font-family:"Archivo Black",sans-serif;font-size:.7rem;letter-spacing:.12em;color:var(--acid);
   border:2px solid var(--acid);padding:6px 10px;white-space:nowrap}
 .run-rule{flex:1;height:2px;min-width:20px;background:repeating-linear-gradient(90deg,var(--line) 0 10px,transparent 10px 19px)}
-.run-state{font-size:.56rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.run-state{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
 .run-state.on{color:var(--acid)}
 
 .gcards{display:grid;gap:14px}
@@ -632,20 +700,20 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 .gcard[aria-pressed=true] .gcard-sel{display:block}
 
 .gcard-bd{padding:15px 16px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
-.gcard-tag{font-size:.55rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.gcard-tag{font-size:.66rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
 .gcard[data-accent=flame] .gcard-tag{color:var(--flame)}
 .gcard[data-accent=teal] .gcard-tag{color:var(--teal)}
 .gcard[data-accent=violet] .gcard-tag{color:var(--violet)}
 .gcard[data-accent=acid] .gcard-tag{color:var(--acid)}
 .gcard-h{display:block;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1rem;margin:0;line-height:1.06}
-.gcard-spec{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;letter-spacing:.03em;color:var(--paper)}
-.gcard-note{font-size:.73rem;color:var(--muted);margin:0}
-.run-foot{margin-top:16px;max-width:820px;color:var(--dim);font-size:.72rem;line-height:1.45}
+.gcard-spec{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;letter-spacing:.02em;color:var(--paper)}
+.gcard-note{font-size:.8rem;color:var(--muted);margin:0}
+.run-foot{margin-top:16px;max-width:820px;color:var(--dim);font-size:.8rem;line-height:1.55}
 
 .run-cta{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
   border:2px solid var(--acid);background:#08131599;padding:16px 20px}
 .run-cta[hidden]{display:none}
-.run-cta b{display:block;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);font-weight:900;margin-bottom:3px}
+.run-cta b{display:block;font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--acid);font-weight:900;margin-bottom:3px}
 .run-cta span{font-family:"Archivo Black",sans-serif;font-size:.95rem;text-transform:uppercase}
 .run-cta button{margin-left:auto;font-family:"Archivo Black",sans-serif;min-height:50px;padding:0 24px;border:0;
   background:var(--acid);color:#0d1100;text-transform:uppercase;letter-spacing:.03em;font-size:.82rem;box-shadow:0 6px 0 #7d8709;transition:.1s}
@@ -668,7 +736,7 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-  .opt,.res-card,.sub,.seals,.start,.hero-car{opacity:1!important}
+  .opt,.res-card,.sub,.seals,.legend3,.pillars4,.start,.hero-car{opacity:1!important}
   #grid3d,.scan{display:none}
 }
 </style>
@@ -686,6 +754,7 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
   </div>
 
   <a class="markL" href="https://www.youtube.com/@Solo.ridersmx" target="_blank" rel="noopener"><img src="assets/solo-riders-header-primary.png" alt="Solo Riders"></a>
+  <button type="button" class="modelBtn" id="modelBtn" aria-haspopup="dialog" aria-controls="modelOv">Nuestro Modelo</button>
   <div class="socials">
     <a class="sbtn" href="https://www.youtube.com/@Solo.ridersmx" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg></a>
     <a class="sbtn" href="https://www.instagram.com/christiancars_/" target="_blank" rel="noopener" aria-label="Instagram de Christian Cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></a>
@@ -697,11 +766,14 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
       <span class="row">OUT-DRIFTED</span>
       <span class="row">GARAGE</span>
     </h1>
-    <p class="sub">Las piezas que <b>ya pasaron por nuestros autos</b> — instaladas, filmadas y con sus errores incluidos. Si no la hemos probado, te lo decimos.</p>
+    <p class="sub">No todo lo que ves aquí ya pasó por nuestros autos. Parte está <b>probada en el garage</b>, parte está <b>curada para el proyecto</b> y parte es lo que <b>queremos probar</b> — siempre te decimos cuál es cuál.</p>
     <div class="seals">
-      <span class="sl a">◆ Probado en el garage</span>
-      <span class="sl b">◆ Curado</span>
-      <span class="sl c">◆ Pendiente de prueba</span>
+      <button type="button" class="sl a" data-seal="a" aria-expanded="false" aria-controls="sealInfo">◆ Probado en el garage</button>
+      <button type="button" class="sl b" data-seal="b" aria-expanded="false" aria-controls="sealInfo">◆ Curado</button>
+      <button type="button" class="sl c" data-seal="c" aria-expanded="false" aria-controls="sealInfo">◆ Pendiente de prueba</button>
+    </div>
+    <div class="sealInfo" id="sealInfo" hidden role="region" aria-labelledby="sealInfoTitle" aria-live="polite">
+      <b id="sealInfoTitle"></b><span id="sealInfoText"></span>
     </div>
     <div class="start">
       <button class="btn-start" id="start">▶ Press Start</button>
@@ -709,6 +781,22 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
     </div>
   </div>
 </section>
+
+<div class="modelOv" id="modelOv" role="dialog" aria-modal="true" aria-labelledby="modelTit">
+  <div class="modelPanel">
+    <div class="modelBrand" aria-hidden="true">
+      <img src="assets/solo-riders-header-primary.png" alt="">
+    </div>
+    <button type="button" class="modelClose" id="modelClose" aria-label="Cerrar">✕</button>
+    <h2 id="modelTit">Nuestro Modelo</h2>
+    <div class="pillars4" aria-label="Qué es OUT-DRIFTED">
+      <div class="pl"><b>Selector de compatibilidad</b><span>Orienta por auto, configuración y objetivo; la compatibilidad final se confirma antes de cotizar.</span></div>
+      <div class="pl"><b>Educación para el principiante</b><span>Explica piezas, decisiones y riesgos sin asumir experiencia previa, y qué debe confirmarse antes de comprar.</span></div>
+      <div class="pl"><b>Cultura automotriz local y nacional</b><span>Conecta proyectos, talleres, marcas, rutas y aprendizaje de la comunidad mexicana.</span></div>
+      <div class="pl"><b>Ruta comercial transparente</b><span>Separa evidencia, curaduría e interés; distingue costo histórico de precio actual y confirma stock, versión, envío y fitment antes de cotizar.</span></div>
+    </div>
+  </div>
+</div>
 
 <!-- ============ RUN 01 · SELECT YOUR CAR ============ -->
 <section class="runsel" id="selectCar" aria-labelledby="selectCarTit">
@@ -1019,13 +1107,13 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
     <div class="inv-head">
       <div class="lbl">Garage · Inventario real</div>
       <h2 class="arc">Todo lo que <em id="invAutoNom">lleva el León</em></h2>
-      <p id="invAutoDesc">Cada pieza que se compró e instaló, con lo que costó y cuándo. Nada de aquí es una recomendación genérica: es el registro del build.</p>
+      <p id="invAutoDesc">No todo aquí fue comprado e instalado: el inventario mezcla piezas probadas en el garage, curadas para el proyecto y pendientes de prueba — ver leyenda de sellos. Nada de aquí es una recomendación genérica: es el registro del build.</p>
     </div>
 
     <div class="sellos">
-      <div class="sello-b ok"><div class="ico">◆</div><div><b>Probado</b><span>Instalado en el auto real, con episodio que lo muestra.</span></div></div>
-      <div class="sello-b cur"><div class="ico">✓</div><div><b>Curado por OUT-DRIFTED</b><span>Investigado y validado con proveedor; no equivale a instalación ni prueba propia.</span></div></div>
-      <div class="sello-b pen"><div class="ico">○</div><div><b>Pendiente</b><span>Candidato en investigación — todavía sin instalar.</span></div></div>
+      <div class="sello-b ok"><div class="ico">◆</div><div><b>Probado en el garage</b><span>Instalado y filmado: experiencia propia con evidencia vinculada.</span></div></div>
+      <div class="sello-b cur"><div class="ico">✓</div><div><b>Curado por OUT-DRIFTED</b><span>Seleccionado para el proyecto; comprado o contemplado, todavía sin prueba documentada en el auto.</span></div></div>
+      <div class="sello-b pen"><div class="ico">○</div><div><b>Pendiente de prueba</b><span>Pieza, tecnología o marca que queremos conocer y probar; todavía sin experiencia propia.</span></div></div>
     </div>
 
     <div class="vsel" id="vsel" role="tablist" aria-label="Elegir auto">
@@ -2336,9 +2424,9 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 (function(){
   const NOMBRE = { LEON:'lleva el León', SCHASIS:'lleva el S13', MIATA:'lleva la Miata' };
   const DESC = {
-    LEON: 'Cada pieza que se compró e instaló, con lo que costó y cuándo. Nada de aquí es una recomendación genérica: es el registro del build.',
-    SCHASIS: 'Cada pieza comprada, instalada o en investigación para el 240SX. Está en etapa de curación: todavía no hay video que respalde cada pieza, por eso no vas a ver el sello Probado aquí — ver leyenda de sellos.',
-    MIATA: 'Cada pieza comprada, instalada o en investigación para la Miata. Está en etapa de curación: todavía no hay video que respalde cada pieza, por eso no vas a ver el sello Probado aquí — ver leyenda de sellos.',
+    LEON: 'El registro del build del León: no todo aquí fue comprado e instalado. Cada pieza lleva su sello — probada en el garage, curada para el proyecto o pendiente de prueba — ver leyenda de sellos.',
+    SCHASIS: 'Inventario curado para el 240SX: piezas y herramientas compradas esperando instalación o contempladas para el proyecto, más piezas pendientes de prueba por interés o admiración. Todavía no hay video que respalde instalación o prueba en este auto, por eso no vas a ver el sello Probado en el garage aquí — ver leyenda de sellos.',
+    MIATA: 'Inventario curado para la Miata: piezas y herramientas compradas esperando instalación o contempladas para el proyecto, más piezas pendientes de prueba por interés o admiración. Todavía no hay video que respalde instalación o prueba en este auto, por eso no vas a ver el sello Probado en el garage aquí — ver leyenda de sellos.',
   };
 
   const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -2723,6 +2811,112 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ficha.classList.contains('open'))ficha.classList.remove('open');else if(e.key==='Escape'&&ov.classList.contains('open'))cerrarPista();});
   drawBase();
   if(new URLSearchParams(location.search).has('la-pista')) { const qs=new URLSearchParams(location.search); const q=qs.get('pista-filter'); const point=qs.get('pista-point'); if(q&&q!=='todos'&&data.taxonomy.some(t=>t.key===q)) active=q; setTimeout(()=>{window.abrirPista();if(point)openFicha(point);},0); }
+})();
+
+/* ===== NUESTRO MODELO · modal accesible ===== */
+(function(){
+  const btn=document.getElementById('modelBtn');
+  const ov=document.getElementById('modelOv');
+  const panel=ov?ov.querySelector('.modelPanel'):null;
+  const closeBtn=document.getElementById('modelClose');
+  if(!btn||!ov||!panel||!closeBtn) return;
+
+  function openModel(){
+    ov.classList.add('open');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown',onKeydown);
+  }
+  function closeModel(){
+    ov.classList.remove('open');
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',onKeydown);
+    btn.focus();
+  }
+  function onKeydown(e){
+    if(e.key==='Escape'){ closeModel(); return; }
+    if(e.key==='Tab'){
+      const focusable=panel.querySelectorAll('button, a[href]');
+      if(!focusable.length) return;
+      const first=focusable[0], last=focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  btn.addEventListener('click',openModel);
+  closeBtn.addEventListener('click',closeModel);
+  ov.addEventListener('click',e=>{ if(e.target===ov) closeModel(); });
+})();
+</script>
+<script>
+(function(){
+  const TEXT={
+    a:{title:'Probado en el garage',text:'Instalado y filmado: experiencia propia con evidencia vinculada.'},
+    b:{title:'Curado por OUT-DRIFTED',text:'Seleccionado para el proyecto; comprado o contemplado, todavía sin prueba documentada en el auto.'},
+    c:{title:'Pendiente de prueba',text:'Pieza, tecnología o marca que queremos conocer y probar; todavía sin experiencia propia.'}
+  };
+  const info=document.getElementById('sealInfo');
+  const infoTitle=document.getElementById('sealInfoTitle');
+  const infoText=document.getElementById('sealInfoText');
+  const buttons=Array.prototype.slice.call(document.querySelectorAll('.sl[data-seal]'));
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let active=null;
+  let closeTimer=null;
+  let closeListener=null;
+
+  function cancelPendingClose(){
+    if(closeTimer){ clearTimeout(closeTimer); closeTimer=null; }
+    if(closeListener){ info.removeEventListener('transitionend',closeListener); closeListener=null; }
+  }
+
+  function openSeal(btn){
+    const seal=btn.getAttribute('data-seal');
+    const data=TEXT[seal];
+    if(!data) return;
+    cancelPendingClose();
+    infoTitle.textContent=data.title;
+    infoText.textContent=data.text;
+    info.className='sealInfo tone-'+seal;
+    info.hidden=false;
+    void info.offsetHeight;
+    requestAnimationFrame(()=>{ info.classList.add('open'); });
+    buttons.forEach(b=>b.setAttribute('aria-expanded', b===btn ? 'true' : 'false'));
+    active=btn;
+  }
+  function closeSeal(){
+    if(!active) return;
+    cancelPendingClose();
+    info.classList.remove('open');
+    buttons.forEach(b=>b.setAttribute('aria-expanded','false'));
+    active=null;
+    if(reduceMotion.matches){
+      info.hidden=true;
+      return;
+    }
+    closeListener=function(e){
+      if(e.target!==info || e.propertyName!=='max-height') return;
+      cancelPendingClose();
+      info.hidden=true;
+    };
+    info.addEventListener('transitionend',closeListener);
+    closeTimer=setTimeout(function(){
+      cancelPendingClose();
+      info.hidden=true;
+    },350);
+  }
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(active===btn){ closeSeal(); }
+      else{ openSeal(btn); }
+    });
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && active){
+      const btn=active;
+      closeSeal();
+      btn.focus();
+    }
+  });
 })();
 </script>
 </body>
