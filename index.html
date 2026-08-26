@@ -1398,9 +1398,9 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 <div id="warp" aria-hidden="true"><canvas id="warpC"></canvas><div id="warpW">Arrancamos</div><div id="flash"></div></div>
 
 <!-- inventario real de los 3 autos, generado por export_3autos_web.py -->
-<script src="assets/leon-piezas.js?v=1787785959-four-logos-20260815"></script>
-<script src="assets/schasis-piezas.js?v=1787785959-four-logos-20260815"></script>
-<script src="assets/miata-piezas.js?v=1787785959"></script>
+<script src="assets/leon-piezas.js?v=1787787480-four-logos-20260815"></script>
+<script src="assets/schasis-piezas.js?v=1787787480-four-logos-20260815"></script>
+<script src="assets/miata-piezas.js?v=1787787480"></script>
 <!-- catálogo de La Pista (mapa nacional propio), generado desde data/la-pista-catalog-2026-08-10.json -->
 <script src="assets/la-pista-data.js?v=1"></script>
 <script src="assets/mx-geography.js?v=1"></script>
@@ -2755,7 +2755,12 @@ const LEAD_ENDPOINT = '';
     const lt = $('#ledgerN');
     if(lt) lt.textContent = D.resumen.piezas;   // el atajo muestra el tamaño real del ledger
     $('#mkMarcas').textContent = D.resumen.marcas;
-    $('#mkInv').textContent    = mxn(D.resumen.invertido);
+    /* Sin precios publicados esa casilla diria "$0". Se reemplaza por un dato
+       que si aporta: cuantas piezas llevan episodio enlazado. */
+    const hayPrecios = D.resumen.invertido !== null && D.resumen.invertido !== undefined;
+    const mkInvEl = $('#mkInv'), mkInvLbl = mkInvEl.nextElementSibling;
+    if(hayPrecios){ mkInvEl.textContent = mxn(D.resumen.invertido); mkInvLbl.textContent = 'Invertido MXN'; }
+    else { mkInvEl.textContent = D.resumen.conEpisodio || 0; mkInvLbl.textContent = 'Con episodio'; }
     // el León es el único con build propio: los otros dos siguen en curaduría,
     // así que su cifra fuerte es lo curado, no un cero de "probadas"
     const probadas = D.resumen.probadas || 0;
@@ -2919,7 +2924,7 @@ const LEAD_ENDPOINT = '';
 
   /* ---- el mapa: el mirador del Cerro; cada destino es un edificio del paisaje ---- */
   const infoDe=()=>({
-    garaje:{tit:'El Garage',  pie:mxn(D.resumen.invertido)+' invertidos'},
+    garaje:{tit:'El Garage',  pie:(D.resumen.invertido!=null? mxn(D.resumen.invertido)+' invertidos' : D.resumen.piezas+' piezas en el auto')},
     taller:{tit:'El Taller',  pie:D.resumen.piezas+' piezas'},
     marcas:{tit:'Refaccionaria',pie:D.resumen.marcas+' marcas'},
     // La Pista sí tiene datos: lo honesto es decir cuántos están verificados,
@@ -3129,7 +3134,9 @@ const LEAD_ENDPOINT = '';
           <div><b>${D.resumen.marcas}</b><span>Marcas</span></div>
           <div><b>${conVideo}</b><span>En video</span></div>
         </div>
-        <div class="ficha-precio"><div class="pag">${mxn(D.resumen.invertido)}<small>Invertido en piezas y trabajos</small></div></div>
+        ${D.resumen.invertido!=null
+            ? `<div class="ficha-precio"><div class="pag">${mxn(D.resumen.invertido)}<small>Invertido en piezas y trabajos</small></div></div>`
+            : ''}
       </div></div>`;
   }
 
