@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">OUT-DRIFTED · Mirador del León</title>
+  <desc id="desc">Boceto de dirección de arte: León rojo estacionado de perfil en un mirador con curvas de carretera, cuatro destinos y el Cerro de la Campana al fondo.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#08132a"/><stop offset=".45" stop-color="#26355d"/><stop offset=".78" stop-color="#bc5a50"/><stop offset="1" stop-color="#f0a35d"/></linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop stop-color="#ffe5a0"/><stop offset=".48" stop-color="#ffb761"/><stop offset="1" stop-color="#f67358" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#202849"/><stop offset="1" stop-color="#101a2b"/></linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2e3640"/><stop offset="1" stop-color="#10161d"/></linearGradient>
+    <linearGradient id="carPaint" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff5c53"/><stop offset=".3" stop-color="#df202b"/><stop offset=".78" stop-color="#9f1020"/><stop offset="1" stop-color="#570c18"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#87c7d7"/><stop offset=".32" stop-color="#263b58"/><stop offset="1" stop-color="#101626"/></linearGradient>
+    <linearGradient id="building" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#34404a"/><stop offset="1" stop-color="#121b23"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+    <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#ffd389" opacity=".22"/></pattern>
+  </defs>
+  <!-- sky / cinematic dusk -->
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="1120" cy="340" rx="310" ry="240" fill="url(#sun)" opacity=".85"/>
+  <g fill="#fff4cc" opacity=".72"><circle cx="130" cy="92" r="2"/><circle cx="270" cy="156" r="1.5"/><circle cx="401" cy="72" r="2"/><circle cx="523" cy="142" r="1"/><circle cx="737" cy="74" r="2"/><circle cx="853" cy="132" r="1.5"/><circle cx="1370" cy="121" r="2"/><circle cx="1491" cy="195" r="1.5"/></g>
+  <path d="M0 380 C160 305 265 354 412 290 C545 233 657 321 762 287 C901 239 969 294 1099 267 C1280 230 1440 286 1600 244 V560 H0Z" fill="#18203c"/>
+  <path d="M0 458 C170 351 292 436 435 382 C578 329 703 449 844 361 C997 268 1128 415 1256 346 C1397 271 1515 333 1600 301 V590 H0Z" fill="url(#ridge)"/>
+  <!-- Cerro de la Campana silhouette, original landscape interpretation -->
+  <path d="M900 478 C976 432 1017 386 1068 330 C1114 281 1171 222 1222 216 C1281 232 1310 303 1359 340 C1412 381 1485 412 1575 448 L1600 565 H862Z" fill="#151d27"/>
+  <path d="M1002 431 C1062 396 1103 337 1142 284 C1174 244 1210 223 1222 216 C1270 248 1299 319 1359 340" fill="none" stroke="#d98a55" stroke-width="5" opacity=".55"/>
+  <path d="M1219 216 L1223 105 M1203 216 L1196 135 M1238 222 L1250 155" stroke="#1b2029" stroke-width="7"/>
+  <path d="M1219 216 L1223 105 M1203 216 L1196 135 M1238 222 L1250 155" stroke="#ebb36b" stroke-width="2" opacity=".85"/>
+  <g fill="#ffd38e" filter="url(#glow)"><circle cx="1162" cy="337" r="4"/><circle cx="1195" cy="282" r="3"/><circle cx="1232" cy="247" r="4"/><circle cx="1280" cy="319" r="3"/><circle cx="1368" cy="383" r="3"/></g>
+  <!-- city at the foot of the hill -->
+  <path d="M0 512 C242 478 479 550 715 503 C910 468 1122 522 1600 470 V680 H0Z" fill="#151c25"/>
+  <g fill="#26323a"><path d="M910 522h42v90h-42zM961 495h64v117h-64zM1031 538h34v74h-34zM1072 488h80v124h-80zM1161 531h44v81h-44zM1280 504h68v108h-68zM1359 545h35v67h-35zM1404 497h71v115h-71zM1482 534h49v78h-49z"/></g>
+  <g fill="#ffd17a" opacity=".82"><rect x="973" y="514" width="8" height="5"/><rect x="992" y="533" width="8" height="5"/><rect x="1090" y="511" width="9" height="5"/><rect x="1124" y="548" width="9" height="5"/><rect x="1300" y="528" width="8" height="5"/><rect x="1430" y="521" width="9" height="5"/><rect x="1454" y="552" width="8" height="5"/></g>
+  <rect y="552" width="1600" height="348" fill="#0d1418"/>
+  <!-- winding mountain highway -->
+  <path d="M-70 840 C216 760 400 820 540 730 C670 646 573 616 692 570 C818 522 922 584 1011 638 C1117 702 1286 681 1665 567" fill="none" stroke="#080d12" stroke-width="102"/>
+  <path d="M-70 840 C216 760 400 820 540 730 C670 646 573 616 692 570 C818 522 922 584 1011 638 C1117 702 1286 681 1665 567" fill="none" stroke="url(#road)" stroke-width="82"/>
+  <path d="M-70 840 C216 760 400 820 540 730 C670 646 573 616 692 570 C818 522 922 584 1011 638 C1117 702 1286 681 1665 567" fill="none" stroke="#e9d6a2" stroke-width="2.5" opacity=".65"/>
+  <path d="M-70 840 C216 760 400 820 540 730 C670 646 573 616 692 570 C818 522 922 584 1011 638 C1117 702 1286 681 1665 567" fill="none" stroke="#eec866" stroke-width="4" stroke-dasharray="18 28" opacity=".85"/>
+  <path d="M270 900 C330 818 390 804 492 796" fill="none" stroke="#111b20" stroke-width="49"/>
+  <path d="M270 900 C330 818 390 804 492 796" fill="none" stroke="#e9d6a2" stroke-width="2" opacity=".6"/>
+  <!-- simple but dimensional location landmarks -->
+  <g transform="translate(375 682)"><path d="M0 49 L20 8 L144 8 L161 49Z" fill="#27323b"/><rect x="10" y="49" width="142" height="67" rx="2" fill="url(#building)" stroke="#d1dd13" stroke-width="3"/><rect x="30" y="69" width="67" height="47" fill="#0b1115"/><rect x="106" y="69" width="27" height="21" fill="#ffbd65"/><text x="81" y="38" text-anchor="middle" fill="#d1dd13" font-family="Arial Black, sans-serif" font-size="17">GARAGE</text></g>
+  <g transform="translate(626 516) scale(.78)"><path d="M0 49 L20 8 L144 8 L161 49Z" fill="#27323b"/><rect x="10" y="49" width="142" height="67" fill="url(#building)" stroke="#ff6a51" stroke-width="3"/><rect x="28" y="70" width="77" height="23" fill="#ffbd65"/><rect x="111" y="70" width="23" height="46" fill="#10161c"/><text x="81" y="38" text-anchor="middle" fill="#ff8a6c" font-family="Arial Black, sans-serif" font-size="17">REFACCIONES</text></g>
+  <g transform="translate(925 600) scale(.78)"><path d="M0 49 L20 8 L144 8 L161 49Z" fill="#27323b"/><rect x="10" y="49" width="142" height="67" fill="url(#building)" stroke="#22e0f5" stroke-width="3"/><rect x="28" y="66" width="78" height="50" fill="#0a1117"/><rect x="113" y="67" width="20" height="23" fill="#ffbd65"/><text x="81" y="38" text-anchor="middle" fill="#35eafa" font-family="Arial Black, sans-serif" font-size="17">TALLER</text></g>
+  <g transform="translate(1190 535) scale(.68)"><path d="M0 67 L21 11 L143 11 L162 67Z" fill="#28313a"/><path d="M12 67 L151 67 L133 124 L29 124Z" fill="#18222a" stroke="#b388ff" stroke-width="4"/><path d="M42 45h80" stroke="#b388ff" stroke-width="5"/><text x="82" y="38" text-anchor="middle" fill="#c9a9ff" font-family="Arial Black, sans-serif" font-size="17">PISTA</text></g>
+  <!-- foreground mirador -->
+  <path d="M480 820 L1105 820 L1214 900 H364Z" fill="#10191d" stroke="#617477" stroke-width="3"/>
+  <path d="M468 809 H1116" stroke="#d7e3da" stroke-width="4" opacity=".72"/>
+  <g fill="#ffc66e" filter="url(#glow)"><circle cx="540" cy="810" r="5"/><circle cx="700" cy="810" r="5"/><circle cx="860" cy="810" r="5"/><circle cx="1020" cy="810" r="5"/></g>
+  <!-- León: stylized profile illustration, based on known red 1P character; profile needs later source QA -->
+  <g transform="translate(576 650)">
+    <ellipse cx="260" cy="166" rx="282" ry="28" fill="#05090c" opacity=".62" filter="url(#soft)"/>
+    <path d="M15 144 L44 106 L105 89 L181 39 Q198 17 253 16 L368 20 Q413 23 443 55 L502 92 L550 113 L565 146 Q557 167 528 168 L41 168 Q17 163 15 144Z" fill="url(#carPaint)" stroke="#ff6b64" stroke-width="4"/>
+    <path d="M183 42 Q203 24 250 25 L354 29 Q395 33 426 62 L450 89 L191 89Z" fill="url(#glass)" stroke="#1b2633" stroke-width="4"/>
+    <path d="M274 27 L271 89 M366 31 L351 89" stroke="#d5e7e7" stroke-width="4" opacity=".52"/>
+    <path d="M48 109 L134 102 L156 116 L84 127 L33 127Z" fill="#111820"/><path d="M486 97 L535 113 L522 128 L474 120Z" fill="#141d24"/>
+    <path d="M462 116 L522 120" stroke="#f2d0ae" stroke-width="3"/><path d="M63 127 L126 127" stroke="#ffc36e" stroke-width="4"/>
+    <path d="M202 96 H431" stroke="#ff8e7d" stroke-width="3" opacity=".64"/>
+    <path d="M264 106 L276 106" stroke="#1f1218" stroke-width="5"/>
+    <path d="M452 78 L482 84 L475 97 L447 93Z" fill="#1a232b" stroke="#ff6b64" stroke-width="2"/>
+    <g><circle cx="142" cy="166" r="51" fill="#080d12" stroke="#e8edf0" stroke-width="6"/><circle cx="142" cy="166" r="31" fill="#66777f"/><circle cx="142" cy="166" r="10" fill="#151d23"/><path d="M142 136v60M112 166h60M121 145l42 42M163 145l-42 42" stroke="#e8edf0" stroke-width="5"/><circle cx="142" cy="166" r="5" fill="#e5403b"/></g>
+    <g><circle cx="445" cy="166" r="51" fill="#080d12" stroke="#e8edf0" stroke-width="6"/><circle cx="445" cy="166" r="31" fill="#66777f"/><circle cx="445" cy="166" r="10" fill="#151d23"/><path d="M445 136v60M415 166h60M424 145l42 42M466 145l-42 42" stroke="#e8edf0" stroke-width="5"/><circle cx="445" cy="166" r="5" fill="#e5403b"/></g>
+    <path d="M56 150 Q107 162 183 152 M401 151 Q469 162 528 148" fill="none" stroke="#ff8f7a" stroke-width="3" opacity=".55"/>
+  </g>
+  <g font-family="Arial Black, sans-serif"><text x="78" y="74" fill="#eaf2ec" font-size="31" letter-spacing="5">OUT-DRIFTED DISTRICT</text><text x="80" y="108" fill="#ffc36e" font-size="15" letter-spacing="3">MIRADOR · HERMOSILLO · RUTA DEL LEÓN</text><text x="80" y="832" fill="#d1dd13" font-size="19" letter-spacing="3">SEAT LEÓN FR · ESTACIONADO</text><text x="80" y="858" fill="#a7bbc0" font-family="Arial, sans-serif" font-size="15">Dirección de arte preliminar · composición y estilo antes de integrar al mapa</text></g>
+  <rect width="1600" height="900" fill="url(#dots)" opacity=".16"/>
+</svg>

@@ -149,6 +149,77 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
   .modelBrand img{width:175px;left:-5.6px;top:-5.95px}
 }
 
+/* ===== RUTAS PROBADAS POR SOLO RIDERS ===== */
+.routes-bar{position:relative;z-index:4;padding:22px 20px;text-align:center;border-top:2px solid var(--line)}
+.routes-btn{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:.03em;
+  font-size:.86rem;line-height:1;color:var(--hot);background:#04090bcc;border:2px solid var(--hot);
+  padding:13px 20px;min-height:46px;cursor:pointer;transition:.16s}
+.routes-btn:before{content:"◆ ";font-size:.8em;opacity:.85}
+.routes-btn:hover,.routes-btn[aria-expanded="true"]{color:#0d1100;background:var(--hot)}
+.routes-btn:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+
+.routes-ov{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:#02060799}
+.routes-ov.open{display:flex}
+.routes-panel{position:relative;max-width:1040px;width:100%;max-height:88vh;overflow:auto;background:#04090bf5;border:2px solid var(--hot);padding:32px 22px 26px;
+  box-shadow:0 30px 70px -20px #000}
+.routes-panel h2{margin:0 0 16px;text-align:center;font-family:"Archivo Black",sans-serif;text-transform:uppercase;
+  font-size:clamp(1.1rem,3vw,1.6rem);color:var(--ink)}
+.routes-close{position:absolute;top:10px;right:10px;z-index:6;width:44px;height:44px;min-width:44px;min-height:44px;border:2px solid var(--line);background:#04090bcc;color:#b6c6c4;
+  font-size:1rem;line-height:1;cursor:pointer;transition:.16s}
+.routes-close:hover{color:var(--acid);border-color:var(--acid)}
+.routes-close:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+
+.routes-intro{margin:0 0 16px;text-align:center;font-size:.92rem;color:#c3d1d0;line-height:1.5}
+.routes-card{display:block;width:100%;max-width:420px;margin:0 auto;border:2px solid var(--hot);background:#0c0408;
+  padding:20px 22px;text-align:left;cursor:pointer;transition:.16s}
+.routes-card:hover{background:#1a0a10}
+.routes-card:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+.routes-card-name{display:block;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.2rem;color:var(--hot)}
+.routes-card-count{display:block;margin-top:8px;font-size:.86rem;color:#c3d1d0}
+
+.routes-grid-hd{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.routes-back{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:.82rem;
+  color:var(--ink);background:#04090bcc;border:2px solid var(--line);padding:12px 16px;min-height:44px;min-width:44px;cursor:pointer;transition:.16s}
+.routes-back:hover{border-color:var(--hot);color:var(--hot)}
+.routes-back:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+.routes-grid-title{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.routes-editorial{margin:0 0 18px;font-size:.8rem;line-height:1.5;color:var(--muted);border-left:3px solid var(--hot);padding-left:12px}
+
+.routes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.routes-item{border:1px solid var(--line);background:#08131599;padding:16px;display:flex;flex-direction:column;gap:10px}
+.routes-item-media{width:100%;aspect-ratio:4/3;border:1px dashed var(--line);display:grid;place-items:center;background:#04090b;overflow:hidden}
+.routes-item-media.has-photo{background:#f4f6f0;border-style:solid;padding:8px}
+.routes-item-media img{width:100%;height:100%;object-fit:contain;display:block}
+.routes-item-media .routes-pending-tag{font-size:.66rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.routes-item-name{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:.98rem;line-height:1.25;color:var(--ink)}
+.routes-item-system{font-size:.72rem;color:var(--muted)}
+.routes-item-brand{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.routes-item-logobox{width:144px;height:44px;display:flex;align-items:center;justify-content:center;background:#f4f6f0;border:1px solid var(--line);flex:0 0 auto}
+.routes-item-logobox img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain}
+.routes-item-brand-name{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:.66rem;letter-spacing:.04em;color:var(--muted)}
+.routes-item-brand-text{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;
+  color:var(--muted);border:1px solid var(--line);padding:5px 9px}
+.routes-item-logo-warning{font-size:.64rem;line-height:1.35;letter-spacing:.03em;color:#e6c229;border:1px solid #e6c229;padding:4px 7px;max-width:144px}
+.routes-item-link{display:inline-block;align-self:flex-start;font-family:"Archivo Black",sans-serif;text-transform:uppercase;
+  font-size:.72rem;letter-spacing:.03em;color:#0d1100;background:var(--hot);border:2px solid var(--hot);padding:9px 13px;min-height:38px;
+  text-decoration:none;transition:.16s}
+.routes-item-link:hover{background:#e6f31d;border-color:#e6f31d}
+.routes-item-link-pending{display:inline-block;align-self:flex-start;font-family:"Archivo Black",sans-serif;text-transform:uppercase;
+  font-size:.66rem;letter-spacing:.06em;color:var(--dim);border:1px solid var(--line);padding:8px 12px}
+
+@media(max-width:640px){
+  .routes-panel{padding:26px 16px 20px}
+  .routes-grid{grid-template-columns:1fr 1fr}
+  .routes-item-logobox{width:120px;height:40px}
+  .routes-item-logo-warning{max-width:120px}
+}
+@media(max-width:420px){
+  .routes-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .routes-btn,.routes-card,.routes-back,.routes-item-link{transition:none}
+}
+
 /* ===== FLOW ===== */
 .flow{position:relative;z-index:2;padding:0 20px 120px;border-top:2px solid var(--line)}
 .flow-in{max-width:var(--max);margin:auto}
@@ -244,6 +315,7 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .res.go .res-card{animation:up .5s both;animation-delay:var(--d,0ms)}
 .res-img{height:150px;overflow:hidden;position:relative;background:#060f11}
 .res-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.08);transition:transform .4s}
+.res-brand-badge{position:absolute;left:8px;bottom:8px;width:auto;height:22px;max-width:80px;object-fit:contain;background:#fff;padding:3px 6px;border-radius:3px;filter:none;transition:none}
 .res-card:hover .res-img img{transform:scale(1.05)}
 .pill{position:absolute;left:0;bottom:0;font-family:"Archivo Black",sans-serif;font-size:.56rem;letter-spacing:.1em;padding:6px 10px;text-transform:uppercase}
 .pill.ok{background:var(--acid);color:#0d1100}
@@ -262,6 +334,20 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .empty p{color:var(--muted);margin:0 auto 18px;max-width:470px;font-size:.9rem}
 
 /* ===== DOCK — discreet side tab, opens on demand ===== */
+.ledger-tab{position:fixed;right:0;top:50%;z-index:61;transform:translateY(calc(-50% - 132px));
+  display:flex;align-items:center;gap:7px;writing-mode:vertical-rl;rotate:180deg;
+  padding:16px 9px;background:#061112f2;border:1px solid #223639;border-right:0;
+  backdrop-filter:blur(14px);box-shadow:0 22px 54px -26px #000;
+  color:#c7d6d3;font-size:.58rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;
+  transition:color .2s,background .2s,border-color .2s}
+.ledger-tab:hover,.ledger-tab:focus-visible{color:var(--acid);background:#0e1a12;border-color:var(--acid)}
+.ledger-tab .dot{color:var(--acid)}
+.ledger-tab b{font-family:ui-monospace,Menlo,monospace;color:var(--acid);letter-spacing:.04em}
+@media(max-width:560px){
+  /* en móvil la columna derecha ya la ocupa el dock: el atajo se va abajo a la izquierda */
+  .ledger-tab{top:auto;bottom:0;right:auto;left:0;transform:none;writing-mode:horizontal-tb;rotate:none;
+    padding:11px 15px;border:1px solid #223639;border-left:0;border-bottom:0}
+}
 .dock{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:60;display:flex;align-items:stretch;
   background:#061112f2;border:1px solid #223639;border-right:0;backdrop-filter:blur(14px);
   box-shadow:0 22px 54px -26px #000;transition:transform .38s cubic-bezier(.16,1,.3,1),border-color .25s}
@@ -277,6 +363,9 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .chip.k{border-color:#5d6b1a;color:var(--acid)}
 .dock input{width:100%;height:40px;border:1px solid #26383a;background:#040c0d;color:var(--ink);padding:0 10px;font-size:.82rem;margin-bottom:8px}
 .dock input::placeholder{color:#5f7273}
+.dock input:disabled{opacity:.5;cursor:not-allowed}
+.dock .send:disabled{opacity:.6;cursor:not-allowed}
+.dock-err{margin:8px 0 0;font-size:.72rem;line-height:1.45;color:var(--flame)}
 .dock input:focus{outline:none;border-color:var(--acid)}
 .dock .send{width:100%;min-height:40px;border:0;background:#1d2907;color:var(--acid);font-family:"Archivo Black",sans-serif;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;border:1px solid #4d5a12;transition:.15s}
 .dock .send:hover{background:var(--acid);color:#0d1100;border-color:var(--acid)}
@@ -393,6 +482,16 @@ button,a,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoratio
 .gt-lg{height:74px;display:grid;place-items:center;background:#101f22;border-bottom:1px solid var(--line);padding:10px}
 .gt-lg img{max-height:52px;max-width:78%;object-fit:contain}
 .gt-lg .ini{font-family:"Archivo Black",sans-serif;font-size:1.1rem;color:#5e7072}
+/* caja de logo uniforme para los logos aprobados en la hoja LOGOS del XLSX: fondo claro para que marcas oscuras sigan siendo legibles */
+.lgplate{display:flex;align-items:center;justify-content:center;background:#f4f6f0;border:1px solid var(--line);padding:5px;
+  width:100%;height:100%;max-width:144px;max-height:44px;box-sizing:border-box;overflow:hidden}
+.lgplate img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+/* variante para logos cuyo wordmark es blanco: sobre la placa clara serían ilegibles */
+.lgplate.is-oscura{background:#101f22}
+.gt-lg .lgplate{max-height:54px}
+.oem-aviso{display:block;font-size:.5rem;font-weight:900;letter-spacing:.06em;line-height:1.35;text-transform:uppercase;
+  color:#e6c229;border:1px solid #e6c229;padding:3px 5px;margin-bottom:8px}
+.ficha-top .oem-aviso{margin:6px 0 0;max-width:280px}
 .gt-bd{padding:12px 13px 13px;display:flex;flex-direction:column;flex:1}
 .gt-bd b{display:block;font-size:.84rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .gt-bd .sis{font-size:.54rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
@@ -621,9 +720,19 @@ body.shake{animation:sh .4s cubic-bezier(.36,.07,.19,.97) 2}
 .pz-nom{min-width:0}
 .pz-nom b{display:block;font-size:.9rem;font-weight:700;color:#eaf1ef;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pz-meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:4px}
+/* contexto escrito a mano (p.ej. el récord del DSG): explica por qué la pieza sigue en el ledger */
+.pz-nota{margin:7px 0 0;padding-left:9px;border-left:2px solid var(--flame);font-size:.72rem;line-height:1.5;color:#9fb2af;max-width:62ch}
 .tg{font-size:.52rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:1px solid #2b3e3a;color:#8ea19e}
+.filtros.clases{margin-bottom:8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.filtros.clases .chipf b{font-family:ui-monospace,Menlo,monospace;opacity:.7;margin-left:3px}
 .tg.ok{border-color:var(--acid);color:var(--acid)}
-.tg.rev{border-color:var(--flame);color:var(--flame)}
+.tg.cur{border-color:var(--teal);color:var(--teal)}
+.tg.pen{border-color:#5e7072;color:#8ea19e}
+/* el episodio es evidencia enlazada, no un sello: se distingue del chip de sello */
+.tg.ep{border-color:var(--flame);color:var(--flame)}
+.tg.sinvid{border-style:dashed;border-color:#3a4a48;color:#7b8c89;text-transform:none;letter-spacing:.02em}
+.ep-cnt{display:block;margin-top:6px;color:var(--acid);font-weight:900}
+.ep-cnt:empty{display:none}
 .tg.pn{border-color:var(--teal);color:var(--teal);font-family:ui-monospace,Menlo,monospace}
 .tg a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .pz-pag{text-align:right;font-size:.82rem;color:#9fb0ad;white-space:nowrap}
@@ -650,7 +759,7 @@ body.shake{animation:sh .4s cubic-bezier(.36,.07,.19,.97) 2}
 
 footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px 20px 120px;text-align:center;color:var(--dim);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;font-weight:900}
 
-.evidence-matrix,.clutch-console{margin:28px 0;border:2px solid var(--line);background:rgba(10,20,24,.92);box-shadow:0 18px 44px -30px #000}.ev-title,.clutch-top{padding:16px 18px;border-bottom:2px solid var(--line);display:flex;gap:12px;align-items:center;justify-content:space-between}.ev-title b,.clutch-top b{font-family:"Archivo Black",sans-serif;text-transform:uppercase;color:var(--acid);font-size:.82rem}.ev-title span,.clutch-top span,.ev-row span,.clutch-console p{color:var(--muted);font-size:.76rem}.ev-row{display:grid;grid-template-columns:1.2fr 1.2fr auto;gap:16px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.ev-row:last-child{border:0}.ev-row b,.ev-row span{display:block}.ev-row small{display:block;color:var(--flame);font-weight:900;font-size:.55rem;letter-spacing:.1em}.ev-row a{border:2px solid var(--teal);padding:8px 10px;color:var(--teal);font-weight:900;font-size:.65rem;white-space:nowrap}.ev-empty{padding:18px;color:var(--muted);font-weight:700}.clutch-top img{max-width:110px;max-height:38px;object-fit:contain;filter:brightness(1.2)}.clutch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 18px}.clutch-grid span{border:1px solid var(--line);padding:10px;color:var(--paper);font-size:.72rem;font-weight:900}.clutch-console p{padding:0 18px 16px;margin:0}.miata-evidence{position:relative;z-index:2;padding:72px 20px;background:linear-gradient(180deg,#071014,#04090b)}.miata-evidence-in{max-width:var(--max);margin:auto}.miata-ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.miata-source{color:var(--muted);font-size:.8rem}.fitment[hidden],.miata-evidence[hidden],.clutch-console[hidden]{display:none}.fitment{position:fixed;inset:0;z-index:55;background:rgba(1,5,7,.82);display:grid;place-items:center;padding:18px}.fitment-in{position:relative;max-width:700px;width:100%;max-height:90vh;overflow:auto;border:2px solid var(--acid);background:#091418;padding:26px;box-shadow:0 0 60px rgba(209,221,19,.18)}.fitment-close{position:absolute;right:12px;top:12px;border:0;background:transparent;color:var(--paper);font-size:1.2rem}.fitment-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.fitment-grid label{font-size:.64rem;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.fitment-grid input,.fitment-grid select,.fitment-grid textarea{display:block;width:100%;margin-top:5px;background:#050b0e;border:1px solid var(--line);color:var(--paper);padding:10px}.fitment-grid textarea{min-height:86px;resize:vertical}.fitment-grid .full{grid-column:1/-1}.fitment-result{padding:10px;border:1px solid var(--teal);color:var(--teal);font-size:.8rem}@media(max-width:700px){.ev-row{grid-template-columns:1fr}.clutch-grid,.fitment-grid,.miata-ledger{grid-template-columns:1fr}.ev-title{align-items:flex-start;flex-direction:column}}
+.evidence-matrix,.clutch-console{margin:28px 0;border:2px solid var(--line);background:rgba(10,20,24,.92);box-shadow:0 18px 44px -30px #000}.ev-title,.clutch-top{padding:16px 18px;border-bottom:2px solid var(--line);display:flex;gap:12px;align-items:center;justify-content:space-between}.ev-title b,.clutch-top b{font-family:"Archivo Black",sans-serif;text-transform:uppercase;color:var(--acid);font-size:.82rem}.ev-title span,.clutch-top span,.ev-row span,.clutch-console p{color:var(--muted);font-size:.76rem}.ev-row{display:grid;grid-template-columns:1.2fr 1.2fr auto;gap:16px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.ev-row:last-child{border:0}.ev-row b,.ev-row span{display:block}.ev-row small{display:block;color:var(--flame);font-weight:900;font-size:.55rem;letter-spacing:.1em}.ev-row a{border:2px solid var(--teal);padding:8px 10px;color:var(--teal);font-weight:900;font-size:.65rem;white-space:nowrap}.ev-empty{padding:18px;color:var(--muted);font-weight:700}.clutch-top img{max-width:110px;max-height:38px;object-fit:contain;filter:brightness(1.2)}.ev-brand-badge{display:inline-block;vertical-align:middle;margin-left:8px;width:auto;height:18px;max-width:70px;object-fit:contain;background:#fff;padding:2px 5px;border-radius:3px}.clutch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 18px}.clutch-grid span{border:1px solid var(--line);padding:10px;color:var(--paper);font-size:.72rem;font-weight:900}.clutch-console p{padding:0 18px 16px;margin:0}.miata-evidence{position:relative;z-index:2;padding:72px 20px;background:linear-gradient(180deg,#071014,#04090b)}.miata-evidence-in{max-width:var(--max);margin:auto}.miata-ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.miata-source{color:var(--muted);font-size:.8rem}.fitment[hidden],.miata-evidence[hidden],.clutch-console[hidden]{display:none}.fitment{position:fixed;inset:0;z-index:55;background:rgba(1,5,7,.82);display:grid;place-items:center;padding:18px}.fitment-in{position:relative;max-width:700px;width:100%;max-height:90vh;overflow:auto;border:2px solid var(--acid);background:#091418;padding:26px;box-shadow:0 0 60px rgba(209,221,19,.18)}.fitment-close{position:absolute;right:12px;top:12px;border:0;background:transparent;color:var(--paper);font-size:1.2rem}.fitment-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.fitment-grid label{font-size:.64rem;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.fitment-grid input,.fitment-grid select,.fitment-grid textarea{display:block;width:100%;margin-top:5px;background:#050b0e;border:1px solid var(--line);color:var(--paper);padding:10px}.fitment-grid textarea{min-height:86px;resize:vertical}.fitment-grid .full{grid-column:1/-1}.fitment-result{padding:10px;border:1px solid var(--teal);color:var(--teal);font-size:.8rem}@media(max-width:700px){.ev-row{grid-template-columns:1fr}.clutch-grid,.fitment-grid,.miata-ledger{grid-template-columns:1fr}.ev-title{align-items:flex-start;flex-direction:column}}
 
 /* ===== RUN SETUP · SELECT YOUR CAR / SELECT YOUR SERIES ===== */
 .runsel{position:relative;z-index:2;padding:74px 20px 78px;border-top:2px solid var(--line);
@@ -739,6 +848,68 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
   .opt,.res-card,.sub,.seals,.legend3,.pillars4,.start,.hero-car{opacity:1!important}
   #grid3d,.scan{display:none}
 }
+
+/* --- Los tres botones de la ficha ---
+   Episodio (YouTube) · Comprar la pieza · Conocer la marca.
+   Cada uno dice a dónde lleva y lo respalda con su marca visual. */
+.ficha-acc .btn-yt,
+.ficha-acc .btn-marca{display:inline-flex;align-items:center;gap:.55rem;line-height:1}
+.ficha-acc .btn-yt svg.yt{width:26px;height:19px;display:block;flex:0 0 auto}
+
+/* Comprar: es la acción comercial, así que pesa más que "conocer la marca". */
+.ficha-acc .btn-comprar{font-weight:700;letter-spacing:.01em}
+
+/* La chapa del logo: fondo claro para que cualquier logo se lea.
+   Los wordmarks blancos llevan chapa oscura, decidido por ruta exacta del asset. */
+.ficha-acc .btn-marca .mplate{display:flex;align-items:center;justify-content:center;
+  background:#fff;border-radius:6px;padding:5px 8px;min-width:58px;min-height:34px}
+.ficha-acc .btn-marca .mplate.is-oscura{background:#0d0d0d;border:1px solid #333}
+.ficha-acc .btn-marca .mplate img{height:24px;width:auto;max-width:104px;object-fit:contain;display:block}
+.ficha-acc .btn-marca .mplate.is-ini{background:#1b1b1b;color:var(--ink,#eee);
+  font-weight:700;font-size:.78rem;letter-spacing:.05em}
+.ficha-acc .btn-marca:hover .mplate{box-shadow:0 0 0 2px var(--acid,#d1dd13)}
+/* El botón de marca carga logo + texto, así que necesita más base que los otros dos.
+   Con flex-wrap prefiere bajar a su propio renglón antes que desbordarse. */
+/* Cada botón declara la base que su contenido necesita. Sin esto heredan
+   min-width:132px y el texto se recorta dentro del propio botón. */
+.ficha-acc .btn-yt{flex:1 1 190px;min-width:184px;padding:0 12px;box-sizing:border-box}
+.ficha-acc .btn-comprar{flex:1 1 168px;min-width:160px;padding:0 12px;box-sizing:border-box}
+.ficha-acc .btn-marca{flex:1 1 224px;min-width:212px;padding:0 12px;box-sizing:border-box}
+/* La etiqueta no se parte: un botón en dos renglones se lee como dos botones. */
+.ficha-acc .btn-yt span,
+.ficha-acc .btn-marca span,
+.ficha-acc .btn-comprar span{white-space:nowrap}
+/* En pantalla angosta los tres se apilan a lo ancho en vez de apretarse. */
+@media (max-width:560px){
+  .ficha-acc .btn-yt,.ficha-acc .btn-comprar,.ficha-acc .btn-marca{width:100%;justify-content:center}
+}
+
+/* Selector de auto dentro del overlay de locales. */
+.loc-autos{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.loc-autos button{border:2px solid var(--line);background:transparent;color:#9fb0ad;
+  font-family:"Archivo Black",sans-serif;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:9px 13px;cursor:pointer;line-height:1}
+.loc-autos button:hover{color:var(--ink,#dbe5e3);border-color:#3a4a48}
+.loc-autos button.on{color:#06211f;background:var(--acid,#d1dd13);border-color:var(--acid,#d1dd13)}
+/* Autos sin foto de estudio: se dice, no se rellena con una imagen prestada. */
+.garaje-sinfoto{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;min-height:190px;padding:22px;text-align:center}
+.garaje-sinfoto span{font-family:"Archivo Black",sans-serif;font-size:1.05rem;letter-spacing:.03em}
+.garaje-sinfoto small{color:var(--dim,#7d8f8c);font-size:.72rem;letter-spacing:.04em}
+
+/* La fila del inventario abre la ficha: se comporta y se ve como accionable. */
+.pz[data-ficha]{cursor:pointer}
+.pz[data-ficha]:hover{background:#0e1b1e}
+.pz[data-ficha]:focus-visible{outline:2px solid var(--acid,#d1dd13);outline-offset:-2px}
+
+/* Chapa de los logos en el grid de marcas: fondo claro para que cualquier logo
+   se lea sobre la tarjeta oscura; oscura para los wordmarks blancos. */
+#gridMarcas .mkplate{display:inline-flex;align-items:center;justify-content:center;
+  background:#fff;border-radius:6px;padding:4px 8px;height:38px;max-width:100%;box-sizing:border-box}
+#gridMarcas .mkplate.is-oscura{background:#0d0d0d;border:1px solid #333}
+/* La altura la manda .lg (38px). Sin medidas explícitas, el selector con #id
+   pisaba el max-height:38px de la regla base y el logo se salía de su tarjeta. */
+#gridMarcas .mkplate img{max-height:28px;max-width:88px;width:auto;height:auto;object-fit:contain;display:block}
 </style>
 </head>
 <body>
@@ -781,6 +952,36 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
     </div>
   </div>
 </section>
+
+<section class="routes-bar" aria-label="Rutas probadas por Solo Riders">
+  <div class="routes-bar-in">
+    <button type="button" class="routes-btn" id="routesBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="routesOv">◆ Rutas Probadas por Solo Riders</button>
+  </div>
+</section>
+
+<div class="routes-ov" id="routesOv" role="dialog" aria-modal="true" aria-labelledby="routesTit">
+  <div class="routes-panel">
+    <button type="button" class="routes-close" id="routesClose" aria-label="Cerrar">✕</button>
+    <h2 id="routesTit">Rutas Probadas por Solo Riders</h2>
+
+    <div class="routes-view" id="routesSelectorView">
+      <p class="routes-intro">Elige una ruta probada por Solo Riders para ver las piezas relacionadas.</p>
+      <button type="button" class="routes-card" id="routeCardSwapManual">
+        <span class="routes-card-name">SWAP A MANUAL</span>
+        <span class="routes-card-count" id="routeCardSwapManualCount">23 piezas relacionadas</span>
+      </button>
+    </div>
+
+    <div class="routes-view" id="routesGridView" hidden>
+      <div class="routes-grid-hd">
+        <button type="button" class="routes-back" id="routesBack">◀ Volver a rutas</button>
+        <span class="routes-grid-title" id="routesGridTitle">SWAP A MANUAL</span>
+      </div>
+      <p class="routes-editorial">Selección histórica de piezas relacionadas con el proyecto. No es una lista universal de compatibilidad ni una BOM cerrada. Confirma VIN, motor, caja y donante antes de comprar.</p>
+      <div class="routes-grid" id="routesGrid" role="list" aria-label="Piezas de la ruta SWAP A MANUAL"></div>
+    </div>
+  </div>
+</div>
 
 <div class="modelOv" id="modelOv" role="dialog" aria-modal="true" aria-labelledby="modelTit">
   <div class="modelPanel">
@@ -920,7 +1121,7 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 
     <div class="run-cta" id="runCta" hidden>
       <div>
-        <b>RUN 03/03 · Siguiente</b>
+        <b>RUN 03/04 · Siguiente</b>
         <span id="runLock">—</span>
       </div>
       <button type="button" id="runContinue">Continuar al Player Select ▶</button>
@@ -980,10 +1181,10 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 <section class="flow" id="flow">
   <div class="hud">
     <div class="hud-in">
-      <div class="hs on" data-h="1"><b>01 · Nivel</b><span id="h1">— — —</span></div>
-      <div class="hs" data-h="2"><b>02 · Auto</b><span id="h2">— — —</span></div>
-      <div class="hs" data-h="3"><b>03 · Objetivo</b><span id="h3">— — —</span></div>
-      <div class="hs" data-h="4"><b>04 · Soluciones</b><span id="h4">— — —</span></div>
+      <div class="hs on" data-h="1"><b>RUN 03 · Nivel</b><span id="h1">— — —</span></div>
+      <div class="hs hs-omitido" data-h="2" hidden><b>Auto · confirmar</b><span id="h2">— — —</span></div>
+      <div class="hs" data-h="3"><b>RUN 04 · Objetivo</b><span id="h3">— — —</span></div>
+      <div class="hs" data-h="4"><b>Soluciones</b><span id="h4">— — —</span></div>
     </div>
   </div>
   <div class="flow-in">
@@ -1022,7 +1223,7 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 
     <!-- STEP 2 -->
     <div class="step" data-step="2">
-      <div class="stage"><div class="lbl">Car Select</div><h2 class="arc">Elige <em>tu máquina</em></h2><p>Lo que sirve en uno puede arruinarte el otro. Aquí cambia todo.</p></div>
+      <div class="stage"><div class="lbl">Car Select</div><h2 class="arc">Confirma <em>tu máquina</em></h2><p>Ya la elegiste arriba y viene marcada. Cámbiala aquí si te arrepentiste — lo que sirve en uno puede arruinarte el otro.</p></div>
       <div class="opts c3 pre" data-grid="2">
         <button class="opt" data-accent="acid" data-v="leon" data-label="SEAT León FR" style="--fx:-200px;--ry:26deg;--d:0ms">
           <div class="opt-img"><img src="assets/car-leon-fr.jpg" alt="SEAT León FR"></div>
@@ -1107,11 +1308,11 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
     <div class="inv-head">
       <div class="lbl">Garage · Inventario real</div>
       <h2 class="arc">Todo lo que <em id="invAutoNom">lleva el León</em></h2>
-      <p id="invAutoDesc">No todo aquí fue comprado e instalado: el inventario mezcla piezas probadas en el garage, curadas para el proyecto y pendientes de prueba — ver leyenda de sellos. Nada de aquí es una recomendación genérica: es el registro del build.</p>
+      <p id="invAutoDesc">El registro del build del León. Lo que ya está montado y rodado en el auto lleva el sello Probado en el garage; lo que todavía no se ha subido al auto lleva Pendiente de prueba. Nada aquí es recomendación genérica — ver leyenda de sellos.</p>
     </div>
 
     <div class="sellos">
-      <div class="sello-b ok"><div class="ico">◆</div><div><b>Probado en el garage</b><span>Instalado y filmado: experiencia propia con evidencia vinculada.</span></div></div>
+      <div class="sello-b ok"><div class="ico">◆</div><div><b>Probado en el garage</b><span>Instalado y usado en el auto: experiencia propia. Las que además tienen episodio llevan el enlace <em>▶ Episodio</em>; las que no, lo dicen con <em>Sin video que lo documente</em>.<b id="sellosEp" class="ep-cnt"></b></span></div></div>
       <div class="sello-b cur"><div class="ico">✓</div><div><b>Curado por OUT-DRIFTED</b><span>Seleccionado para el proyecto; comprado o contemplado, todavía sin prueba documentada en el auto.</span></div></div>
       <div class="sello-b pen"><div class="ico">○</div><div><b>Pendiente de prueba</b><span>Pieza, tecnología o marca que queremos conocer y probar; todavía sin experiencia propia.</span></div></div>
     </div>
@@ -1126,13 +1327,14 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
       <div class="mk"><b id="mkPiezas">—</b><span>Piezas</span></div>
       <div class="mk"><b id="mkMarcas">—</b><span>Marcas</span></div>
       <div class="mk"><b id="mkInv">—</b><span>Invertido MXN</span></div>
-      <div class="mk"><b id="mkProb">—</b><span>Con episodio</span></div>
+      <div class="mk"><b id="mkProb">—</b><span id="mkProbLbl">Probadas en el garage</span></div>
     </div>
 
     <div class="marcas" id="gridMarcas"></div>
 
     <div class="inv-tools">
       <input type="search" id="buscaPieza" placeholder="Buscar pieza, marca o número de parte…" aria-label="Buscar pieza">
+      <div class="filtros clases" id="filtroClases" role="group" aria-label="Filtrar por tipo"></div>
       <div class="filtros" id="filtroSistemas"></div>
     </div>
 
@@ -1171,6 +1373,13 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 
 <footer>OUT-DRIFTED Garage · Solo Riders · Concepto en validación · Sin checkout ni inventario activo</footer>
 
+<!-- Atajo permanente al ledger. Es <a href="#inventario"> a propósito: el salto lo
+     hace el navegador de forma nativa, funciona sin JavaScript y Google lo ve como
+     un enlace real hacia la sección que más nos interesa posicionar. -->
+<a class="ledger-tab" id="ledgerTab" href="#inventario">
+  <span class="dot" aria-hidden="true">◆</span> Ledger<b id="ledgerN"></b>
+</a>
+
 <aside class="dock min" id="dock" aria-label="Recibe la guía de tu auto">
   <button class="dock-tab" id="dockMin" aria-expanded="false" aria-controls="dockBody"><span class="dot">◆</span> Tu guía por correo</button>
   <div class="dock-bd" id="dockBody">
@@ -1180,6 +1389,7 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
       <input type="email" id="dockMail" placeholder="tu@correo.com" required>
       <button class="send" type="submit">Mandarme la guía</button>
       <p class="fine">Sin spam. Te escribimos cuando haya algo real para tu auto.</p>
+      <p class="dock-err" id="dockErr" role="alert" hidden></p>
     </form>
     <div class="dock-ok"><div class="tick">✓</div><p><b>Listo.</b> Te llega en cuanto esté la ruta de tu auto.</p></div>
   </div>
@@ -1188,12 +1398,14 @@ footer{position:relative;z-index:2;border-top:2px solid var(--line);padding:26px
 <div id="warp" aria-hidden="true"><canvas id="warpC"></canvas><div id="warpW">Arrancamos</div><div id="flash"></div></div>
 
 <!-- inventario real de los 3 autos, generado por export_3autos_web.py -->
-<script src="assets/leon-piezas.js?v=1785960315"></script>
-<script src="assets/schasis-piezas.js?v=1785960315"></script>
-<script src="assets/miata-piezas.js?v=1785960315"></script>
+<script src="assets/leon-piezas.js?v=1787785959-four-logos-20260815"></script>
+<script src="assets/schasis-piezas.js?v=1787785959-four-logos-20260815"></script>
+<script src="assets/miata-piezas.js?v=1787785959"></script>
 <!-- catálogo de La Pista (mapa nacional propio), generado desde data/la-pista-catalog-2026-08-10.json -->
 <script src="assets/la-pista-data.js?v=1"></script>
 <script src="assets/mx-geography.js?v=1"></script>
+<!-- ruta SWAP A MANUAL, generada desde data/swap-a-manual-route.json para que funcione en file:// -->
+<script src="data/swap-a-manual-route.js?v=1"></script>
 <script>
 const $=(q,c=document)=>c.querySelector(q),$$=(q,c=document)=>[...c.querySelectorAll(q)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1325,104 +1537,6 @@ function crearEscena(c,opts){
     };
     [[0.06,1.25],[0.12,0.72],[0.19,0.5],[0.62,0.62],[0.68,1.35],[0.93,0.9],[0.97,0.55]]
       .forEach(([p,e])=>saguaro(Math.round(w*p),Math.min(74,hz*0.20)*e,e));
-
-    // ---- señalamiento elevado en puente (NOM-034-SCT2: verde, letras blancas,
-    //      un destino por línea, máximo tres, flechas abajo) ----
-    (function puenteSenal(){
-      const esc = Math.max(.72, Math.min(w/1280, 1.35));
-      const semiVano = Math.round(w*0.29);              // el puente cruza sobre la carretera
-      const izqX = cx - semiVano, derX = cx + semiVano;
-      const baseY = Math.round(hz + (h-hz)*0.045);      // las columnas se paran en el suelo
-      const vigaY = Math.round(hz - h*0.155);           // altura de la viga
-
-      // --- columnas de celosía ---
-      const columna=(px)=>{
-        const an = Math.round(13*esc);
-        x.strokeStyle='rgba(150,168,172,.55)'; x.lineWidth=Math.max(1.6,2.2*esc);
-        x.beginPath(); x.moveTo(px-an/2,baseY); x.lineTo(px-an/2,vigaY);
-                       x.moveTo(px+an/2,baseY); x.lineTo(px+an/2,vigaY); x.stroke();
-        x.strokeStyle='rgba(120,140,146,.40)'; x.lineWidth=Math.max(1,1.4*esc);
-        for(let y=vigaY; y<baseY-8; y+=Math.round(20*esc)){
-          const y2=Math.min(y+Math.round(20*esc),baseY);
-          x.beginPath(); x.moveTo(px-an/2,y); x.lineTo(px+an/2,y2);
-                         x.moveTo(px+an/2,y); x.lineTo(px-an/2,y2); x.stroke();
-        }
-        x.fillStyle='rgba(16,24,26,.9)';                 // zapata
-        x.fillRect(px-an,baseY-3,an*2,Math.round(5*esc));
-      };
-      columna(izqX); columna(derX);
-
-      // --- viga de celosía ---
-      const vAlto=Math.round(17*esc);
-      x.strokeStyle='rgba(160,178,182,.6)'; x.lineWidth=Math.max(1.6,2.2*esc);
-      x.beginPath(); x.moveTo(izqX,vigaY); x.lineTo(derX,vigaY);
-                     x.moveTo(izqX,vigaY+vAlto); x.lineTo(derX,vigaY+vAlto); x.stroke();
-      x.strokeStyle='rgba(120,140,146,.42)'; x.lineWidth=Math.max(1,1.4*esc);
-      for(let px2=izqX; px2<derX-6; px2+=Math.round(26*esc)){
-        const p2=Math.min(px2+Math.round(26*esc),derX);
-        x.beginPath(); x.moveTo(px2,vigaY); x.lineTo(p2,vigaY+vAlto);
-                       x.moveTo(p2,vigaY); x.lineTo(px2,vigaY+vAlto); x.stroke();
-      }
-
-      // --- tablero verde colgado de la viga ---
-      const destinos=['1/4 MILLA','CIRCUITO','A LA CIUDAD'];
-      const filaH = Math.round(30*esc);
-      const padY  = Math.round(11*esc);
-      const tabW  = Math.round(semiVano*1.72);
-      const tabH  = destinos.length*filaH + padY*2;
-      const tabX  = Math.round(cx - tabW/2), tabY = vigaY + vAlto;
-
-      // tirantes
-      x.strokeStyle='rgba(140,158,162,.5)'; x.lineWidth=Math.max(1.4,2*esc);
-      [0.18,0.5,0.82].forEach(f=>{const px2=tabX+tabW*f;
-        x.beginPath();x.moveTo(px2,vigaY+vAlto);x.lineTo(px2,tabY+4);x.stroke();});
-
-      // resplandor detrás (videojuego)
-      x.save();
-      x.shadowColor='rgba(46,220,140,.55)'; x.shadowBlur=26*esc;
-      x.fillStyle='#0a6a3c';                                  // verde SCT
-      x.fillRect(tabX,tabY,tabW,tabH);
-      x.restore();
-
-      // degradado sutil + borde blanco reflejante
-      const gv=x.createLinearGradient(0,tabY,0,tabY+tabH);
-      gv.addColorStop(0,'rgba(255,255,255,.10)'); gv.addColorStop(1,'rgba(0,0,0,.22)');
-      x.fillStyle=gv; x.fillRect(tabX,tabY,tabW,tabH);
-      const m=Math.round(5*esc);
-      x.strokeStyle='rgba(255,255,255,.92)'; x.lineWidth=Math.max(1.6,2.4*esc);
-      x.strokeRect(tabX+m,tabY+m,tabW-m*2,tabH-m*2);
-
-      // scanlines sobre el tablero
-      x.fillStyle='rgba(0,0,0,.13)';
-      for(let y=tabY+2; y<tabY+tabH-1; y+=3) x.fillRect(tabX+1,y,tabW-2,1);
-
-      // --- destinos: uno por línea, con flecha abajo ---
-      x.textBaseline='middle';
-      x.font=`700 ${Math.round(15*esc)}px "Archivo Black",system-ui,sans-serif`;
-      x.fillStyle='#ffffff';
-      const flechaX = tabX + tabW - Math.round(30*esc);
-      destinos.forEach((d,i)=>{
-        const fy = tabY + padY + filaH*i + filaH/2;
-        x.textAlign='left';
-        x.fillText(d, tabX + Math.round(20*esc), fy);
-        // flecha hacia abajo (indica carril)
-        const a=Math.round(7.5*esc), tallo=Math.round(9*esc);
-        x.beginPath();
-        x.moveTo(flechaX, fy+a+2);
-        x.lineTo(flechaX-a, fy-1);
-        x.lineTo(flechaX-a*0.42, fy-1);
-        x.lineTo(flechaX-a*0.42, fy-tallo);
-        x.lineTo(flechaX+a*0.42, fy-tallo);
-        x.lineTo(flechaX+a*0.42, fy-1);
-        x.lineTo(flechaX+a, fy-1);
-        x.closePath(); x.fill();
-      });
-      x.textAlign='start';
-
-      // dither pixelado en el filo inferior
-      x.fillStyle='rgba(46,220,140,.45)';
-      for(let px2=tabX; px2<tabX+tabW; px2+=4) if((px2>>2)%2===0) x.fillRect(px2,tabY+tabH,2,2);
-    })();
 
     // ---- horizonte encendido + dither pixelado ----
     x.fillStyle='rgba(255,196,96,.55)';x.fillRect(0,hz-2,w,2);
@@ -2214,7 +2328,8 @@ const SOL={
       facil:'El clutch que aguanta cuando ya subiste potencia. La decisión importante es masa sólida o bi-masa.',
       medio:'Clutch Uniclutch + volante para caja 02Q. Decisión según potencia y uso.',
       pro:'Caja 02Q, volante, capacidad de torque, uso e instalación profesional.',
-      chk:'Caja 02Q, volante, potencia, uso y contenido del kit.',ev:'Instalación y decisión masa sólida vs bi-masa.',v:'https://www.youtube.com/watch?v=Ok-taad3EDY'},
+      chk:'Caja 02Q, volante, potencia, uso y contenido del kit.',ev:'Instalación y decisión masa sólida vs bi-masa.',v:'https://www.youtube.com/watch?v=Ok-taad3EDY',
+      brandLogo:'assets/brands/user-reviewed/uniclutch.png',brand:'Uniclutch'},
       {sku:'OD-LFR-006',seal:'cur',img:'assets/shot-swap.jpg',t:'Ruta completa para swap 02Q',
       facil:'La guía completa de cómo convertimos el León a manual. Paso a paso, con lo que salió mal incluido.',
       medio:'Guía técnica del swap 02Q: arnés, palanca, pedales, piezas y orden de trabajo.',
@@ -2231,7 +2346,7 @@ const EVIDENCIA_LEON=[
   {cat:'freno',title:'Brembo × EBC',estado:'Episodio directo disponible',url:'https://www.youtube.com/watch?v=zeFVWH5peAo',confirmar:'Eje, diámetro, cáliper y compuesto.'},
   {cat:'manejo',title:'BC Racing · Whiteline',estado:'Serie de instalación disponible',url:'https://www.youtube.com/watch?v=pMCIjRxUOfQ',confirmar:'Versión 1P, altura, alineación y PN.'},
   {cat:'power',title:'CTS intercooler y tuberías',estado:'Instalación y primer arranque',url:'https://www.youtube.com/watch?v=_V8hk09gt08',confirmar:'Motor, turbo actual y contenido de kit.'},
-  {cat:'power',title:'Uniclutch para swap 02Q',estado:'Instalación documentada',url:'https://www.youtube.com/watch?v=Ok-taad3EDY',confirmar:'02Q, volante, torque y uso.'},
+  {cat:'power',title:'Uniclutch para swap 02Q',estado:'Instalación documentada',url:'https://www.youtube.com/watch?v=Ok-taad3EDY',confirmar:'02Q, volante, torque y uso.',brandLogo:'assets/brands/user-reviewed/uniclutch.png',brand:'Uniclutch'},
   {cat:'power',title:'Ruta completa swap 02Q',estado:'Varios episodios · cronología por cerrar',url:'https://www.youtube.com/watch?v=0XDqlwG9tzQ',confirmar:'Auto, caja actual y componentes existentes.'}
 ];
 
@@ -2258,7 +2373,12 @@ function revealGrid(n){
   $$('.opt',g).forEach(o=>{o.classList.remove('done');o.style.animation='none';void o.offsetWidth;o.style.animation=''});
   g.classList.remove('pre');g.classList.add('go');
 }
-function goStep(n,word){
+function goStep(n,word,dir){
+  /* El paso 2 sólo confirmaba el auto que ya se eligió en "Elige tu máquina",
+     y mirrorCar() lo deja marcado solo. Pedirlo otra vez es una pantalla que no
+     decide nada, así que se salta en ambos sentidos. Se conserva el paso —no se
+     borra— para no mover los índices de pick[] ni el cableado data-next/data-back. */
+  if(n===2 && pick[2]) n = (dir==='back') ? 1 : 3;
   const show=()=>{
     $$('.step').forEach(s=>s.classList.toggle('live',+s.dataset.step===n));
     $$('.hs').forEach(h=>{const i=+h.dataset.h;h.classList.toggle('on',i===n);h.classList.toggle('done',i<n)});
@@ -2270,10 +2390,10 @@ function goStep(n,word){
 }
 $$('[data-next]').forEach(b=>b.addEventListener('click',()=>{
   const n=+b.dataset.next;if(!pick[n])return;
-  const word=n===1?'Nivel fijado':n===2?pick[2].label:'Buscando';
+  const word=n===1?'Nivel fijado':n===2?(pick[2]&&pick[2].label)||'Listo':'Buscando';
   goStep(n+1,word);
 }));
-$$('[data-back]').forEach(b=>b.addEventListener('click',()=>goStep(+b.dataset.back)));
+$$('[data-back]').forEach(b=>b.addEventListener('click',()=>goStep(+b.dataset.back,null,'back')));
 /* ===== RUN SETUP · PRESS START → SELECT YOUR CAR → SELECT YOUR SERIES → Player Select =====
    Estado solo en memoria: al recargar, los dos pasos nuevos vuelven a cero. */
 (function(){
@@ -2291,7 +2411,7 @@ $$('[data-back]').forEach(b=>b.addEventListener('click',()=>goStep(+b.dataset.ba
     sec.hidden=false;
     if(!reduce){sec.classList.remove('reveal');void sec.offsetWidth;sec.classList.add('reveal')}
   }
-  // espeja el auto en el Player Select existente (02 · Auto) sin romper su flujo
+  // espeja el auto en el Player Select existente (paso "Auto · confirmar") sin romper su flujo
   function mirrorCar(v){
     const o=$('.opts[data-grid="2"] .opt[data-v="'+v+'"]');
     if(o&&!o.classList.contains('sel'))o.click();
@@ -2364,11 +2484,11 @@ function renderEvidenceMatrix(car,cat){
   if(car!=='leon'){box.innerHTML='<div class="ev-empty">◆ Evidencia audiovisual de '+CARNAME[car]+' en curaduría. El inventario no sustituye una prueba propia.</div>';return;}
   const rows=EVIDENCIA_LEON.filter(x=>x.cat===cat);
   box.innerHTML='<div class="ev-title"><b>Archivo de evidencia</b><span>Fuente, estado y confirmaciones pendientes</span></div>'+
-    rows.map(x=>'<article class="ev-row"><div><b>'+x.title+'</b><span>'+x.estado+'</span></div><div><small>CONFIRMAR</small><span>'+x.confirmar+'</span></div><a href="'+x.url+'" target="_blank" rel="noopener">▶ Episodio</a></article>').join('');
+    rows.map(x=>'<article class="ev-row"><div><b>'+x.title+(x.brandLogo?'<img class="ev-brand-badge" src="'+x.brandLogo+'" alt="'+(x.brand||'')+'">':'')+'</b><span>'+x.estado+'</span></div><div><small>CONFIRMAR</small><span>'+x.confirmar+'</span></div><a href="'+x.url+'" target="_blank" rel="noopener">▶ Episodio</a></article>').join('');
 }
 function renderClutchConsole(car,cat){
  const box=$('#clutchDecisionConsole');if(!box)return; const on=car==='leon'&&cat==='power';box.hidden=!on;if(!on)return;
- box.innerHTML='<div class="clutch-top"><img src="assets/brands/uniclutch.png" alt="Uniclutch"><div><b>Consola 02Q · decisión de clutch</b><span>Ruta de compatibilidad basada en una pieza registrada en el garage.</span></div></div><div class="clutch-grid"><span>01 · Caja 02Q</span><span>02 · Volante: sólido / bi-masa</span><span>03 · Torque y uso</span><span>04 · Instalación profesional</span></div><p>Antes de elegir: confirmar transmisión, volante, capacidad de torque, uso y contenido del kit. Marca mostrada como referencia de pieza registrada; no declara afiliación, patrocinio, distribución ni alianza comercial.</p>';
+ box.innerHTML='<div class="clutch-top"><img src="assets/brands/user-reviewed/uniclutch.png" alt="Uniclutch"><div><b>Consola 02Q · decisión de clutch</b><span>Ruta de compatibilidad basada en una pieza registrada en el garage.</span></div></div><div class="clutch-grid"><span>01 · Caja 02Q</span><span>02 · Volante: sólido / bi-masa</span><span>03 · Torque y uso</span><span>04 · Instalación profesional</span></div><p>Antes de elegir: confirmar transmisión, volante, capacidad de torque, uso y contenido del kit. Marca mostrada como referencia de pieza registrada; no declara afiliación, patrocinio, distribución ni alianza comercial.</p>';
 }
 function renderResults(){
   const car=pick[2].v,cat=pick[3].v,lvl=pick[1].v;
@@ -2388,7 +2508,7 @@ function renderResults(){
   }else{
     grid.innerHTML=list.map((s,i)=>`
       <article class="res-card" style="--d:${i*90}ms">
-        <div class="res-img"><img src="${s.img}" alt=""><span class="pill ${s.seal}">${SEALTXT[s.seal]}</span></div>
+        <div class="res-img"><img src="${s.img}" alt=""><span class="pill ${s.seal}">${SEALTXT[s.seal]}</span>${s.brandLogo?`<img class="res-brand-badge" src="${s.brandLogo}" alt="${s.brand||''}">`:''}</div>
         <div class="res-bd">
           <div class="res-sku">${s.sku}</div>
           <h3>${s.t}</h3>
@@ -2418,15 +2538,61 @@ function syncDock(){
   if(pick[1])b.push({t:pick[1].label,k:0});
   ctxEl.innerHTML=b.map(x=>`<span class="chip${x.k?' k':''}">${x.t}</span>`).join('');
 }
-$('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.add('done')});
+/* Captura de correo.
+   LEAD_ENDPOINT vacío = todavía no hay a dónde mandar el correo. En ese estado el
+   formulario se deshabilita y lo dice: antes fingía éxito y tiraba la dirección,
+   que es la peor de las dos opciones porque el visitante se va creyendo que está
+   en una lista que no existe.
+   Para encenderlo: pega aquí la URL del endpoint (Formspree, Buttondown, etc.). */
+const LEAD_ENDPOINT = '';
+
+(function(){
+  const form = $('#dockForm'), campo = $('#dockMail'), err = $('#dockErr');
+  const btn = form.querySelector('.send');
+
+  if(!LEAD_ENDPOINT){
+    campo.disabled = btn.disabled = true;
+    campo.placeholder = 'lista aún no abierta';
+    btn.textContent = 'Próximamente';
+    err.hidden = false;
+    err.textContent = 'Todavía no abrimos la lista. No dejes tu correo aquí: no lo estaríamos guardando.';
+    return;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    err.hidden = true;
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    try{
+      const r = await fetch(LEAD_ENDPOINT, {
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        // el contexto del run viaja con el correo: sin eso el lead no dice para qué auto es
+        body: JSON.stringify({
+          email: campo.value.trim(),
+          auto: (pick[2]||{}).label || null,
+          serie: (pick.series||{}).label || null,
+          objetivo: (pick[3]||{}).label || null,
+          origen: location.search || null
+        })
+      });
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      dock.classList.add('done');            // "Listo" sólo cuando de verdad se guardó
+    }catch(_){
+      err.hidden = false;
+      err.textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo otra vez.';
+      btn.disabled = false; btn.textContent = 'Mandarme la guía';
+    }
+  });
+})();
 
 /* ===== inventario real · LEON FR / S-CHASIS / MIATA ===== */
 (function(){
   const NOMBRE = { LEON:'lleva el León', SCHASIS:'lleva el S13', MIATA:'lleva la Miata' };
   const DESC = {
-    LEON: 'El registro del build del León: no todo aquí fue comprado e instalado. Cada pieza lleva su sello — probada en el garage, curada para el proyecto o pendiente de prueba — ver leyenda de sellos.',
-    SCHASIS: 'Inventario curado para el 240SX: piezas y herramientas compradas esperando instalación o contempladas para el proyecto, más piezas pendientes de prueba por interés o admiración. Todavía no hay video que respalde instalación o prueba en este auto, por eso no vas a ver el sello Probado en el garage aquí — ver leyenda de sellos.',
-    MIATA: 'Inventario curado para la Miata: piezas y herramientas compradas esperando instalación o contempladas para el proyecto, más piezas pendientes de prueba por interés o admiración. Todavía no hay video que respalde instalación o prueba en este auto, por eso no vas a ver el sello Probado en el garage aquí — ver leyenda de sellos.',
+    LEON: 'El registro del build del León. Lo que ya está montado y rodado en el auto lleva el sello Probado en el garage; lo que todavía no se ha subido al auto lleva Pendiente de prueba. Nada aquí es recomendación genérica — ver leyenda de sellos.',
+    SCHASIS: 'El registro del 240SX. Lo que ya está montado en el auto lleva Probado en el garage; lo contemplado para el proyecto lleva Pendiente de prueba. Este auto todavía no tiene episodios en el canal, así que sus piezas probadas se marcan "Sin video que lo documente" — la experiencia es propia, la evidencia filmada está pendiente.',
+    MIATA: 'El registro de la Miata. Lo que ya está montado en el auto lleva Probado en el garage; lo contemplado para el proyecto lleva Pendiente de prueba. Este auto todavía no tiene episodios en el canal, así que sus piezas probadas se marcan "Sin video que lo documente" — hay bitácora fotográfica propia, pero no video.',
   };
 
   const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -2434,7 +2600,7 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   const usd = n => 'US$'+Number(n).toLocaleString('es-MX',{maximumFractionDigits:0});
   const iniciales = m => (m||'?').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase();
 
-  let D = null, auto = 'LEON', sistema = 'todos', busca = '', tope = 40;
+  let D = null, auto = 'LEON', sistema = 'todos', clase = 'Pieza', busca = '', tope = 40;
   const MIATA_EVIDENCIA=[
     {t:'Transmisión fuera · reparación documentada',tag:'TREN MOTRIZ',edad:'327 semanas',d:'Miata rojo elevado; transmisión retirada y pieza completa en carro de taller. Texto original: “Transmission fixing time!”.',nivel:'Evidencia visual propia · PN y reparación específica por confirmar.'},
     {t:'Inspección de tren motriz',tag:'DIAGNÓSTICO',edad:'351 semanas',d:'Toma cerrada de hardware expuesto bajo carrocería durante trabajo mecánico.',nivel:'Evidencia visual propia · componente exacto y alcance por confirmar.'},
@@ -2447,6 +2613,14 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
     grid.innerHTML=MIATA_EVIDENCIA.map((x,i)=>`<article class="ev-row"><div><small>${x.tag} · ${x.edad}</small><b>${x.t}</b><span>${x.d}</span></div><div><small>ESTADO</small><span>${x.nivel}</span></div><a href="https://www.instagram.com/stories/highlights/18108018412434999/" target="_blank" rel="noopener">▶ Fuente</a></article>`).join('');
   }
 
+  /* Vocabulario cerrado de sellos. Cualquier valor fuera de estas tres llaves
+     cae a PENDIENTE DE PRUEBA: nunca se muestra un estado sin explicar. */
+  const SELLO_CHIP = {
+    'PROBADO EN EL GARAGE'  : ['ok' , '◆ Probado en el garage'],
+    'CURADO POR OUT-DRIFTED': ['cur', '✓ Curado por OUT-DRIFTED'],
+    'PENDIENTE DE PRUEBA'   : ['pen', '○ Pendiente de prueba']
+  };
+
   function fila(p){
     const lg = p.logo
       ? `<img src="${esc(p.logo)}" alt="${esc(p.marca||'')}" loading="lazy">`
@@ -2454,10 +2628,14 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 
     const tags = [];
     if(p.pn) tags.push(`<span class="tg pn">${esc(p.pn)}</span>`);
-    if(String(p.sello).startsWith('PROBADO') && p.video)
-      tags.push(`<span class="tg ok">◆ <a href="${esc(p.video)}" target="_blank" rel="noopener">Visto en video</a></span>`);
-    else if(p.sello==='REVISAR CRONOLOGÍA') tags.push('<span class="tg rev">◆ Por confirmar</span>');
-    else tags.push(`<span class="tg">${esc(p.sello==='CURADO'?'Curado por OUT-DRIFTED':(p.sello==='PENDIENTE DE PRUEBA'?'Pendiente de prueba':p.sello))}</span>`);
+    // sólo existen tres sellos; el episodio va aparte porque es evidencia, no un cuarto sello
+    const s = SELLO_CHIP[p.sello] || SELLO_CHIP['PENDIENTE DE PRUEBA'];
+    tags.push(`<span class="tg ${s[0]}">${esc(s[1])}</span>`);
+    if(p.video)
+      tags.push(`<span class="tg ep">▶ <a href="${esc(p.video)}" target="_blank" rel="noopener">Episodio</a></span>`);
+    else if(p.sello === 'PROBADO EN EL GARAGE')
+      // pasó por el auto, pero no hay episodio que lo respalde: se dice, no se omite
+      tags.push('<span class="tg sinvid">Sin video que lo documente</span>');
     if(p.marca) tags.push(`<span class="tg">${esc(p.marca)}</span>`);
 
     const pagado = p.pagado
@@ -2466,26 +2644,86 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 
     const actual = p.actual
       ? `<div class="precio">${mxn(p.actual)}</div>`
-      : (p.sitio
-          ? `<a class="cot" href="${esc(p.sitio)}" target="_blank" rel="noopener nofollow">Cotizar ↗</a>`
+      : (p.urlPieza
+          ? `<a class="cot" href="${esc(p.urlPieza)}" target="_blank" rel="noopener nofollow">Ver la pieza ↗</a>`
           : `<span class="cot">Cotizar</span>`);
 
-    return `<div class="pz">
+    return `<div class="pz" data-ficha="${esc(p.nombre)}" role="button" tabindex="0"
+      aria-label="Ver ficha de ${esc(p.nombre)}">
       <div class="pz-lg">${lg}</div>
-      <div class="pz-nom"><b title="${esc(p.nombre)}">${esc(p.nombre)}</b><div class="pz-meta">${tags.join('')}</div></div>
+      <div class="pz-nom"><b title="${esc(p.nombre)}">${esc(p.nombre)}</b><div class="pz-meta">${tags.join('')}</div>${
+        p.nota ? `<p class="pz-nota">${esc(p.nota)}</p>` : ''}</div>
       <div class="pz-pag">${pagado}</div>
       <div class="pz-act">${actual}</div>
     </div>`;
   }
 
+  /* Tiendas, no marcas: sirven para saber dónde se compró, no para encabezar el ledger. */
+  const TIENDAS = new Set(['temu','aliexpress','mercado libre','amazon','ebay']);
+  /* Filas que todavía son notas internas y no deberían ser lo primero que se ve. */
+  const RUIDO = /^(tornillos|carroseada|herramienta|funda|liquido limpiaparabrisas|\?)/i;
+
+  /* Orden curado: lo que primero se ve es lo que mejor sostiene el ledger —
+     pieza probada, con episodio, marca real, precio y año. Lo incompleto se va al fondo
+     sin ocultarse. Dentro del mismo puntaje se respeta la cronología del XLSX. */
+  /* Una nota "(n de N)" marca una serie que debe leerse junta y en orden —
+     hoy: el récord del DSG, de la falla de fábrica al swap a manual. */
+  const serie = p => {
+    const m = /\((\d+)\s+de\s+(\d+)\)/.exec(p.nota || '');
+    return m ? Number(m[1]) : 0;
+  };
+
+  function puntaje(p){
+    /* Las series van pegadas y en bloque, debajo del tramo con episodio:
+       se leen como historia completa, no como filas sueltas repartidas por el ledger. */
+    if(serie(p)) return 118;
+    let s = 0;
+    if(p.video) s += 60;                                   // evidencia enlazada
+    if(p.sello === 'PROBADO EN EL GARAGE') s += 40;
+    else if(p.sello === 'CURADO POR OUT-DRIFTED') s += 15;
+    const marca = (p.marca||'').trim().toLowerCase();
+    if(marca && marca !== 'oem' && !TIENDAS.has(marca)) s += 25;
+    else if(marca === 'oem') s += 8;
+    if(p.pn) s += 15;
+    if(p.pagado) s += 12;
+    if(p.anio) s += 8;
+    if(p.nota) s += 45;                                    // pieza con contexto escrito a mano
+    if(p.sistema === 'Por clasificar') s -= 25;
+    if(RUIDO.test((p.nombre||'').trim())) s -= 40;
+    if(!marca && !p.pagado) s -= 30;                       // fila sin marca ni precio
+    return s;
+  }
+
   function filtradas(){
     if(!D) return [];
-    return D.piezas.filter(p=>{
-      if(sistema!=='todos' && p.sistema!==sistema) return false;
-      if(!busca) return true;
-      return `${p.nombre} ${p.marca||''} ${p.pn||''}`.toLowerCase().includes(busca);
-    });
+    return D.piezas.map((p,i)=>({p,i}))
+      .filter(({p})=>{
+        if(clase!=='todas' && (p.clase||'Pieza')!==clase) return false;
+        if(sistema!=='todos' && p.sistema!==sistema) return false;
+        if(!busca) return true;
+        return `${p.nombre} ${p.marca||''} ${p.pn||''}`.toLowerCase().includes(busca);
+      })
+      .sort((a,b)=> puntaje(b.p) - puntaje(a.p) || serie(a.p) - serie(b.p) || a.i - b.i)
+      .map(({p})=>p);
   }
+
+  /* Un clic en la fila abre la ficha; los enlaces internos (comprar, episodio)
+     siguen mandando a su destino y no se secuestran. */
+  const abrirDesdeLista = el => {
+    const row = el && el.closest('[data-ficha]');
+    if(!row || !window.abrirFichaDe) return false;
+    window.abrirFichaDe(auto, row.dataset.ficha);
+    return true;
+  };
+  $('#listaPiezas').addEventListener('click', e => {
+    if(e.target.closest('a')) return;
+    abrirDesdeLista(e.target);
+  });
+  $('#listaPiezas').addEventListener('keydown', e => {
+    if(e.key!=='Enter' && e.key!==' ') return;
+    if(e.target.closest('a')) return;
+    if(abrirDesdeLista(e.target)) e.preventDefault();
+  });
 
   function pintar(){
     const f = filtradas();
@@ -2499,7 +2737,7 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 
   function cargarAuto(key){
     D = window[key];
-    auto = key; sistema = 'todos'; busca = ''; tope = 40;
+    auto = key; sistema = 'todos'; clase = 'Pieza'; busca = ''; tope = 40;
     $$('#vsel button').forEach(b=>{
       const on = b.dataset.auto===key;
       b.classList.toggle('on', on); b.setAttribute('aria-selected', on);
@@ -2511,14 +2749,31 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 
     if(!D){ $('#listaPiezas').innerHTML='<div class="vacio">No se pudo cargar el inventario. Corre <code>export_3autos_web.py</code>.</div>'; return; }
 
-    $('#mkPiezas').textContent = D.resumen.piezas;
+    // el marcador cuenta piezas; servicios, herramienta y consumibles se ven
+    // en su propio chip, no inflan el número que encabeza el inventario
+    $('#mkPiezas').textContent = D.resumen.soloPiezas ?? D.resumen.piezas;
+    const lt = $('#ledgerN');
+    if(lt) lt.textContent = D.resumen.piezas;   // el atajo muestra el tamaño real del ledger
     $('#mkMarcas').textContent = D.resumen.marcas;
     $('#mkInv').textContent    = mxn(D.resumen.invertido);
-    $('#mkProb').textContent   = D.resumen.probadas;
+    // el León es el único con build propio: los otros dos siguen en curaduría,
+    // así que su cifra fuerte es lo curado, no un cero de "probadas"
+    const probadas = D.resumen.probadas || 0;
+    $('#mkProb').textContent = probadas || D.piezas.filter(p=>p.sello==='CURADO POR OUT-DRIFTED').length;
+    $('#mkProbLbl').textContent = probadas ? 'Probadas en el garage' : 'Curadas para el proyecto';
+    const ep = $('#sellosEp');
+    if(ep) ep.textContent = probadas
+      ? `${probadas} piezas probadas · ${D.resumen.conEpisodio||0} con episodio enlazado.`
+      : '';
 
+    /* Sobre la tarjeta negra, los logos oscuros desaparecen: medidos, 18 de 37
+       quedaban por debajo de 80 de luminancia. Van sobre chapa clara, igual que
+       en la ficha. Los wordmarks blancos llevan chapa oscura, por ruta exacta. */
+    const CHAPA_OSCURA_GRID = new Set(['assets/brands/unitronic.png',
+      'assets/brands/duralast.svg','assets/brands/funk-motorsport.svg','assets/brands/zestek.png','assets/brands/integrated-engineering.png','assets/brands/hpa-motorsports.png','assets/brands/break-beat.png']);
     $('#gridMarcas').innerHTML = D.marcas.map(m=>{
       const inner = m.logo
-        ? `<img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy">`
+        ? `<span class="mkplate${CHAPA_OSCURA_GRID.has(m.logo)?' is-oscura':''}"><img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy"></span>`
         : `<span class="txt">${esc(iniciales(m.nombre))}</span>`;
       const cuerpo = `<div class="lg">${inner}</div><b>${esc(m.nombre)}</b>
                       <span>${m.piezas} pieza${m.piezas>1?'s':''}</span>`;
@@ -2526,6 +2781,17 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
         ? `<a class="marca" href="${esc(m.sitio)}" target="_blank" rel="noopener nofollow">${cuerpo}</a>`
         : `<div class="marca">${cuerpo}</div>`;
     }).join('');
+
+    /* Pieza es lo que alguien podría comprar; servicio, herramienta, consumible y
+       misceláneo son gasto real del build y se quedan, sólo que no encabezan. */
+    const nClase = c => D.piezas.filter(p=>(p.clase||'Pieza')===c).length;
+    $('#filtroClases').innerHTML = [['Pieza','Piezas'],...(D.clases||[])
+      .filter(c=>c!=='Pieza').map(c=>[c,c+'s'.repeat(0)]), ['todas','Todo el ledger']]
+      .map(([v,t])=>{
+        const n = v==='todas' ? D.piezas.length : nClase(v);
+        if(!n) return '';
+        return `<button class="chipf${v===clase?' on':''}" data-clase="${esc(v)}">${esc(t)} <b>${n}</b></button>`;
+      }).join('');
 
     const cont = $('#filtroSistemas');
     cont.innerHTML = ['todos', ...D.sistemas].map(s=>
@@ -2540,6 +2806,22 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
     $$('.chipf',$('#filtroSistemas')).forEach(x=>x.classList.remove('on')); b.classList.add('on');
     sistema=b.dataset.sis; tope=40; pintar();
   });
+  /* El <a href="#inventario"> se queda por SEO y por funcionar sin JS, pero un clic
+     cuando el hash YA es #inventario es un no-op del navegador. Se fuerza el salto. */
+  const tab = $('#ledgerTab');
+  if(tab) tab.addEventListener('click', e => {
+    e.preventDefault();
+    const inv = $('#inventario'); if(!inv) return;
+    inv.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    history.replaceState(null, '', '#inventario');
+    $('#buscaPieza').focus({preventScroll:true});
+  });
+
+  $('#filtroClases').addEventListener('click',e=>{
+    const b=e.target.closest('[data-clase]'); if(!b) return;
+    $$('.chipf',$('#filtroClases')).forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    clase=b.dataset.clase; tope=40; pintar();
+  });
   $('#buscaPieza').addEventListener('input',e=>{ busca=e.target.value.toLowerCase().trim(); tope=40; pintar(); });
   $('#verMas').addEventListener('click',()=>{ tope+=60; pintar(); });
   $('#vsel').addEventListener('click',e=>{
@@ -2551,36 +2833,108 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   cargarAuto('LEON');
 
   // puente con el wizard: Step 3 (objetivo) llega aquí ya filtrado
-  window.irInventario=(carKey,term)=>{
+  window.irInventario=(carKey,term,opts)=>{
     if(carKey && carKey!==auto) cargarAuto(carKey);
+    if(opts && opts.clase) clase = opts.clase;
     busca=(term||'').toLowerCase().trim();
     $('#buscaPieza').value=term||'';
     tope=40; pintar();
     $('#inventario').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   };
+
+  /* ---- Entrada directa desde la descripción de un video ----
+     La rampa del canal es un link que ya trae intención: quien viene del episodio
+     de coilovers quiere los coilovers, no PRESS START y cuatro preguntas.
+
+       ?pieza=coilovers          busca en el inventario
+       ?auto=leon|miata|s13      elige el auto
+       ?clase=Servicio           abre en esa clase; 'todas' muestra el ledger completo
+       #inventario               salta al inventario sin filtro
+
+     Se usa la búsqueda y no un id porque los nombres del XLSX cambian: un texto
+     parcial sobrevive a que se corrija el nombre de una pieza, un id no. */
+  const AUTO_URL = {leon:'LEON', miata:'MIATA', s13:'SCHASIS', schasis:'SCHASIS'};
+  function entradaDirecta(){
+    const q = new URLSearchParams(location.search);
+    const pieza = q.get('pieza'), autoQ = q.get('auto'), claseQ = q.get('clase');
+    const porHash = location.hash === '#inventario';
+    if(!pieza && !autoQ && !claseQ && !porHash) return;
+
+    const key = AUTO_URL[(autoQ||'').toLowerCase()] || null;
+    const cl = claseQ && (claseQ === 'todas' || (window[key||'LEON']||{}).clases?.includes(claseQ))
+      ? claseQ : null;
+    /* Se salta pronto (rAF) y se vuelve a fijar cuando terminan de cargar hero,
+       video e imágenes: para entonces la página ya creció y el destino se recorrió.
+       Esperar sólo al load no sirve — el navegador restaura el scroll a 0 al
+       completar la carga y se come el salto. */
+    /* El salto se hace con el ancla nativa, no con scrollIntoView: durante la carga
+       inicial —con el video del hero y las animaciones de entrada— scrollIntoView se
+       ignora, mientras que cambiar el hash sí mueve la página de forma fiable. */
+    /* El salto se hace con el ancla nativa: durante la carga inicial scrollIntoView
+       se ignora, mientras que cambiar el hash sí mueve la página. Y hay que volver a
+       dispararlo al terminar la carga, porque el hero crece y recorre el destino —
+       un hash que no cambia es un no-op, así que se limpia y se vuelve a poner. */
+    const saltar = () => {
+      if(location.hash === '#inventario') history.replaceState(null,'',location.pathname+location.search);
+      location.hash = 'inventario';
+    };
+    const entrar = () => {
+      window.irInventario(key, pieza || '', cl ? {clase: cl} : null);
+      saltar();
+    };
+    requestAnimationFrame(entrar);
+    addEventListener('load', ()=> setTimeout(saltar, 250), {once:true});
+  }
+  entradaDirecta();
 })();
 
 /* ===== MAPA DE LOCALES · navegación tipo Gran Turismo ===== */
 (function(){
-  const D=window.LEON; if(!D) return;
+  /* Los tres autos comparten El Taller, la Refaccionaria y la ficha de pieza.
+     Antes esta sección estaba clavada a window.LEON y por eso Miata y S13 no
+     tenían ficha, aunque sus datos ya existían. */
+  const AUTOS = {
+    LEON:{nombre:'SEAT León FR', plat:'2013 · 1P / PQ35', foto:'assets/car-leon-fr.jpg',
+      specs:[['Motor','EA888 Gen 2 · 1.8 TSI'],['Transmisión','Manual 02Q (conversión desde DSG)'],
+             ['Estado','Stage 1'],['Kilometraje','~105,000 km reportados'],['Dueños','Único dueño, nacional']]},
+    SCHASIS:{nombre:'Nissan 240SX S13', plat:'1989 · Coupé S-Chassis', foto:null,
+      specs:[['Motor','KA24E forjado'],['Uso','Drift'],['Etapa','Curación / lista de espera']]},
+    MIATA:{nombre:'Mazda Miata NA', plat:'1994 · MX-5 1ª gen', foto:null,
+      specs:[['Motor','BP 1.8L'],['Transmisión','Manual'],['Suspensión','BC Racing BR'],
+             ['Etapa','Curación / lista de espera']]},
+  };
+  const ORDEN_AUTOS = ['LEON','SCHASIS','MIATA'];
+  let AUTO = 'LEON';
+  let D = window[AUTO];
+  let localActual = 'garaje';
+  if(!D) return;
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const mxn=n=>'$'+Number(n).toLocaleString('es-MX',{maximumFractionDigits:0});
   const ini=m=>(m||'?').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase();
   const ov=$('#localOv'), hd=$('#localHd'), tabs=$('#localTabs'), cont=$('#localCont');
   const COLOR={garaje:'#d1dd13',taller:'#22e0f5',marcas:'#ff5f45',pista:'#b388ff'};
-  const SELLO={'PROBADO (pendiente timestamp)':['ok','◆ En video'],'CURADO':['cur','Curado por OUT-DRIFTED'],
-               'REVISAR CRONOLOGÍA':['rev','Por confirmar'],'PENDIENTE DE PRUEBA':['pen','Pendiente de prueba']};
+  const SELLO={'PROBADO EN EL GARAGE':['ok','Probado en el garage'],
+               'CURADO POR OUT-DRIFTED':['cur','Curado por OUT-DRIFTED'],
+               'PENDIENTE DE PRUEBA':['pen','Pendiente de prueba']};
 
   /* ---- el mapa: el mirador del Cerro; cada destino es un edificio del paisaje ---- */
-  const INFO={
+  const infoDe=()=>({
     garaje:{tit:'El Garage',  pie:mxn(D.resumen.invertido)+' invertidos'},
     taller:{tit:'El Taller',  pie:D.resumen.piezas+' piezas'},
     marcas:{tit:'Refaccionaria',pie:D.resumen.marcas+' marcas'},
-    pista :{tit:'La Pista',   pie:'4 pasos'},
-  };
+    // La Pista sí tiene datos: lo honesto es decir cuántos están verificados,
+    // no un "4 pasos" que no significa nada
+    pista :{tit:'La Pista',   pie:(()=>{
+      const P=window.LA_PISTA&&window.LA_PISTA.points;
+      if(!P||!P.length) return 'sin recintos publicados';
+      const v=P.filter(x=>x.verification==='verificado').length;
+      return `${v} verificados de ${P.length}`;
+    })()},
+  });
   const zona=$('#hotspots');
   // el botón cubre el edificio dibujado: sin tarjeta encima, el nombre sale al pasar o al enfocar
   function colocarHotspots(locs){
+    const INFO=infoDe();
     zona.innerHTML=locs.map(L=>{
       const i=INFO[L.id]||{tit:L.id,pie:''};
       const an=Math.max(44,Math.round(L.w*0.9)), al=Math.max(44,Math.round(L.h*0.92));
@@ -2597,8 +2951,56 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   // el canvas se mide contra su contenedor: si aún no tenía tamaño, se repinta
   requestAnimationFrame(()=>{ mapa.draw(); colocarHotspots(mapa.locales); });
 
-  const logoDe=(p)=> p.logo?`<img src="${esc(p.logo)}" alt="${esc(p.marca||'')}" loading="lazy">`
-                          :`<span class="ini">${esc(ini(p.marca))}</span>`;
+  /* ---- logos aprobados en la hoja LOGOS del XLSX canónico ----
+     Se aplican en todo el sitio por identidad de marca; las piezas con logo insertado
+     a mano en el XLSX se resuelven por nombre exacto y conservan su advertencia.
+     Uniclutch usa la imagen provista por el usuario en
+     assets/brands/user-reviewed/uniclutch.png, con procedencia registrada en
+     data/brand-logo-sources.json; el asset heredado (uniclutch.png en la raíz de
+     assets/brands) queda sólo para rollback. */
+  const AVISO_OEM='REFERENCIA OEM · FABRICANTE POR CONFIRMAR';
+  const LOGO_XLSX={
+    'motul':'assets/brands/motul.png',
+    'ecs tuning':'assets/brands/user-reviewed/ecs-tuning-user.png',
+    'forge motorsport':'assets/brands/user-reviewed/forge-motorsport-user.png',
+    'uniclutch':'assets/brands/user-reviewed/uniclutch.png',
+    'sportsshifters':'assets/brands/user-reviewed/sportsshifters-user.png',
+    'velt sport':'assets/brands/velt-sport.png',
+    'spulen':'assets/brands/spulen.png',
+    'dieselgeek':'assets/brands/user-reviewed/dieselgeek-user.png'
+  };
+  /* ---- logo oficial tomado fuera del XLSX ----
+     Unitronic no aparece en la hoja LOGOS; el archivo viene del sitio oficial de la marca
+     y queda registrado en data/brand-logo-sources.json. Se resuelve sólo por marca exacta. */
+  const LOGO_OFICIAL={
+    'unitronic':'assets/brands/unitronic.png'
+  };
+  const VW_LOGO='assets/brands/user-reviewed/volkswagen-user.png';
+  const LOGO_XLSX_PIEZA={
+    'transmisión 02q':{logo:VW_LOGO,marca:'Volkswagen',aviso:AVISO_OEM},
+    'cilindro maestro':{logo:VW_LOGO,marca:'Volkswagen',aviso:AVISO_OEM},
+    'flechas homocineticas':{logo:VW_LOGO,marca:'Volkswagen',aviso:AVISO_OEM},
+    'usp motorsports línea clutch stainless steel/ spulen 6 speed clutch bleeder/block':{logo:'assets/brands/spulen.png',marca:'Spulen'},
+    'deluxe shifter bushing kit':{logo:'assets/brands/user-reviewed/dieselgeek-user.png',marca:'Dieselgeek'}
+  };
+  const norma=v=>String(v??'').trim().toLowerCase();
+  const logoDeMarca=(n)=>LOGO_XLSX[n]||LOGO_OFICIAL[n]||null;
+  const aprobado=(p)=>{
+    const porPieza=LOGO_XLSX_PIEZA[norma(p.nombre)];
+    if(porPieza) return porPieza;
+    const porMarca=logoDeMarca(norma(p.marca));
+    return porMarca?{logo:porMarca,marca:p.marca}:null;
+  };
+  /* Logos con wordmark blanco: la placa clara los volvería ilegibles, así que llevan
+     placa oscura. Se decide por ruta exacta del asset, nunca por substring de marca. */
+  const PLACA_OSCURA=new Set(['assets/brands/unitronic.png','assets/brands/duralast.svg','assets/brands/funk-motorsport.svg','assets/brands/zestek.png','assets/brands/integrated-engineering.png','assets/brands/hpa-motorsports.png','assets/brands/break-beat.png']);
+  const placa=(src,alt)=>`<span class="lgplate${PLACA_OSCURA.has(src)?' is-oscura':''}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></span>`;
+  const logoDe=(p)=>{
+    const ok=aprobado(p);
+    if(ok) return placa(ok.logo,ok.marca);
+    return p.logo?`<img src="${esc(p.logo)}" alt="${esc(p.marca||'')}" loading="lazy">`
+                 :`<span class="ini">${esc(ini(p.marca))}</span>`;
+  };
 
   /* ---- tarjeta de pieza ---- */
   const tarjeta=(p,i)=>{
@@ -2606,10 +3008,12 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
     const precio = p.actual ? `${mxn(p.actual)}<small>Precio actual</small>`
                  : p.pagado ? `${mxn(p.pagado)}<small>Pagado${p.anio?' · '+p.anio:''}</small>`
                             : `—<small>Sin registro</small>`;
+    const ok=aprobado(p);
+    const aviso=ok&&ok.aviso?`<span class="oem-aviso">${esc(ok.aviso)}</span>`:'';
     return `<button class="gt-card" data-pieza="${esc(p.nombre)}" style="--d:${Math.min(i,24)*26}ms">
       <span class="gt-sello ${cls}">${esc(txt)}</span>
       <div class="gt-lg">${logoDe(p)}</div>
-      <div class="gt-bd"><div class="sis">${esc(p.sistema)}</div><b>${esc(p.nombre)}</b>
+      <div class="gt-bd"><div class="sis">${esc(p.sistema)}</div>${aviso}<b>${esc(p.nombre)}</b>
         <div class="gt-precio">${precio}</div></div></button>`;
   };
   const pintarPiezas=(lista)=>{
@@ -2618,13 +3022,20 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
       : `<div class="vacio">Nada por aquí.</div>`;
   };
 
+  /* Marca de YouTube en línea (SVG): el episodio vive ahí y se dice explícito. */
+  const YT_MARCA = `<svg class="yt" viewBox="0 0 28 20" aria-hidden="true" focusable="false">`
+    + `<path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/>`
+    + `<path fill="#fff" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg>`;
+
   /* ---- ficha de la pieza ---- */
   const fov=$('#fichaOv');
   function abrirFicha(nombre){
     const p=D.piezas.find(z=>z.nombre===nombre); if(!p) return;
     const [cls,txt]=SELLO[p.sello]||['pen',p.sello];
+    const okF=aprobado(p);
+    const avisoF=okF&&okF.aviso?`<span class="oem-aviso">${esc(okF.aviso)}</span>`:'';
     $('#fichaTop').innerHTML=`<div class="lg">${logoDe(p)}</div>
-      <div><span class="marca">${esc(p.marca||'Sin marca')}</span><h3 id="fichaTit">${esc(p.nombre)}</h3></div>`;
+      <div><span class="marca">${esc(p.marca||'Sin marca')}</span><h3 id="fichaTit">${esc(p.nombre)}</h3>${avisoF}</div>`;
     const filas=[
       ['Sistema',esc(p.sistema)],
       ['Evidencia',`<span class="gt-sello ${cls}" style="position:static;display:inline-block">${esc(txt)}</span>`],
@@ -2635,8 +3046,27 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
       p.nota?['Nota',esc(p.nota)]:null,
     ].filter(Boolean);
     const acc=[];
-    if(p.video) acc.push(`<a class="primaria" href="${esc(p.video)}" target="_blank" rel="noopener">▶ Ver el episodio</a>`);
-    if(p.sitio) acc.push(`<a href="${esc(p.sitio)}" target="_blank" rel="noopener nofollow">Sitio de la marca ↗</a>`);
+    /* 1) Episodio — se declara que vive en YouTube, con su marca. */
+    if(p.video) acc.push(`<a class="btn-yt primaria" href="${esc(p.video)}" target="_blank" rel="noopener">${YT_MARCA}<span>Ver el episodio</span></a>`);
+    /* 2) Comprar — va al producto exacto. Sólo aparece si hay URL profunda:
+          si no la hay, no se finge que la hay. */
+    if(p.urlPieza){
+      const donde = p.proveedor || p.marca || 'el proveedor';
+      acc.push(`<a class="btn-comprar" href="${esc(p.urlPieza)}" target="_blank" rel="noopener nofollow"
+        title="Comprar esta pieza en ${esc(donde)}"><span>Comprar pieza ↗</span></a>`);
+    }
+    /* 3) Marca — el logo manda; el texto acompaña. */
+    /* Sólo se ofrece "conocer la marca" cuando hay sitio OFICIAL de la marca.
+       El dominio del link de compra es la tienda: mandar ahí bajo este texto
+       sería prometer una cosa y entregar otra. */
+    if(p.sitioMarca){
+      const src = (aprobado(p)||{}).logo || p.logo;
+      const chapa = src
+        ? `<span class="mplate${PLACA_OSCURA.has(src)?' is-oscura':''}"><img src="${esc(src)}" alt="${esc(p.marca||'')}" loading="lazy"></span>`
+        : `<span class="mplate is-ini">${esc(ini(p.marca))}</span>`;
+      acc.push(`<a class="btn-marca" href="${esc(p.sitioMarca)}" target="_blank" rel="noopener nofollow"
+        title="Ir al sitio oficial de ${esc(p.marca||'la marca')}">${chapa}<span>Conoce esta marca</span></a>`);
+    }
     acc.push(`<button data-cerrar-ficha>Cerrar</button>`);
     $('#fichaBd').innerHTML=
       (p.dudoso?`<p class="desc" style="color:var(--flame)">⚠ La nota traía dos importes para esta pieza; el precio está por confirmar.</p>`:'')
@@ -2646,6 +3076,13 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
       + `<div class="ficha-acc">${acc.join('')}</div>`;
     fov.classList.add('open');
   }
+  /* La ficha vivía sólo dentro del overlay del mapa, al 86% de la página.
+     Se expone para que la lista del inventario —la que la gente sí alcanza—
+     pueda abrirla sin obligar a bajar hasta El Cerro. */
+  window.abrirFichaDe = (carKey, nombre) => {
+    if(carKey && window[carKey] && carKey !== AUTO){ AUTO = carKey; D = window[carKey]; }
+    abrirFicha(nombre);
+  };
   const cerrarFicha=()=>fov.classList.remove('open');
   document.addEventListener('click',e=>{ if(e.target.closest('[data-cerrar-ficha]')) cerrarFicha(); });
 
@@ -2663,23 +3100,30 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   }
   function abrirMarcas(){
     tabs.innerHTML=''; tabs.hidden=true;
-    cont.innerHTML=`<div class="gt-marcas go">${D.marcas.map((m,i)=>`
+    cont.innerHTML=`<div class="gt-marcas go">${D.marcas.map((m,i)=>{
+      const okM=logoDeMarca(norma(m.nombre));
+      const lg=okM?placa(okM,m.nombre)
+                 :m.logo?`<img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy">`
+                        :`<span class="ini">${esc(ini(m.nombre))}</span>`;
+      return `
       <button class="mk-card" data-marca="${esc(m.nombre)}" style="--d:${Math.min(i,24)*24}ms">
-        <div class="lg">${m.logo?`<img src="${esc(m.logo)}" alt="${esc(m.nombre)}" loading="lazy">`
-                              :`<span class="ini">${esc(ini(m.nombre))}</span>`}</div>
+        <div class="lg">${lg}</div>
         <b>${esc(m.nombre)}</b><span>${m.piezas} pieza${m.piezas>1?'s':''} · ${mxn(m.gasto)}</span>
-      </button>`).join('')}</div>`;
+      </button>`;}).join('')}</div>`;
   }
   function abrirGaraje(){
     tabs.innerHTML=''; tabs.hidden=true;
-    const conVideo=D.piezas.filter(p=>p.video).length;
+    const A=AUTOS[AUTO], conVideo=D.piezas.filter(p=>p.video).length;
+    /* Sólo el León tiene foto propia. Para los otros dos no se pone una imagen
+       prestada: se dice el nombre y ya. Una foto ajena sería mentir sobre el auto. */
+    const foto = A.foto
+      ? `<div class="garaje-foto"><img src="${esc(A.foto)}" alt="${esc(A.nombre)}"></div>`
+      : `<div class="garaje-foto garaje-sinfoto"><span>${esc(A.nombre)}</span><small>Sin foto de estudio todavía</small></div>`;
     cont.innerHTML=`<div class="garaje">
-      <div class="garaje-foto"><img src="assets/car-leon-fr.jpg" alt="SEAT León FR"></div>
+      ${foto}
       <div class="garaje-specs">
-        <h3>SEAT León FR</h3><div class="plat">2013 · 1P / PQ35</div>
-        ${[['Motor','EA888 Gen 2 · 1.8 TSI'],['Transmisión','Manual 02Q (conversión desde DSG)'],
-           ['Estado','Stage 1'],['Kilometraje','~105,000 km reportados'],['Dueños','Único dueño, nacional']]
-          .map(([k,v])=>`<div class="dato"><b>${k}</b><span>${v}</span></div>`).join('')}
+        <h3>${esc(A.nombre)}</h3><div class="plat">${esc(A.plat)}</div>
+        ${A.specs.map(([k,v])=>`<div class="dato"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}
         <div class="garaje-cifras">
           <div><b>${D.resumen.piezas}</b><span>Piezas</span></div>
           <div><b>${D.resumen.marcas}</b><span>Marcas</span></div>
@@ -2689,19 +3133,28 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
       </div></div>`;
   }
 
+  /* Selector de auto dentro del overlay: la ficha ya no es sólo del León. */
+  const selectorAutos=()=>`<div class="loc-autos" role="tablist" aria-label="Elegir auto">${
+    ORDEN_AUTOS.filter(k=>window[k]).map(k=>`<button role="tab" data-carro="${k}"
+      aria-selected="${k===AUTO?'true':'false'}"${k===AUTO?' class="on"':''}>${esc(AUTOS[k].nombre)}</button>`).join('')
+  }</div>`;
+
   const LOCALES={
-    garaje:{tit:'El Garage',sub:'SEAT León FR · 1P / PQ35',pinta:abrirGaraje},
-    taller:{tit:'El Taller',sub:'Piezas instaladas, por sistema',pinta:abrirTaller},
-    marcas:{tit:'Refaccionaria',sub:'Las marcas que trae el auto',pinta:abrirMarcas},
+    garaje:{tit:'El Garage',sub:()=>`${AUTOS[AUTO].nombre} · ${AUTOS[AUTO].plat}`,pinta:abrirGaraje},
+    taller:{tit:'El Taller',sub:()=>`${AUTOS[AUTO].nombre} · piezas por sistema`,pinta:abrirTaller},
+    marcas:{tit:'Refaccionaria',sub:()=>`Las marcas que trae ${AUTOS[AUTO].nombre}`,pinta:abrirMarcas},
   };
 
   function abrirLocal(id){
     if(id==='pista'){ cerrarLocal(); if(window.abrirPista) window.abrirPista(); return; }
     const L=LOCALES[id]; if(!L) return;
+    localActual=id;
     hd.style.setProperty('--acc',COLOR[id]);
     hd.style.background=COLOR[id];
-    $('#localTit').textContent=L.tit; $('#localSub').textContent=L.sub;
+    $('#localTit').textContent=L.tit;
+    $('#localSub').textContent=typeof L.sub==='function'?L.sub():L.sub;
     L.pinta();
+    cont.insertAdjacentHTML('afterbegin', selectorAutos());
     ov.classList.add('open'); document.body.style.overflow='hidden';
     $('#localCerrar').focus();
   }
@@ -2713,6 +3166,18 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
 
   /* ---- clics dentro del overlay: pieza y marca ---- */
   cont.addEventListener('click',e=>{
+    /* Cambiar de auto: se repinta el local actual con el dataset nuevo.
+       D es `let` a propósito — pintarPiezas y abrirFicha leen el auto vigente. */
+    const car=e.target.closest('[data-carro]');
+    if(car){
+      const k=car.dataset.carro;
+      if(k!==AUTO && window[k]){
+        AUTO=k; D=window[k];
+        abrirLocal(localActual);
+        colocarHotspots(mapa.locales);   // el mapa refleja las cifras del auto activo
+      }
+      return;
+    }
     const pz=e.target.closest('[data-pieza]');
     if(pz){ abrirFicha(pz.dataset.pieza); return; }
     const mk=e.target.closest('[data-marca]');
@@ -2846,6 +3311,104 @@ $('#dockForm').addEventListener('submit',e=>{e.preventDefault();dock.classList.a
   btn.addEventListener('click',openModel);
   closeBtn.addEventListener('click',closeModel);
   ov.addEventListener('click',e=>{ if(e.target===ov) closeModel(); });
+})();
+
+/* ===== RUTAS PROBADAS POR SOLO RIDERS · panel accesible ===== */
+(function(){
+  const btn=document.getElementById('routesBtn');
+  const ov=document.getElementById('routesOv');
+  const panel=ov?ov.querySelector('.routes-panel'):null;
+  const closeBtn=document.getElementById('routesClose');
+  const selectorView=document.getElementById('routesSelectorView');
+  const gridView=document.getElementById('routesGridView');
+  const routeCard=document.getElementById('routeCardSwapManual');
+  const backBtn=document.getElementById('routesBack');
+  const grid=document.getElementById('routesGrid');
+  const routeData=window.OUT_DRIFTED_SWAP_A_MANUAL_ROUTE;
+  if(!btn||!ov||!panel||!closeBtn||!selectorView||!gridView||!routeCard||!backBtn||!grid||!routeData) return;
+
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let built=false;
+
+  function buildGrid(){
+    if(built) return;
+    const items=routeData.route.items;
+    grid.innerHTML=items.map(item=>{
+      const media=item.image
+        ? `<img src="${esc(item.image)}" alt="${esc(item.imageAlt||item.name)}" loading="lazy" decoding="async">`
+        : `<span class="routes-pending-tag">IMAGEN PENDIENTE</span>`;
+      let brand;
+      if(item.brandLogo){
+        const logoAlt=item.logoBrand||item.brand||'';
+        const nameLabel=item.logoBrand||item.brand||'';
+        const warning=item.logoWarning
+          ? `<span class="routes-item-logo-warning">${esc(item.logoWarning)}</span>`
+          : '';
+        brand=`<span class="routes-item-logobox"><img src="${esc(item.brandLogo)}" alt="${esc(logoAlt)}"></span>
+          <span class="routes-item-brand-name">${esc(nameLabel)}</span>
+          ${warning}`;
+      }else{
+        brand=`<span class="routes-item-brand-text">${esc(item.brand||'Marca no especificada')}</span>`;
+      }
+      const link=(item.linkStatus==='available' && item.link)
+        ? `<a class="routes-item-link" href="${esc(item.link)}" target="_blank" rel="noopener noreferrer">Ver enlace ▶</a>`
+        : `<span class="routes-item-link-pending">ENLACE PENDIENTE</span>`;
+      return `<div class="routes-item" role="listitem">
+        <div class="routes-item-media${item.image?' has-photo':''}">${media}</div>
+        <div class="routes-item-name">${esc(item.name)}</div>
+        <div class="routes-item-system">${esc(item.system||'')}</div>
+        <div class="routes-item-brand">${brand}</div>
+        ${link}
+      </div>`;
+    }).join('');
+    built=true;
+  }
+
+  function showSelector(){
+    gridView.hidden=true;
+    selectorView.hidden=false;
+  }
+  function showGrid(){
+    buildGrid();
+    selectorView.hidden=true;
+    gridView.hidden=false;
+  }
+
+  function openRoutes(){
+    showSelector();
+    ov.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown',onKeydown);
+  }
+  function closeRoutes(){
+    ov.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',onKeydown);
+    btn.focus();
+  }
+  function onKeydown(e){
+    if(e.key==='Escape'){ closeRoutes(); return; }
+    if(e.key==='Tab'){
+      const focusable=[...panel.querySelectorAll('button, a[href]')]
+        .filter(el=>!el.closest('[hidden]'));
+      if(!focusable.length) return;
+      const first=focusable[0], last=focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  }
+
+  btn.addEventListener('click',()=>{
+    if(ov.classList.contains('open')) closeRoutes();
+    else openRoutes();
+  });
+  closeBtn.addEventListener('click',closeRoutes);
+  ov.addEventListener('click',e=>{ if(e.target===ov) closeRoutes(); });
+  routeCard.addEventListener('click',()=>{ showGrid(); backBtn.focus(); });
+  backBtn.addEventListener('click',()=>{ showSelector(); routeCard.focus(); });
 })();
 </script>
 <script>
